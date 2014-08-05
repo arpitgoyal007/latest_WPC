@@ -259,23 +259,23 @@ class UserSettingsHandler(PageHandler):
 	def get(self):
 		if self.user:
 			templateVals = {'me': self.user}
-			resource = self.request.get('ids')
-			logging.info(resource)
-			photoList = get_photolist_from_urlstring(resource, self.user.key)
-			templateVals['photos'] = photoList
 			self.render('usersettings.html', **templateVals)
 		else:
 			self.redirect('/')
 
 	def post(self):
-			name = self.request.get('name')
-			email = self.request.get('email')
-			password = self.request.get('password')
-			verifyPassword = self.request.get('verifyPassword')
-			templateVals = {'name': name, 'signupEmail': email}
-			if verifyPassword == password:
-				templateVals['Error'] = "Passwords do not match"
-			self.render('usersettings.html', **templateVals)
+		name = self.request.get('name')
+		alt_email = self.request.get('alt_email')
+		password = self.request.get('password')
+		verifyPassword = self.request.get('verifyPassword')
+		country = self.request.get('country')
+		templateVals = {'name': name, 'alt_email': alt_email}
+		update_user_name (name)
+		update_user_alt_email (alt_email)
+		if (password == verifyPassword):
+			update_user_password(password)
+		update_user_country(country)
+		self.redirect('usersettings.html')
 
 class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler):
 	def post(self):

@@ -5,6 +5,7 @@ class User(ndb.Model):
 	email = ndb.StringProperty(required=True)
 	passwordHash = ndb.StringProperty(required=True, indexed=False)
 	country = ndb.StringProperty(required=True)
+	alt_email = ndb.StringProperty(required=True)
 	following = ndb.KeyProperty(kind='User', repeated=True)
 	followers = ndb.KeyProperty(kind='User', repeated=True)
 	score = ndb.IntegerProperty(default=0)
