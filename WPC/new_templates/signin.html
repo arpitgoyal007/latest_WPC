@@ -1,0 +1,54 @@
+{%extends "index.html"%}
+
+{%block styleSheets%}
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/my_studio.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/upload.css">
+<link rel="stylesheet" href="/css/signin.css">
+<link rel="stylesheet" href="/css/ca1rousel.css">
+{%endblock%}
+
+{%block carousel%}
+{%endblock%}
+
+{%block signup_links%}  
+{%endblock%}
+
+{%block userNavLinks%}
+{%endblock%}
+
+{%block backtotop%}
+{%endblock%}
+
+{%block pageContent%}
+<div class="row text-center form-signup" >
+	<form class="form-signin col-sm-4 col-sm-offset-1" role="form" action="/signup" onsubmit="return validateSignupForm()" method="post" name="signup_form">
+		<h2 class="form-signin-heading">Sign up for free!</h2>
+		<input type="text" name="name" class="form-control" placeholder="Full Name" value="{{name}}"><br>
+		<input type="text" name="email" class="form-control" placeholder="Email Address" value="{{signupEmail}}"><br>
+		<input type="password" name="password" class="form-control" placeholder="Password" required>
+		<input type="password" name="verifyPassword" class="form-control" placeholder="Re-enter Password" required>
+		<label><input type="checkbox" name="remember"> Remember Me</label>
+		<div class="error" style="color:red;">{{signupError}}</div>
+		<button class="btn btn-lg btn-success btn-block" type="submit">Sign Up</button>
+	</form>
+	<div class="col-sm-1 col-sm-offset-1 ">
+	 <div class="vertical-line">&nbsp;</div>
+	</div>
+	<form class="form-signin col-sm-4 col-sm-offset-2" role="form" action="/login" onsubmit="return validateLoginForm()" method="post" name="login_form">
+		<h2 class="form-signin-heading">Already have an account?</h2>
+		<input type="text" name="email" class="form-control" placeholder="Email Address" value="{{signupEmail}}"><br>
+		<input type="password" name="password" class="form-control" placeholder="Password" required>
+		<label><input type="checkbox" name="remember"> Remember Me</label>
+		<div class="error" style="color:red;">{{signupError}}</div>
+		<button class="btn btn-lg btn-success btn-block" type="submit">Sign In</button>
+	</form>		
+</div>
+	<div class="col-sm-4 col-sm-offset-4">
+		<p> or </p>
+		<a href="#"><button class="btn btn-lg btn-primary" type="button"><i class="fa fa-facebook" style="color:white;"></i>  Sign in with Facebook</button></a>
+		<a href="#"><button class="btn btn-lg btn-danger" type="button"><i class="fa fa-google-plus" style="color:white;"></i>  Sign in with Google</button></a>
+	</div>	
+
+{%endblock%}

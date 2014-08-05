@@ -1,0 +1,28 @@
+{%extends "user_studio.html"%}
+{%set user = me%}
+{%block styleSheets%}
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/my_studio.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/upload.css">
+{%endblock%}
+{%block pageContent%}
+<div class="newPost" >
+	<form method="post" id="thumbnails">
+		<div class="row">
+			<div class="container">
+				{%for photo in photos%}
+				<div class="col-lg-4">
+					<img class="img-rounded" src="/servephoto/{{photo.blobKey}}" height="140px" alt="Generic placeholder image">
+					<div><input type="text" name="caption" placeholder="Say something about this photo" value="{{photo.caption}}"></div>
+					<div><textarea name="description" placeholder="Give details for this photo">{{photo.description}}</textarea></div>
+				</div><!-- /.col-lg-4 -->
+		 	    {%endfor%}
+			</div>
+		</div>
+		<div class="error">{{submitError}}</div>
+		<button class="btn btn-sm btn-success" type="submit" value="Submit">Save and go to My Photos</button>
+	</form>
+</div>
+{%endblock%}

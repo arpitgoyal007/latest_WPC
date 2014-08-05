@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<title>World Photographers Club</title>
+  		{%block pageStyle%}
+  	<!--	<link rel="stylesheet" type="text/css" href="/css/home.css"> -->
+  		{%endblock%}
+	</head>
+	<body>
+		{%block navBar%}
+		<div class="navbar">
+			<div class="logo">
+				<a href="/"><img src="/images/wpc_logo.png" alt="logo"></a>
+			</div>
+			<ul class="wpc-nav">
+				<li><a href="#">Search</a></li>
+				<li><a href="#">Explore</a></li>
+				<li><a href="#">WPC Forum</a></li>
+			</ul>
+			<ul class="user-nav">
+				<li><a href="/{{me.key.id()}}">{{me.name}}</a></li>
+				<li><a href="/{{me.key.id()}}/studio">MyStudio</a></li>
+				<li><a href="/logout">Logout</a></li>
+			</ul>
+		</div>
+		{%endblock%}
+
+		{%block pageHeader%}
+		{%endblock%}
+
+		{%block pageContent%}
+		{%endblock%}
+
+	</body>
+</html>

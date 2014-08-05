@@ -1,0 +1,45 @@
+Photo
+1) likes from other users - N
+2) comments from other users - M
+3) replies - M
+4) ratings - N
+5) new photos from followed users - M
+6) added to group - N
+7) if public, 
+	a) downloaded - N
+	b) used in a blog - M
+	c) used in a forum - M
+	d) added to a group - M
+	e) if shared by other users on email/facebook/google+ - N
+8) award presented - N
+9) added to others ideadbooks - M
+
+Photographer
+1) followed - N
+2) following - N
+3) private message - M
+4) profile views - N
+5) ratings - N
+
+Groups
+1) added to a group - M
+2) New posts on the group - N
+
+Blog
+1) new comment to your blog - M
+2) views of your blog - N
+3) likes to your blog - N
+
+Forum
+1) Answers to you questions - M
+2) likes to your forum answers - N
+
+Suggested Posts
+1) photographers - M
+2) blogs - M
+3) photos - M
+4) photos - M
+5) articles - M
+6) upcoming events - M 
+7) Ads - M
+8) forum - M

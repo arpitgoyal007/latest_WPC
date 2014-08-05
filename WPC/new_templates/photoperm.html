@@ -1,0 +1,115 @@
+{%extends "user_studio.html"%}
+
+{%block pageContent%}
+    <div class="transbox_right_permapage">
+        <ul class="list-inline">
+            <img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br>
+            <li color="white"><a href="https://www.facebook.com"><i class="fa fa-facebook fa-3x" style="color:black;"></i></a></li><br><br>
+            <li color="white"><a href="https://www.twitter.com"><i class="fa fa-twitter fa-3x" style="color:black;"></i></a></li><br><br>
+            <li color="white"><a href="https://www.pinterest.com"><i class="fa fa-pinterest fa-3x" style="color:black;"></i></a></li><br><br>
+            <li color="white"><a href="https://www.pinterest.com"><i class="fa fa-youtube fa-3x" style="color:black;"></i></a></li>
+        </ul>
+    </div>
+	<div class="photopermpage">
+		<img src="/servephoto/{{photo.blobKey}}" height="600px" alt="photo">
+	</div>
+	<div class="row edit_delete_bottons text-center">
+		<div class="col-sm-1 col-sm-offset-5">
+			<form method="post">
+				<input type="hidden" name="actionType" value="edit">
+				<button class="btn btn-success" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span> Edit</button>
+			</form>
+	    </div>
+	    <div class="col-sm-1">
+			<form method="post">
+				<input type="hidden" name="actionType" value="delete">
+				<button class="btn btn-success" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span> Delete</button>
+			</form>
+	    </div>
+	</div>
+	<br><br>
+	<div class="thumb_imgs">
+	    {%for p in photos%}
+	         <a href="/photo/{{p.key.urlsafe()}}"><img src="/servephoto/{{p.blobKey}}" height="100px" alt="photo"></a>
+	    {%endfor%}
+	</div>
+	<hr>
+	<h3 style="color:black;">Photo Name</h3>
+	<script src="/js/holder.js"></script>
+	<div class="container marketing">
+	    <div class="row ">
+	        <div class="col-lg-2 col-md-4 col-xs-6 col-md-offset-1">
+	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:10 Likes" alt="Generic placeholder image">
+	        </div><!-- /.col-lg-4 -->
+	        <div class="col-lg-2 col-md-4 col-xs-6">
+	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:5 Comments" alt="Generic placeholder image">
+	        </div><!-- /.col-lg-4 -->
+	        <div class="col-lg-2 col-md-4 col-xs-6">
+	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:1 Awards" alt="Generic placeholder image">
+	        </div><!-- /.col-lg-4 -->
+	        <div class="col-lg-2 col-md-4 col-xs-6">
+	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:20 Views" alt="Generic placeholder image">
+	        </div><!-- /.col-lg-4 -->
+	        <div class="col-lg-2 col-md-4 col-xs-6">
+	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:2.5 Rating" alt="Generic placeholder image">
+	        </div><!-- /.col-lg-4 -->
+	    </div><!-- /.row -->
+	</div>
+
+  <div class="row permapage_container">
+    <div class="col-md-3 col-sm-6 permapage_container_inner">
+      <div class="panel panel-default">
+           <div class="panel-heading"><h4>Comments on this Photo</h4></div>
+        <div class="panel-body">
+              <div class="clearfix"></div>
+              <hr>
+              <input type="text" class="form-control" placeholder="Add a comment..">
+            </div>
+         </div> 
+    </div>
+     <div class="col-md-3 col-sm-6 permapage_container_inner">
+      <div class="panel panel-default">
+           <div class="panel-heading"><h4>Associated Tags</h4></div>
+        <div class="panel-body">                
+              <button class="btn btn-gray btn-xs btn_padding">New York</button>
+              <button class="btn btn-gray btn-xs btn_padding">Brooklyn Bridge</button>
+              <button class="btn btn-gray btn-xs btn_padding">Fashion</button>
+              <button class="btn btn-gray btn-xs btn_padding">Delhi</button>    
+              <button class="btn btn-gray btn-xs btn_padding">New York</button>
+              <button class="btn btn-gray btn-xs btn_padding">Brooklyn Bridge</button>
+              <button class="btn btn-gray btn-xs btn_padding">Fashion</button>            
+              <hr>
+              <input type="text" class="form-control" placeholder="Add a new Tag">
+            </div>
+         </div> 
+    </div>
+     <div class="col-md-5 col-sm-6 permapage_container_inner">
+      <div class="panel panel-default">
+           <div class="panel-heading"><h4>Camera Details</h4></div>
+        <div class="panel-body">
+              <img src="/fonts/Cameras/Nikon_D80.png" alt="camera" width="80px"><h4 style="color:black;">Nikon D80<h4>
+              <hr>
+              <hr>
+            </div>
+         </div> 
+    </div><!--/articles-->
+    </div>
+	<footer>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+			<ul class="list-inline">
+				<li><a href="https://www.facebook.com/pages/Anurag-Mathurs-Photography/215979155096125?ref=hl&ref_type=bookmark"><i class="fa fa-facebook fa-3x"></i></a>
+				</li>
+				<li><a href="www.twitter.com"><i class="fa fa-twitter fa-3x"></i></a>
+				</li>
+				<li><a href="www.dribble.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+				</li>
+				<li><a href="www.dribble.com"><i class="fa fa-pinterest fa-3x"></i></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<p class="pull-right back-to-top"><a href="#">Back to top</a></p>
+	<p>&copy; 2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
+	</footer>
+{%endblock%}

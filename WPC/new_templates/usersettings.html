@@ -1,0 +1,122 @@
+{%if me%}
+    {%extends "index_user.html"%}
+{%else%}
+    {%extends "index.html"%}
+{%endif%}
+
+{%set user = me%}
+
+{%block title%}
+{{user.name}} | WPC
+{%endblock%}
+
+{%block styleSheets%}
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/usersettings.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
+{%endblock%}
+
+{%block carousel%}
+{%endblock%}
+
+{%block pageContent%}
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview</a></li>
+            <li><a href="#analytics">Analytics</a></li>
+            <li><a href="#export">Export</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="#user_settings">User Settings</a></li>
+            <li><a href="#sharing">Sharing and Permissions</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Overview</h1>
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/100x100/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Photos</h4>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/100x100/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Blogs</h4>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/100x100/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Forum Questions</h4>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/100x100/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Articles</h4>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div id="analytics" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Analytics</h1>
+        </div>
+        <hr>
+        <hr>
+        <div id="export" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Export</h1>
+        </div>
+        <div id="user_settings" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">User Settings</h1>
+            <form class="form-signin col-sm-4" role="form" method="post">
+                <p>User Name </p><input type="text" name="name" class="form-control" placeholder="{{me.name}}" value="{{me.name}}"><br>
+                <button class="btn btn-xs btn-success" type="submit">Save Name</button>
+                <hr>
+                <p>Email ID </p><input type="text" name="email" class="form-control" placeholder="{{me.email}}" value="{{me.email}}"><br>
+                <button class="btn btn-xs btn-success" type="submit">Save Email</button>
+                <hr>
+                <p>Update Passowrd</p>
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="password" name="verifyPassword" class="form-control" placeholder="Re-enter Password">
+                <br>
+                <div class="error" style="color:red;">{{signupError}}</div>
+                <button class="btn btn-xs btn-success" type="submit">Save Password</button>
+            </form>
+        </div>
+        <hr>
+        <div id="sharing" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Sharing and Permissions</h1>
+        </div>
+      </div>
+    </div>
+
+    {%block footer%}
+    {%endblock%}
+      <!-- FOOTER -->
+      <div class="footer" style="padding-bottom:0;">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 text-center">
+            <ul class="list-inline">
+              <li><a href="https://www.facebook.com/pages/Anurag-Mathurs-Photography/215979155096125?ref=hl&ref_type=bookmark"><i class="fa fa-facebook fa-3x"></i></a>
+              </li>
+              <li><a href="www.twitter.com"><i class="fa fa-twitter fa-3x"></i></a>
+              </li>
+              <li><a href="www.dribble.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+              </li>
+              <li><a href="www.dribble.com"><i class="fa fa-pinterest fa-3x"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      {%block backtotop%}
+        <p class="pull-right back-to-top"><a href="#">Back to top</a></p>
+        <p style="padding-left:500px;">&copy;2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
+      {%endblock%}  
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+{%endblock%}

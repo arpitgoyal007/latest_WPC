@@ -1,0 +1,54 @@
+{%extends "user_studio.html"%}
+{%set user = me%}
+{%block title%}
+My Photos | WPC
+{%endblock%}
+
+{%block pageContent%}
+  <br><br><br><br>
+      <div id="photos" class="portfolio main">
+    		<div class="post">
+		    <div class="row">
+		        	<div class="container1">
+					{%for p in photos%}
+		        		<div class="col-lg-2 col-sm-3 col-xs-4" align="center">
+							<a href="/photo/{{p.key.urlsafe()}}"><img src="/servephoto/{{p.blobKey}}" height="140px" alt="photo"></a>
+						</div>
+					{%endfor%}
+					</div>
+			</div>
+		</div>
+	</div>
+
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="/servephoto/{{p.blobKey}}" height="140px" alt="photo">
+            <div class="container">
+            </div>
+          </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+			<!-- FOOTER -->
+			<footer class="footer_new">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 text-center">
+						<ul class="list-inline">
+							<li><a href="https://www.facebook.com/pages/Anurag-Mathurs-Photography/215979155096125?ref=hl&ref_type=bookmark"><i class="fa fa-facebook fa-3x"></i></a>
+							</li>
+							<li><a href="www.twitter.com"><i class="fa fa-twitter fa-3x"></i></a>
+							</li>
+							<li><a href="www.dribble.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+							</li>
+							<li><a href="www.dribble.com"><i class="fa fa-pinterest fa-3x"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<p class="pull-right back-to-top"><a href="#">Back to top</a></p>
+				<p>&copy; 2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
+				</footer>
+{%endblock%}

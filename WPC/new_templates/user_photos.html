@@ -1,0 +1,116 @@
+{%extends "user_studio.html"%}
+{%set user = me%}
+{%block title%}
+My Photos | WPC
+{%endblock%}
+{%block styleSheets%}
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<!-- Add custom CSS here -->
+<link href="/css/my_studio.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
+{%endblock%}
+{%block pageContent%}
+  <br><br><br><br>
+      <div id="photos" class="portfolio main">
+        <nav class="navbar" role="navigation">
+          <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="my_photos.html" style="font-family:verdana;color:black;font-size:30px;"> My Photos</a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search Photos <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <form class="navbar-form navbar-left" role="search" action="photos.html">
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Find Photos">
+                            </div>
+                          </form>                        
+                        </li>
+                      </ul>
+                   </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filter<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Most Viewed</a></li>
+                        <li><a href="#">Most Liked</a></li>
+                        <li><a href="#">Most Commented</a></li>
+                        <li><a href="#">Most Shared</a></li>
+                        <li><a href="#">Most Pinned</a></li>
+                        <li><a href="#">Tags</a></li>
+                      </ul>
+                    </li>
+                  </ul>   
+                  <ul class="nav navbar-nav navbar-right" style="margin-right:20px;">                    
+                      <li>My Albums</li><br>
+                      <button type="submit" class="btn btn-warning btn-xs">New York</button>
+                      <button type="submit" class="btn btn-warning btn-xs">Brooklyn Bridge</button>
+                      <button type="submit" class="btn btn-warning btn-xs">Fashion</button>
+                      <button type="submit" class="btn btn-warning btn-xs">Delhi</button>
+                      <button type="submit" class="btn btn-warning btn-xs">India Gate</button>
+                  </ul>       
+                  <ul class="nav navbar-nav navbar-right"  style="margin-right:20px;">                    
+                      <li>My Tags</li><br>
+                      <button type="submit" class="btn btn-danger btn-xs">New York</button>
+                      <button type="submit" class="btn btn-danger btn-xs">Brooklyn Bridge</button>
+                      <button type="submit" class="btn btn-danger btn-xs">Fashion</button>
+                      <button type="submit" class="btn btn-danger btn-xs">Delhi</button>                
+                  </ul>
+              </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+      </nav>   
+
+		    <div class="row">	
+		        	<div class="container">
+					{%for p in photos%}
+		        		<div class="col-lg-2 col-sm-3 col-xs-4 col-lg-offset-1" align="center">
+							<a href="/photo/{{p.key.urlsafe()}}"><img src="/servephoto/{{p.blobKey}}" height="140px" alt="photo"></a>
+              <br>
+								<div class="button-container post-action">
+									<form method="post">
+										<input type="hidden" name="actionType" value="edit">
+										<button class="btn btn-primary btn-xs" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span></button>
+									</form>
+									<form method="post">
+										<input type="hidden" name="actionType" value="delete">
+										<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
+									</form>
+								</div>
+						</div>
+					{%endfor%}
+					</div>
+			</div>
+		</div>
+			<!-- FOOTER -->
+			<footer class="footer_new">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 text-center">
+						<ul class="list-inline">
+							<li><a href="https://www.facebook.com/pages/Anurag-Mathurs-Photography/215979155096125?ref=hl&ref_type=bookmark"><i class="fa fa-facebook fa-3x"></i></a>
+							</li>
+							<li><a href="www.twitter.com"><i class="fa fa-twitter fa-3x"></i></a>
+							</li>
+							<li><a href="www.dribble.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+							</li>
+							<li><a href="www.dribble.com"><i class="fa fa-pinterest fa-3x"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<p class="pull-right back-to-top"><a href="#">Back to top</a></p>
+				<p>&copy; 2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
+				</footer>
+{%endblock%}

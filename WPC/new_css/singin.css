@@ -1,0 +1,16 @@
+html,
+body {
+  background-color: #333;
+  background: url(/images/Brooklyn_Bridge.jpg) no-repeat center center fixed;
+}
+body {
+  color: #000;
+  text-align: center;
+}
+body {
+  padding-top: 60px;
+}
+
+body a {
+  color: #fff;
+}

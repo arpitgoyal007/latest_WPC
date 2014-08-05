@@ -1,0 +1,17 @@
+{%extends "index_user.html"%}
+
+{%block pageContent%}
+<div class="newPost">
+	<form method="post">
+		{%for photo in photos%}
+		<label>
+			Caption
+			<div><input type="text" name="caption" value="{{photo.caption}}"></div>
+		</label>
+		<img src="/servephoto/{{photo.blobKey}}" alt="photo">
+		{%endfor%}
+		<div class="error">{{submitError}}</div>
+		<div><input type="submit" value="Submit"></div>
+	</form>
+</div>
+{%endblock%}

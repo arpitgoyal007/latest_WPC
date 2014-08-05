@@ -1,0 +1,49 @@
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 550px;
+  margin-bottom: 40px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 550px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+}
+
+.featurette-divider {
+  margin: 20px 0; /* Space out the Bootstrap <hr> more */
+}
+
+.signup_buttons {
+  margin-bottom: 450px;
+  padding-top: 0px;
+}
+
+.signup_buttons a {
+font-color:white;
+}
+
+  /* Bump up size of carousel content */
+.carousel-signup h2 {
+  font-size: 30px;
+  line-height: 1.4;
+  padding-bottom:0px;
+  color:#fff;
+}
+
+.carousel-signup {
+  position: absolute;
+  }

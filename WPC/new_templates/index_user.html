@@ -1,0 +1,178 @@
+{%extends "index.html"%}
+
+{%block title%}
+Home | WPC
+{%endblock%}
+{%block homepage_links%}
+{%endblock%}
+
+{%block userNavLinks%}
+                  <ul class="nav navbar-nav navbar-right">
+                  	<li><a class="navbar-brand" href="/{{me.key.id()}}"><em>{{me.name}}</em></a></li>
+                    <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="/{{me.key.id()}}/photos"><span class="glyphicon glyphicon-picture"></span></a></li>
+                      <li>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span><b class="caret"></b></a>
+                          <ul class="dropdown-menu" role="menu">
+                              <li><a href="/newphoto"><span class="glyphicon glyphicon-camera"></span> Photos and Videos</a></li>
+                              <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Blog Post</a></li>
+                              <li><a href="#"><span class="glyphicon glyphicon-bell"></span> A Question</a></li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
+                          <ul class="dropdown-menu" role="menu">
+                              <li><a href="/usersettings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                              <li><a href="#"><span class="glyphicon glyphicon-th-large"></span> Dashboard</a></li>
+                              <li><a href="#my_portfolios"><span class="glyphicon glyphicon-heart-empty"></span> My Ideabook</a></li>
+                              <li><a href="#my_portfolios"><span class="glyphicon glyphicon-picture"></span> My Portfolios</a></li>
+                              <li class="divider"></li>
+                              <li><a href="/logout"><span class="glyphicon glyphicon-send"></span> Sign Out</a></li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope"></span><b class="caret"></b><span class="badge pull-right">42</span></a>
+                          <ul class="dropdown-menu" role="menu">
+                              <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Messages<span class="badge">20</span></a></li>
+                              <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span> Notifications<span class="badge">10</span></a></li>
+                              <li class="divider"></li>
+                              <li><a href="#"><span class="glyphicon glyphicon-ok"></span> My Answers<span class="badge">12</span></a></li>
+                          </ul>
+                      </li>
+                  </ul>
+{%endblock%}
+{%block signup_links%}  
+{%endblock%}
+{%block pageContent%}
+    {%block carousel%}
+    {%endblock%}
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="/images/Brooklyn_Bridge.jpg" alt="First slide"/>
+          <div class="container">
+            <div class="carousel-caption">
+                <p><a href="my_studio.html">Photographers Name</a></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-4"><em>Go to Portfolio</em></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-5"><em>Like the Photo</em></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-6"><em>Add this Photo to your Ideabook</em></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-7"><em>Add Photographer to your Ideabook</em></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="/images/DSC_1582.jpg" alt="Second slide"/>
+          <div class="container">
+            <div class="carousel-caption">
+                <p><a href="my_studio.html">Photographers Name</a></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-4"><em>Go to Portfolio</em></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-5"><em>Like the Photo</em></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-6"><em>Add this Photo to your Ideabook</em></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-7"><em>Add Photographer to your Ideabook</em></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="/images/DSC_1737.jpg" alt= "Third slide"/>
+          <div class="container">
+            <div class="carousel-caption">
+                <p><a href="my_studio.html">Photographers Name</a></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-4"><em>Go to Portfolio</em></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-5"><em>Like the Photo</em></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-6"><em>Add this Photo to your Ideabook</em></p>
+                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-7"><em>Add Photographer to your Ideabook</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+ <div class="container" id="main">
+      <h1>My Feed</h1>
+
+  
+  <div class="row">
+      <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/Artist_1.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button>
+              <div class="panel-body">
+              <p class="lead">Photographer added new Photos</p>
+              <a><h5 style="color:black;">Go to Photographer Photos</h5></a>
+          </div>
+        </div>
+        <hr>
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/AnuragMathur.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button>
+              <div class="panel-body">
+              <p class="lead">Your photo is used by Photographer in his blog/forum/group XYZ</p>
+              <input type="text" class="form-control" placeholder="Add a comment..">
+          </div>
+        </div>
+        <hr>
+      </div><!--/col-->
+      
+      <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/Artists_2.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button>
+              <div class="panel-body">
+              <p class="lead">Photographer Commented on your photo</p>
+              <input type="text" class="form-control" placeholder="Reply..">
+              </div>
+        </div>
+        <hr>
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/Brooklyn_Bridge.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button>
+              <div class="panel-body">
+              <p class="lead">Photographer has sent you a private message</p>
+              <h4><em>Hi ! How are you??</em></h4>
+              <input type="text" class="form-control" placeholder="Reply..">
+          </div>
+        </div>
+        <hr>
+      </div><!--/col-->
+      
+      <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/DSC_1556.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button>
+              <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button>
+              <div class="panel-body">
+              <p class="lead">Photographer added you to his ideabook</p>
+              <input type="text" class="form-control" placeholder="Send a private message..">
+          </div>
+        </div>
+        <hr>
+      </div><!--/col-->  
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-info btn-sm"> Load More</button>
+    </div> 
+  </div>
+</div><!--/main-->
+
+{%endblock%}
+		
