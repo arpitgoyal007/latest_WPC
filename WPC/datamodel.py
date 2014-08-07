@@ -11,6 +11,7 @@ class User(ndb.Model):
 	score = ndb.IntegerProperty(default=0)
 	groups = ndb.KeyProperty(kind='Group', repeated=True)
 	joined = ndb.DateTimeProperty(auto_now_add=True)
+	avatar = ndb.BlobProperty()
 
 class Group(ndb.Model): # Parent=User (Admin)
 	name = ndb.StringProperty(required=True)

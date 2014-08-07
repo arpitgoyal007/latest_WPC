@@ -7,7 +7,7 @@
 {%set user = me%}
 
 {%block title%}
-{{user.name}} | WPC
+{{me.name}} | WPC
 {%endblock%}
 
 {%block styleSheets%}
@@ -15,6 +15,7 @@
 <link href="/css/bootstrap.css" rel="stylesheet">
 <link href="/css/usersettings.css" rel="stylesheet">
 <link href="/css/font.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/user_settings.css">
 {%endblock%}
 
 {%block carousel%}
@@ -31,6 +32,7 @@
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="#user_settings">User Settings</a></li>
+            <li><a href="#portfolio">Portfolio Settings</a></li>
             <li><a href="#my_gear">My Gear</a></li>
             <li><a href="#sharing">Sharing and Permissions</a></li>
           </ul>
@@ -335,17 +337,82 @@
                       <option value="Zimbabwe">Zimbabwe</option>
                       </select><br><br>
                 <button class="btn btn-xs btn-success" type="submit">Add Location</button>
-                <hr>
             </form>
+        </div>
+        <hr>
+        <div id="portfolio" class="col-sm-9 col-sm-offset-4 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Portfolio Settings</h1>
+              
+              <form onsubmit="validate()" id="photoupload" class ="col-sm-4" action="{{uploadUrl}}" method="post" enctype="multipart/form-data">
+                <p>Select Profile Image</p>
+                <div class="column fileupload-buttonbar">
+                    <span class="btn btn-xs btn-info fileinput-button">
+                      <i class="glyphicon glyphicon-plus"></i>
+                      <span>Select Image</span>
+                      <input type="file" id="myFile" name="files" onchange="myFunction()">
+                    </span>
+                </div>
+                <div class="container row" id="thumb_img"></div>
+                <hr>
+                <p>Select Background Image 1</p>
+                <div class="column fileupload-buttonbar">
+                    <span class="btn btn-xs btn-info fileinput-button">
+                      <i class="glyphicon glyphicon-plus"></i>
+                      <span>Select Image</span>
+                      <input type="file" id="myFile1" name="files" onchange="myFunction1()">
+                    </span>
+                     <div class="container row" id="thumb_img1"></div>
+                </div><hr>
+                <p>Select Background Image 2</p>
+                <div class="column fileupload-buttonbar">
+                    <span class="btn btn-xs btn-info fileinput-button">
+                      <i class="glyphicon glyphicon-plus"></i>
+                      <span>Select Image</span>
+                      <input type="file" id="myFile2" name="files" onchange="myFunction2()">
+                    </span>
+                     <div class="container row" id="thumb_img2"></div>
+                </div><hr>
+                <p>Photography Interests</p>
+                   <select name="country" size="10" style="width: 130px;" multiple>
+                      <option value="Fashion">Action/Sports</option>
+                      <option value="Advertising">Advertising</option>
+                      <option value="Aerial">Aerial</option>
+                      <option value="Architectural">Architectural</option>
+                      <option value="Astronomical">Astronomical</option>
+                      <option value="Music">Concert/Music</option>
+                      <option value="Event">Event</option>
+                      <option value="Family">Family</option>
+                      <option value="Fashion">Fashion</option>
+                      <option value="Food">Food</option>
+                      <option value="Landscape">Landscape</option>
+                      <option value="Macro">Macro/Micro</option>
+                      <option value="Medical">Medical</option>
+                      <option value="Nude">Nude/Erotic</option>
+                      <option value="Paparazzi">Paparazzi</option>
+                      <option value="Photojournalism">Photojournalism</option>
+                      <option value="Scientific">Scientific</option>
+                      <option value="Street">Street</option>
+                      <option value="Travel">Travel</option>
+                      <option value="Underwater">Underwater</option>
+                      <option value="Vehicles">Vehicles</option>
+                      <option value="Weddings">Weddings</option>
+                      <option value="Wildlife">Wildlife</option>
+                    </select><br>
+                    <p style="color:gray;">You can select upto 6</p>
+                <hr>
+                <button class="btn btn-xs btn-success" type="submit">Upload Profile</button>
+              </form>
         </div>
         <hr>
         <div id="my_gear" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">My Gear</h1>
-            <p>Select Your Camera</p>
-            <p>Select Lense 1</p>
-            <p>Select Lense 2</p>
-            <p>Select Lense 3</p>
-            <button class="btn btn-xs btn-success" type="submit">Add My Gear Info</button>
+            <form class="form-signin col-sm-4" role="form" method="post">
+              <p>Select Your Camera</p>
+              <p>Select Lense 1</p>
+              <p>Select Lense 2</p>
+              <p>Select Lense 3</p>
+              <button class="btn btn-xs btn-success" type="submit">Add My Gear Info</button>
+            </form>
         </div>
         <hr>
         <div id="sharing" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -384,4 +451,146 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/docs.min.js"></script>
+    <script type="text/javascript">
+      function validate()
+        {
+            var selectChoose = document.getElementById('choose');
+            var maxOptions = 2;
+            var optionCount = 0;
+            for (var i = 0; i < selectChoose.length; i++) {
+                if (selectChoose[i].selected) {
+                    optionCount++;
+                    if (optionCount > maxOptions) {
+                        alert("validation failed, not submitting")
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        </script>
+
+        <script>
+        function myFunction(){
+            var x = document.getElementById("myFile");
+            var txt = "";
+            var temp = '';
+            var total_size = 0;
+            if ('files' in myFile) {
+                if (x.files.length == 0) {
+                    txt = "Select one or more files.";
+                } else {
+                  var num_files = x.files.length;
+                    for (var i = 0; i < x.files.length; i++) {
+                      txt = "";
+                        //txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                        var file = x.files[i];
+                        if ('name' in file) {
+                            txt += "" + file.name + "<br>";
+                        }
+                        if ('size' in file) {
+                            //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                            txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
+                        }
+                    //document.getElementById("demo").innerHTML = txt;
+                    temp += "<br><div class='col-lg-4'><img class='img-circle' src='/images/"+file.name+"' height='100px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4></div>";
+                    total_size = total_size + file.size;
+                    }
+                    total_size = Math.ceil((total_size/1000000) * 100)/100;
+                }
+            } 
+            else {
+                if (x.value == "") {
+                    txt += "Select one or more files.";
+                } else {
+                    txt += "The files property is not supported by your browser!";
+                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                }
+            }
+            document.getElementById("thumb_img").innerHTML = temp;
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
+        }
+        </script>
+        <script>
+        function myFunction1(){
+            var x = document.getElementById("myFile1");
+            var txt = "";
+            var temp1 = '';
+            var total_size = 0;
+            if ('files' in myFile1) {
+                if (x.files.length == 0) {
+                    txt = "Select one or more files.";
+                } else {
+                  var num_files = x.files.length;
+                    for (var i = 0; i < x.files.length; i++) {
+                      txt = "";
+                        //txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                        var file = x.files[i];
+                        if ('name' in file) {
+                            txt += "" + file.name + "<br>";
+                        }
+                        if ('size' in file) {
+                            //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                            txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
+                        }
+                    //document.getElementById("demo").innerHTML = txt;
+                    temp1 += "<br><div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='100px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4></div>";
+                    total_size = total_size + file.size;
+                    }
+                    total_size = Math.ceil((total_size/1000000) * 100)/100;
+                }
+            } 
+            else {
+                if (x.value == "") {
+                    txt += "Select one or more files.";
+                } else {
+                    txt += "The files property is not supported by your browser!";
+                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                }
+            }
+            document.getElementById("thumb_img1").innerHTML = temp1;
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
+        }
+        </script>
+        <script>
+        function myFunction2(){
+            var x = document.getElementById("myFile2");
+            var txt = "";
+            var temp2 = '';
+            var total_size = 0;
+            if ('files' in myFile2) {
+                if (x.files.length == 0) {
+                    txt = "Select one or more files.";
+                } else {
+                  var num_files = x.files.length;
+                    for (var i = 0; i < x.files.length; i++) {
+                      txt = "";
+                        //txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                        var file = x.files[i];
+                        if ('name' in file) {
+                            txt += "" + file.name + "<br>";
+                        }
+                        if ('size' in file) {
+                            //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                            txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
+                        }
+                    //document.getElementById("demo").innerHTML = txt;
+                    temp2 += "<br><div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='100px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4></div>";
+                    total_size = total_size + file.size;
+                    }
+                    total_size = Math.ceil((total_size/1000000) * 100)/100;
+                }
+            } 
+            else {
+                if (x.value == "") {
+                    txt += "Select one or more files.";
+                } else {
+                    txt += "The files property is not supported by your browser!";
+                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                }
+            }
+            document.getElementById("thumb_img2").innerHTML = temp2;
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
+        }
+        </script>
 {%endblock%}

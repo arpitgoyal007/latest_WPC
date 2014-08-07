@@ -4,8 +4,10 @@
 		{%extends "index.html"%}
 {%endif%}
 
+{%set user = me%}
+
 {%block title%}
-{{user.name}} | WPC
+{{me.name}} | WPC
 {%endblock%}
 
 {%block styleSheets%}
@@ -23,7 +25,7 @@
 
 {%block pageContent%}
     <!-- Full Page Image Header Area -->
-    <div id="top" class="header" style="background: url(/images/Artists_2.jpg) no-repeat center center fixed;background-size: cover;">
+    <div id="top" class="header" style="background: url(/images/img_3.jpg) no-repeat center center fixed;background-size: cover;">
     
         <div class="transbox_right">
             <ul class="list-inline">
@@ -81,7 +83,7 @@
     <!-- /Call to Action -->
 
     <!-- Callout -->
-    <div class="callout" style="background: url(/images/DSC_1582.jpg) no-repeat center center fixed;background-size: cover;">
+    <div class="callout" style="background: url(/images/img_8.jpg) no-repeat center center fixed;background-size: cover;">
         <div class="vert-text">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
@@ -202,7 +204,7 @@
         <div id="main_img" class="main_img">
             {%for p in photos%}
                 {% if loop.index <= 1 %}
-                    <a  href="/photo/{{p.key.urlsafe()}}" ><img alt="" src="/servephoto/{{p.blobKey}}" height="600px"/></a>
+                    <img alt="" src="/servephoto/{{p.blobKey}}" height="600px"/>
                  {% endif %}
             {%endfor%}
         </div>
