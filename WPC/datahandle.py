@@ -12,11 +12,13 @@ def create_user(email, name, password):
 	return user
 
 def update_user_name(name):
-	User.name = name
+	if name:
+		User.name = name
 	return User.name
 
 def update_user_alt_email(email):
-	User.alt_email = email
+	if email:
+		User.alt_email = email
 	return User.alt_email
 
 def update_user_password(password):
@@ -24,8 +26,23 @@ def update_user_password(password):
 	User.passwordHash = utils.hash_password(email, password)
 
 def update_user_country(country):
-	User.country = country
+	if country:
+		User.country = country
 	return User.country
+
+def update_social_profiles(facebook, youtube, google_plus, twitter, pinterest, website):
+	if facebook:
+		User.facebook=facebook
+	if youtube:
+		User.youtube=youtube
+	if google_plus:
+		User.google_plus=google_plus
+	if twitter:	
+		User.twitter=twitter
+	if pinterest:
+		User.pinterest=pinterest
+	if website:
+		User.website=website
 
 def create_blog(title, content, parent_key):
 	blog = Blog(title=title, content=content, likes=0, parent=parent_key)

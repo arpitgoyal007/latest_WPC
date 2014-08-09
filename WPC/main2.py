@@ -271,12 +271,17 @@ class UserSettingsHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler
 		password = self.request.get('password')
 		verifyPassword = self.request.get('verifyPassword')
 		country = self.request.get('country')
-		templateVals = {'name': name, 'alt_email': alt_email}
+		facebook = self.request.get('facebook')
+		youtube = self.request.get('youtube')
+		google_plus = self.request.get('google_plus')
+		twitter = self.request.get('twitter')
+		pinterest = self.request.get('pinterest')
+		website = self.request.get('website')
+		
 		update_user_name (name)
 		update_user_alt_email (alt_email)
-		if (password == verifyPassword):
-			update_user_password(password)
 		update_user_country(country)
+		update_social_profiles(facebook, youtube, google_plus, twitter, pinterest, website)
 		self.redirect('usersettings.html')
 
 class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler):

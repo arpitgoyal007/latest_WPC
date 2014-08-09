@@ -31,35 +31,64 @@
             <li><a href="#export">Export</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="#user_settings">User Settings</a></li>
+            <li><a href="#user_settings">Account Settings</a></li>
+            <li><a href="#social_profiles">Social Profiles</a></li>
             <li><a href="#portfolio">Portfolio Settings</a></li>
             <li><a href="#my_gear">My Gear</a></li>
+            <li><a href="#contact">Contact Info</a></li>
             <li><a href="#sharing">Sharing and Permissions</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Overview</h1>
 
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/100x100/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+          <div class="row placeholders align-center">
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/sky/text:10" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Photos</h4>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/100x100/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/vine/text:2" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Blogs</h4>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/100x100/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Forum Questions</h4>
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/sky/text:4" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Forum</h4>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/100x100/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/vine/text:1" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Articles</h4>
+            </div>
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/vine/text:2" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Likes</h4>
+            </div>
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/vine/text:1" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Awards</h4>
+            </div>
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/sky/text:10" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Shares</h4>
+            </div>
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/vine/text:2" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Profile Views</h4>
+            </div>
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/sky/text:4" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Followers</h4>
+            </div>
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/vine/text:1" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Following</h4>
+            </div>
+            <div class="col-sm-1 placeholder">
+              <img data-src="holder.js/50x50/auto/sky/text:4" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Comments</h4>
             </div>
           </div>
         </div>
-        <hr>
         <div id="analytics" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Analytics</h1>
         </div>
@@ -69,7 +98,7 @@
             <h1 class="page-header">Export</h1>
         </div>
         <div id="user_settings" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">User Settings</h1>
+            <h1 class="page-header">Account Settings</h1>
             <form class="form-signin col-sm-4" role="form" method="post">
                 <p>User Name </p><input type="text" name="name" class="form-control" placeholder="{{me.name}}" value="{{me.name}}"><br>
                 <button class="btn btn-xs btn-success" type="submit">Save Name</button>
@@ -341,6 +370,25 @@
             </form>
         </div>
         <hr>
+        <div id="social_profiles" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Social Profiles</h1>
+                <form role="form" method="post">
+                    <div class="col-sm-4">
+                        <p><i class="fa fa-facebook fa-3x" style="color:black;"></i></p><input type="text" name="facebook" class="form-control" placeholder="Enter Facebook Profile's Complete Link" value=""><br>
+                        <p><i class="fa fa-youtube fa-3x" style="color:black;"></i></p><input type="text" name="youtube" class="form-control" placeholder="Enter Youtube Channel's Complete Link" value=""><br>
+                        <p><i class="fa fa-google-plus fa-3x" style="color:black;"></i></p><input type="text" name="google_plus" class="form-control" placeholder="Enter Google Plus Profile's Complete Link" value="">
+                        <hr>
+                        <button class="btn btn-xs btn-success" type="submit">Add/Update Social Profiles</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><i class="fa fa-twitter fa-3x" style="color:black;"></i></p><input type="text" name="twitter" class="form-control" placeholder="Enter Twitter Profile Complete Link" value=""><br>
+                        <p><i class="fa fa-pinterest fa-3x" style="color:black;"></i></p><input type="text" name="pinterest" class="form-control" placeholder="Enter Pinterest Pinboard's Complete Link" value=""><br>
+                        <p><i class="fa fa-external-link-square fa-3x" style="color:black;"></i></p><input type="text" name="website" class="form-control" placeholder="Enter Complete Link of your Own Website" value="">
+                        <hr>
+                    </div>
+                </form>
+        </div>
+        <hr>
         <div id="portfolio" class="col-sm-9 col-sm-offset-4 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Portfolio Settings</h1>
               
@@ -382,9 +430,9 @@
                       <option value="Weddings">Weddings</option>
                       <option value="Wildlife">Wildlife</option>
                     </select><br>
-                    <p style="color:gray;">You can select upto 6</p>
-                    <button class="btn btn-xs btn-success" type="submit">Upload Profile</button>
+                    <p style="color:gray;">You can select Multiple by pressing Control/Command Key</p>
                 </div><hr>
+                <button class="btn btn-xs btn-success" type="submit">Upload Profile</button>
                 </div>
                 
                 <div class="col-sm-4">
@@ -396,6 +444,15 @@
                       <input type="file" id="myFile1" name="bkg_img_1" onchange="myFunction1()">
                     </span>
                      <div class="container row" id="thumb_img1"></div>
+                </div><hr>
+                <p >Select Personale Logo/Watermark</p>
+                <div class="column fileupload-buttonbar">
+                    <span class="btn btn-xs btn-info fileinput-button">
+                      <i class="glyphicon glyphicon-plus"></i>
+                      <span>Select Image</span>
+                      <input type="file" id="myFile3" name="logo" onchange="myFunction3()">
+                    </span>
+                    <div class="container row" id="thumb_img3"></div>
                 </div><hr>
                 </div>
 
@@ -423,6 +480,10 @@
               <p>Select Lense 3</p>
               <button class="btn btn-xs btn-success" type="submit">Add My Gear Info</button>
             </form>
+        </div>
+        <hr>
+        <div id="contact" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Contact Information</h1>
         </div>
         <hr>
         <div id="sharing" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -600,6 +661,47 @@
                 }
             }
             document.getElementById("thumb_img2").innerHTML = temp2;
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
+        }
+        </script>
+        <script>
+        function myFunction3(){
+            var x = document.getElementById("myFile3");
+            var txt = "";
+            var temp2 = '';
+            var total_size = 0;
+            if ('files' in myFile2) {
+                if (x.files.length == 0) {
+                    txt = "Select one or more files.";
+                } else {
+                  var num_files = x.files.length;
+                    for (var i = 0; i < x.files.length; i++) {
+                      txt = "";
+                        //txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                        var file = x.files[i];
+                        if ('name' in file) {
+                            txt += "" + file.name + "<br>";
+                        }
+                        if ('size' in file) {
+                            //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                            txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
+                        }
+                    //document.getElementById("demo").innerHTML = txt;
+                    temp2 += "<br><div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='100px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4></div>";
+                    total_size = total_size + file.size;
+                    }
+                    total_size = Math.ceil((total_size/1000000) * 100)/100;
+                }
+            } 
+            else {
+                if (x.value == "") {
+                    txt += "Select one or more files.";
+                } else {
+                    txt += "The files property is not supported by your browser!";
+                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                }
+            }
+            document.getElementById("thumb_img3").innerHTML = temp2;
             document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
         }
         </script>

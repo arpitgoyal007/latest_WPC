@@ -11,6 +11,12 @@ class User(ndb.Model):
 	score = ndb.IntegerProperty(default=0)
 	groups = ndb.KeyProperty(kind='Group', repeated=True)
 	joined = ndb.DateTimeProperty(auto_now_add=True)
+	website = ndb.StringProperty()
+	facebook = ndb.StringProperty()
+	youtube = ndb.StringProperty()
+	google_plus = ndb.StringProperty()
+	pinterest = ndb.StringProperty()
+	twitter = ndb.StringProperty()
 
 class Group(ndb.Model): # Parent=User (Admin)
 	name = ndb.StringProperty(required=True)
