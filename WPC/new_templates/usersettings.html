@@ -86,9 +86,10 @@
                 <button class="btn btn-xs btn-success" type="submit">Save Password</button>
                 <hr>
                 <p>Edit Country</p>
+                   <h4 style="color:black;">Current Country : {{me.country}}</h4>
                    <select name="country">
                       <option value="">Select Country...</option>
-                      <option value="Afganistan">Afghanistan</option>
+                      <option value="Afghanistan">Afghanistan</option>
                       <option value="Albania">Albania</option>
                       <option value="Algeria">Algeria</option>
                       <option value="American Samoa">American Samoa</option>
@@ -343,37 +344,20 @@
         <div id="portfolio" class="col-sm-9 col-sm-offset-4 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Portfolio Settings</h1>
               
-              <form onsubmit="validate()" id="photoupload" class ="col-sm-4" action="{{uploadUrl}}" method="post" enctype="multipart/form-data">
-                <p>Select Profile Image</p>
+              <form onsubmit="validate()" id="photoupload" action="{{uploadUrl}}" method="post" enctype="multipart/form-data">
+                <div class="col-sm-4">
+                <p >Select Profile Image</p>
                 <div class="column fileupload-buttonbar">
                     <span class="btn btn-xs btn-info fileinput-button">
                       <i class="glyphicon glyphicon-plus"></i>
                       <span>Select Image</span>
-                      <input type="file" id="myFile" name="files" onchange="myFunction()">
+                      <input type="file" id="myFile" name="avatar" onchange="myFunction()">
                     </span>
-                </div>
-                <div class="container row" id="thumb_img"></div>
-                <hr>
-                <p>Select Background Image 1</p>
-                <div class="column fileupload-buttonbar">
-                    <span class="btn btn-xs btn-info fileinput-button">
-                      <i class="glyphicon glyphicon-plus"></i>
-                      <span>Select Image</span>
-                      <input type="file" id="myFile1" name="files" onchange="myFunction1()">
-                    </span>
-                     <div class="container row" id="thumb_img1"></div>
+                    <div class="container row" id="thumb_img"></div>
                 </div><hr>
-                <p>Select Background Image 2</p>
-                <div class="column fileupload-buttonbar">
-                    <span class="btn btn-xs btn-info fileinput-button">
-                      <i class="glyphicon glyphicon-plus"></i>
-                      <span>Select Image</span>
-                      <input type="file" id="myFile2" name="files" onchange="myFunction2()">
-                    </span>
-                     <div class="container row" id="thumb_img2"></div>
-                </div><hr>
+                <div class="">
                 <p>Photography Interests</p>
-                   <select name="country" size="10" style="width: 130px;" multiple>
+                   <select name="photo_interests" size="10" style="width: 130px;" multiple>
                       <option value="Fashion">Action/Sports</option>
                       <option value="Advertising">Advertising</option>
                       <option value="Aerial">Aerial</option>
@@ -399,8 +383,34 @@
                       <option value="Wildlife">Wildlife</option>
                     </select><br>
                     <p style="color:gray;">You can select upto 6</p>
-                <hr>
-                <button class="btn btn-xs btn-success" type="submit">Upload Profile</button>
+                    <button class="btn btn-xs btn-success" type="submit">Upload Profile</button>
+                </div><hr>
+                </div>
+                
+                <div class="col-sm-4">
+                <p>Select Background Image 1</p>
+                <div class="column fileupload-buttonbar">
+                    <span class="btn btn-xs btn-info fileinput-button">
+                      <i class="glyphicon glyphicon-plus"></i>
+                      <span>Select Image</span>
+                      <input type="file" id="myFile1" name="bkg_img_1" onchange="myFunction1()">
+                    </span>
+                     <div class="container row" id="thumb_img1"></div>
+                </div><hr>
+                </div>
+
+                <div class="col-sm-4">
+                <p>Select Background Image 2</p>
+                <div class="column fileupload-buttonbar">
+                    <span class="btn btn-xs btn-info fileinput-button">
+                      <i class="glyphicon glyphicon-plus"></i>
+                      <span>Select Image</span>
+                      <input type="file" id="myFile2" name="bkg_img_2" onchange="myFunction2()">
+                    </span>
+                     <div class="container row" id="thumb_img2"></div>
+                </div><hr>
+                </div>
+              
               </form>
         </div>
         <hr>

@@ -25,6 +25,8 @@ from datamodel import *
 from datahandle import *
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
+from google.appengine.api import images
+from google.appengine.ext import db
 
 import utils
 
@@ -255,7 +257,7 @@ class PhotoEditHandler(PageHandler):
 		else:
 			self.redirect('/')
 
-class UserSettingsHandler(PageHandler):
+class UserSettingsHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler):
 	def get(self):
 		if self.user:
 			templateVals = {'me': self.user}
