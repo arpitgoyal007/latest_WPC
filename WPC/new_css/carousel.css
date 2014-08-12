@@ -68,6 +68,11 @@ body {
 font-color:white;
 }
 
+.carousel .item {
+  height: 500px;
+  background-color: #000;
+}
+
 @media only screen and (max-height: 768px) {
 .signup_buttons {
   margin-bottom: 50px;

@@ -1,0 +1,15 @@
+.forum_ques {
+	margin-top: 20px;
+	padding-top: 50px;
+}
+
+.vertical-line{
+    border-left: 1px solid #808080;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:30px;
+    width: 1px;
+    float: left;
+    position: absolute;
+}

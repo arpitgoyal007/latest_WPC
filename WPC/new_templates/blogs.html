@@ -1,0 +1,58 @@
+{%if me%}
+		{%extends "index_user.html"%}
+{%else%}
+		{%extends "index.html"%}
+{%endif%}
+
+{%set user = me%}
+
+{%block title%}
+{{me.name}} | WPC
+{%endblock%}
+
+{%block styleSheets%}
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<!-- Add custom CSS here -->
+<link href="/css/my_studio.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
+<link href="/css/blog.css" rel="stylesheet">
+
+{%endblock%}
+
+{%block carousel%}
+{%endblock%}
+
+{%block pageContent%}
+	<h1> WPC Blogs </h1>
+  	<div class="row">
+  		<div class="col-sm-3">
+  			<a href=""><h3><em>How to take good Music Photographs</em></h3>
+  			<img src="/images/Artists_2.jpg" alt="Profile Image" class="img-rounded" width="300px"></a>
+  			<a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+  			<hr class="horizontal-line">
+  			<h3>THAILAND<br>Beach & Beer</h3>
+  			<img src="/images/AnuragMathur.jpg" alt="Profile Image" class="img-rounded" width="300px">
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+  			<hr class="horizontal-line">
+  		</div>
+  		<div class="col-sm-3">
+  			<h3>Trip to International Suraj-Kund Festival</h3>	
+  			<img src="/images/Artist_1.jpg" alt="Profile Image" class="img-rounded" width="300px">
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+  			<hr class="horizontal-line">
+  		</div>
+  		<div class="col-sm-3">
+  			<h3>Travel Blog - Hannagan, AZ, USA</h3>	
+  			<img src="/images/Into_the_Storm.jpg" alt="Profile Image" class="img-rounded" width="300px">
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+  			<hr class="horizontal-line">
+  		</div>
+  		<div class="col-sm-3">
+  			<h3>New York, New York</h3>
+  			<img src="/images/AnuragMathur-2.jpg" alt="Profile Image" class="img-rounded" width="300px">
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+  			<hr class="horizontal-line">
+  		</div>
+  	</div>
+{%endblock%}

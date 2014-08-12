@@ -15,7 +15,7 @@ class User(ndb.Model):
 	facebook = ndb.StringProperty()
 	youtube = ndb.StringProperty()
 	google_plus = ndb.StringProperty()
-	pinterest = ndb.StringProperty()
+	pinterest = ndb.StringProperty()	
 	twitter = ndb.StringProperty()
 
 class Group(ndb.Model): # Parent=User (Admin)

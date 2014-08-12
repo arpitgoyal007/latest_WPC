@@ -139,6 +139,51 @@ class BlogNewHandler(PageHandler):
 		else:
 			self.redirect('/')
 
+class BlogsHandler(PageHandler):
+	def get(self):
+		if self.user:
+			templateVals = {'me': self.user}
+			self.render('blogs.html', **templateVals)
+		else:
+			self.redirect('/')
+
+	def post(self):
+		if self.user:
+			title = self.request.get('title')
+			content = self.request.get('content')
+			if title and content:
+				create_blog(title, content, self.user.key)
+				self.redirect('/%s/blogs' % self.user.key.id())
+			else:
+				errorMsg = "Please enter both title and content!"
+				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
+				self.render('blogs.html', **templateVals)
+		else:
+			self.redirect('/')
+
+class ForumNewHandler(PageHandler):
+	def get(self):
+		if self.user:
+			templateVals = {'me': self.user}
+			self.render('user_forum.html', **templateVals)
+		else:
+			self.redirect('/')
+
+	def post(self):
+		if self.user:
+			title = self.request.get('title')
+			content = self.request.get('content')
+			if title and content:
+				create_blog(title, content, self.user.key)
+				self.redirect('/%s/forum' % self.user.key.id())
+			else:
+				errorMsg = "Please enter both title and content!"
+				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
+				self.render('user_forum.html', **templateVals)
+		else:
+			self.redirect('/')
+
+
 class BlogEditHandler(PageHandler):
 	def get(self, resource):
 		if self.user:
@@ -277,7 +322,7 @@ class UserSettingsHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler
 		twitter = self.request.get('twitter')
 		pinterest = self.request.get('pinterest')
 		website = self.request.get('website')
-		
+
 		update_user_name (name)
 		update_user_alt_email (alt_email)
 		update_user_country(country)
@@ -451,6 +496,8 @@ app = webapp2.WSGIApplication([
 			('/photo/([^/]+)', PhotoPermpageHandler),
 			('/editblog/([^/]+)', BlogEditHandler),
 			('/newblog', BlogNewHandler),
+			('/blog' , BlogsHandler),
+			('/forum', ForumNewHandler),
 			('/editphoto', PhotoEditHandler),
 			('/newphoto', PhotoNewHandler),
 			('/uploadphoto', PhotoUploadHandler),

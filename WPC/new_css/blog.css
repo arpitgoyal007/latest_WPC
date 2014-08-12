@@ -1,0 +1,14 @@
+html,
+body {
+	padding-top: 30px;
+}
+.horizontal-line{
+	height:2px;
+	border-width:0;
+	background-color:red;
+}
+
+h3 {
+	color:gray;
+	font-family:arial;
+}

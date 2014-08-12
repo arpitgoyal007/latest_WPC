@@ -1,0 +1,97 @@
+{%if me%}
+		{%extends "index_user.html"%}
+{%else%}
+		{%extends "index.html"%}
+{%endif%}
+
+{%set user = me%}
+
+{%block title%}
+{{me.name}} | WPC
+{%endblock%}
+
+{%block styleSheets%}
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<!-- Add custom CSS here -->
+<link href="/css/my_studio.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
+<link href="/css/forum.css" rel="stylesheet">
+
+{%endblock%}
+
+{%block carousel%}
+{%endblock%}
+
+{%block pageContent%}
+    <div class="col-sm-8 col-sm-offset-2">
+      <form class="forum_ques" role="form" method="post">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Ask any question about photography">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" style="color:white;"></span></button>
+                </div><!-- /btn-group -->
+              </div><!-- /input-group -->
+      </form><br>
+    </div><!-- /.col-lg-6 -->
+
+    <div class="row" style="text-align:left;">      
+        <div class="col-sm-5 col-sm-offset-1">
+          <h2>Trending Posts</h2>
+          <div class="row" id="my_ques">
+              <hr>
+              <p>What is wrong about the photograph?</p>
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+              <img src="/images/Artists_2.jpg" alt="Profile Image" class="img-rounded" width="300px">
+                <form class="navbar-form navbar-left" role="search">
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button> 
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><br><br>
+                      <div class="input-group">
+                        <input type="text" class="form-control" size="50" placeholder="Answer or Comment">
+                          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Post</button>
+                      </div><!-- /input-group -->
+                </form>         
+          </div>  
+          <div class="row" id="my_ques">
+              <hr>
+              <p>What is wrong about the photograph?</p>
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+              <img src="/images/Artist_1.jpg" alt="Profile Image" class="img-rounded" width="300px">
+                <form class="navbar-form navbar-left" role="search">
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button> 
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><br><br>
+                      <div class="input-group">
+                        <input type="text" class="form-control" size="50" placeholder="Answer or Comment">
+                          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Post</button>
+                      </div><!-- /input-group -->
+                </form>         
+          </div>  
+          <div class="row" id="my_ques">
+              <hr>
+              <p>What is wrong about the photograph?</p>
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+              <img src="/images/Into_the_storm.jpg" alt="Profile Image" class="img-rounded" width="300px">
+                <form class="navbar-form navbar-left" role="search">
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button> 
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><br><br>
+                      <div class="input-group">
+                        <input type="text" class="form-control" size="50" placeholder="Answer or Comment">
+                          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Post</button>
+                      </div><!-- /input-group -->
+                </form>         
+          </div>  
+        </div>
+
+        <div class="col-sm-2 col-sm-offset-1">
+          <h4><em>Related Posts</em></h4>
+          <hr>
+        </div>
+        <div class="col-sm-2 col-sm-offset-1">
+          <h4><em>Suggested Posts</em></h4>
+          <hr>
+        </div>
+    </div>
+{%endblock%}

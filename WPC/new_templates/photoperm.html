@@ -2,13 +2,28 @@
 
 {%block pageContent%}
     <div class="transbox_right_permapage">
-        <ul class="list-inline">
-            <img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br>
-            <li color="white"><a href="https://www.facebook.com"><i class="fa fa-facebook fa-3x" style="color:black;"></i></a></li><br><br>
-            <li color="white"><a href="https://www.twitter.com"><i class="fa fa-twitter fa-3x" style="color:black;"></i></a></li><br><br>
-            <li color="white"><a href="https://www.pinterest.com"><i class="fa fa-pinterest fa-3x" style="color:black;"></i></a></li><br><br>
-            <li color="white"><a href="https://www.pinterest.com"><i class="fa fa-youtube fa-3x" style="color:black;"></i></a></li>
-        </ul>
+            <ul class="list-inline">
+                {%if me.website%}
+                  <a href="{{me.website}}"><img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br><a>
+                {%else%}
+                  <img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br>
+                {% endif %}
+                {%if me.facebook%}
+                  <li color="white"><a href="{{me.facebook}}"><i class="fa fa-facebook fa-3x" style="color:white;"></i></a></li><br><br>
+                {% endif %}
+                {%if me.twitter%}
+                  <li color="white"><a href="{{me.twitter}}"><i class="fa fa-twitter fa-3x" style="color:white;"></i></a></li><br><br>
+                {% endif %}
+                {%if me.youtube%}
+                  <li color="white"><a href="{{me.youtube}}"><i class="fa fa-youtube fa-3x" style="color:white;"></i></a></li><br><br>
+                {% endif %}
+                {%if me.pinterest%}
+                  <li color="white"><a href="{{me.pinterest}}"><i class="fa fa-pinterest fa-3x" style="color:white;"></i></a></li><br><br>
+                {% endif %}
+                {%if me.google_plus%}
+                  <li color="white"><a href="{{me.google_plus}}"><i class="fa fa-google-plus fa-3x" style="color:white;"></i></a></li>
+                {% endif %}
+            </ul>
     </div>
 	<div class="photopermpage">
 		<img src="/servephoto/{{photo.blobKey}}" height="600px" alt="photo">
@@ -97,12 +112,8 @@
 
      <!-- Map -->
     <div id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-        </iframe>
+    <div id="map_canvas" class="map">
+    </div>
     </div>
 	<footer>
 	<div class="row">
