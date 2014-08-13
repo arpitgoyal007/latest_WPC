@@ -444,7 +444,7 @@ i.scroll:hover {
   color: yellow;
   background-color: transparent;
 }
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #777;
   }
