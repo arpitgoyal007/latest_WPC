@@ -497,3 +497,9 @@ footer a {
     display:block;
     z-index:10;
 }
+
+.horizontal-line{
+    height:2px;
+    border-width:0;
+    background-color:blue;
+}

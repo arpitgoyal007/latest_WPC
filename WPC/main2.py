@@ -161,6 +161,28 @@ class BlogsHandler(PageHandler):
 		else:
 			self.redirect('/')
 
+class GroupsHandler(PageHandler):
+	def get(self):
+		if self.user:
+			templateVals = {'me': self.user}
+			self.render('groups.html', **templateVals)
+		else:
+			self.redirect('/')
+
+	def post(self):
+		if self.user:
+			title = self.request.get('title')
+			content = self.request.get('content')
+			if title and content:
+				create_blog(title, content, self.user.key)
+				self.redirect('/%s/blogs' % self.user.key.id())
+			else:
+				errorMsg = "Please enter both title and content!"
+				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
+				self.render('groups.html', **templateVals)
+		else:
+			self.redirect('/')
+
 class ForumNewHandler(PageHandler):
 	def get(self):
 		if self.user:
@@ -497,6 +519,7 @@ app = webapp2.WSGIApplication([
 			('/editblog/([^/]+)', BlogEditHandler),
 			('/newblog', BlogNewHandler),
 			('/blog' , BlogsHandler),
+			('/groups' , GroupsHandler),
 			('/forum', ForumNewHandler),
 			('/editphoto', PhotoEditHandler),
 			('/newphoto', PhotoNewHandler),

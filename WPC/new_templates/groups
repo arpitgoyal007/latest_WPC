@@ -22,7 +22,7 @@
 {%endblock%}
 
 {%block pageContent%}
-    <h1> WPC<em>blog</em> </h1>
+    <h1> WPC<em>groups</em> </h1>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="item active">
