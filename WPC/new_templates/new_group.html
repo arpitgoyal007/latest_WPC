@@ -1,0 +1,30 @@
+{%if me%}
+		{%extends "index_user.html"%}
+{%else%}
+		{%extends "index.html"%}
+{%endif%}
+
+{%set user = me%}
+
+{%block title%}
+{{me.name}} | WPC
+{%endblock%}
+
+{%block styleSheets%}
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<!-- Add custom CSS here -->
+<link href="/css/my_studio.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
+<link href="/css/blog.css" rel="stylesheet">
+<link href="/css/newblog.css" rel="stylesheet">
+{%endblock%}
+
+{%block carousel%}
+{%endblock%}
+
+
+{%block pageContent%}
+  <h1>Create A New Group</h1>
+  <hr class="horizontal-line">
+{%endblock%}

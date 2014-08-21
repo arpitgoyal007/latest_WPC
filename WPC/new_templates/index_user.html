@@ -7,15 +7,16 @@ Home | WPC
 {%endblock%}
 
 {%block userNavLinks%}
-                  <ul class="nav navbar-nav navbar-right">
-                  	<li><a class="navbar-brand" href="/{{me.key.id()}}"><em>{{me.name}}</em></a></li>
+                  <ul class="nav navbar-nav navbar-right" style="text-align:left;">
+                  	<li><a class="" href="/{{me.key.id()}}" style="color:yellow;font-size:20px;" ><em>{{me.name}}</em></a></li>
                     <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
                     <li><a href="/{{me.key.id()}}/photos"><span class="glyphicon glyphicon-picture"></span></a></li>
                       <li>
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span><b class="caret"></b></a>
                           <ul class="dropdown-menu" role="menu">
-                              <li><a href="/newphoto"><span class="glyphicon glyphicon-camera"></span> Photos and Videos</a></li>
+                              <li><a href="/newphoto"><span class="glyphicon glyphicon-camera"></span> Photos</a></li>
                               <li><a href="/newblog"><span class="glyphicon glyphicon-pencil"></span> Blog Post</a></li>
+                              <li><a href="/newgroup"><i class="fa fa-group"></i> Group</a></li>
                               <li><a href="/forum"><span class="glyphicon glyphicon-bell"></span> A Question</a></li>
                           </ul>
                       </li>
@@ -23,6 +24,7 @@ Home | WPC
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
                           <ul class="dropdown-menu" role="menu">
                               <li><a href="/usersettings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                              <li><a href="/usersettings"><i class="fa fa-phone"></i> Invite Friends</a></li>
                               <li><a href="#my_portfolios"><span class="glyphicon glyphicon-heart-empty"></span> My Ideabook</a></li>
                               <li class="divider"></li>
                               <li><a href="/logout"><span class="glyphicon glyphicon-send"></span> Sign Out</a></li>
@@ -91,7 +93,7 @@ Home | WPC
 
   
   <div class="row">
-      <div class="col-sm-4 col-xs-6">
+      <div class="col-sm-3 col-xs-6">
         <div class="panel panel-default">
               <div class="panel-thumbnail"><img src="/images/Artist_1.jpg" class="img-responsive"></div>
               <p><a href="my_studio.html" style="color:black;"></a></p>
@@ -120,7 +122,7 @@ Home | WPC
         <hr class="horizontal-line">
       </div><!--/col-->
       
-      <div class="col-sm-4 col-xs-6">
+      <div class="col-sm-3 col-xs-6">
         <div class="panel panel-default">
               <div class="panel-thumbnail"><img src="/images/Artists_2.jpg" class="img-responsive"></div>
               <p><a href="my_studio.html" style="color:black;"></a></p>
@@ -150,7 +152,7 @@ Home | WPC
         <hr class="horizontal-line">
       </div><!--/col-->
       
-      <div class="col-sm-4 col-xs-6">
+      <div class="col-sm-3 col-xs-6">
         <div class="panel panel-default">
               <div class="panel-thumbnail"><img src="/images/DSC_1556.jpg" class="img-responsive"></div>
               <p><a href="my_studio.html" style="color:black;"></a></p>
@@ -165,10 +167,47 @@ Home | WPC
         </div>
         <hr class="horizontal-line">
       </div><!--/col-->  
+
+      <div class="col-sm-3 col-xs-6">
+        <p>Ads</p>
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/img_2.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+        </div>
+
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/img_2.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+        </div>
+
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/img_2.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+        </div>
+        <hr class="horizontal-line">
+
+        <p>Suggestions</p>
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/img_2.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+        </div>
+
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/img_2.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+        </div>
+
+        <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="/images/img_2.jpg" class="img-responsive"></div>
+              <p><a href="my_studio.html" style="color:black;"></a></p>
+        </div>
+        <hr class="horizontal-line">
+      </div><!--/col-->  
     </div>
+
     <div class="text-center">
       <button type="button" class="btn btn-info btn-sm"> Load More</button>
-    </div> 
+    </div> <br>
   </div>
 </div><!--/main-->
 

@@ -1,3 +1,7 @@
+html,
+body {
+	color: black;
+}
 .photopermpage {
    margin-top: 300px;
    vertical-align: middle;

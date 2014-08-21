@@ -19,16 +19,16 @@ Upload Photos | WPC
 						<!-- The fileinput-button span is used to style the file input field as button -->
 						<span class="btn btn-info fileinput-button">
 							<i class="glyphicon glyphicon-plus"></i>
-							<span>Select Files</span>
+							<span style="color:white;">Select Files</span>
 							<input type="file" id="myFile" name="files" onchange="myFunction()" multiple>
 						</span>
 						<button type="submit" class="btn btn-success start">
 							<i class="glyphicon glyphicon-upload"></i>
-							<span>Start upload</span>
+							<span style="color:white;">Start upload</span>
 						</button>
 						<button type="reset" class="btn btn-info cancel">
 							<i class="glyphicon glyphicon-ban-circle"></i>
-							<span>Cancel upload</span>
+							<span style="color:white;">Cancel upload</span>
 						</button>
 						<div class="error" style="color:red;">{{submitError}}</div>
 						<!-- The global file processing state -->
@@ -48,7 +48,7 @@ Upload Photos | WPC
 					</tbody>
 				</table>
 			</form>
-			<h3>Update properties for all photos or update individuals under each photo</h3>
+			<h3>Update properties for all photos or update later after uploading is done</h3>
             <form action="" method="post" name="photos_info">
 				   <div class="col-lg-4 col-lg-offset-4">
 				    <div class="input-group">
@@ -96,11 +96,10 @@ Upload Photos | WPC
 				  </div><!-- /.col-lg-6 -->
 				</div><!-- /.row -->
 			<div class="col-lg-4 col-lg-offset-4">
-				<button class="btn btn-sm btn-success" type="submit">Add to all Photos</button>
-				<button class="btn btn-sm btn-success" type="submit">Go to My Photos </button>
+				<button class="btn btn-sm btn-success" type="submit">Add to all Photos</button>	
 			</div>
 			</form>
-
+			
 			<div class="row">
 				<!-- Three columns of text below the carousel -->
 				<form method="post">
@@ -112,6 +111,7 @@ Upload Photos | WPC
 					<div id="save_button"></div>
 				</form>
 			</div>
+
 			<p id="demo"></p>
 			<script src="/js/holder.js"></script>
 			<!-- FOOTER -->
@@ -135,70 +135,6 @@ Upload Photos | WPC
 				<p>&copy; 2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
 				</footer>
 
-  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModaltitle">Modal title</h4>
-        </div>
-        <div class="modal-body">
-            <form action="" method="post" name="photos_info">
-				 <div class="input-group">
-				     <input type="text" class="form-control" placeholder="Add New Album">
-			         <div class="input-group-btn">
-			 	        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Existing Albums <span class="caret"></span></button>
-				        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-				        	<li><a href="#">Album 1</a></li>
-				          	<li><a href="#">Album 2</a></li>
-				          	<li><a href="#">Album 3</a></li>
-				          	<li><a href="#">Album 4</a></li>
-				        </ul>
-				     </div><!-- /btn-group -->
-				 </div><!-- /input-group -->
-				 <br>
-				 <div class="input-group">
-				     <input type="text" class="form-control" placeholder="Add New Location">
-			         <div class="input-group-btn">
-			 	        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Existing Locations <span class="caret"></span></button>
-				        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-				          <li><a href="#">Location 1</a></li>
-				          <li><a href="#">Location 2</a></li>
-				          <li><a href="#">Location 3</a></li>
-				          <li><a href="#">Location 4</a></li>
-				        </ul>
-				     </div><!-- /btn-group -->
-				 </div><!-- /input-group -->
-				 <br>
-				 <div class="input-group">
-				     <input type="text" class="form-control" placeholder="Add New Tag">
-			         <div class="input-group-btn">
-			 	        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Existing Tags <span class="caret"></span></button>
-				        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-				          <li><a href="#">Tag 1</a></li>
-				          <li><a href="#">Tag 2</a></li>
-				          <li><a href="#">Tag 3</a></li>
-				          <li><a href="#">Tag 4</a></li>
-				        </ul>
-				     </div><!-- /btn-group -->
-				 </div><!-- /input-group -->
-				 <br>
-				 <div class="input-group">
-				     <textarea class="form-control" rows=3 cols=90 placeholder="Add Description"></textarea>
-				 </div><!-- /input-group -->
-				 <br>
-			</form>	
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
 <script>
 function myFunction(){
     var x = document.getElementById("myFile");
@@ -221,8 +157,14 @@ function myFunction(){
                     //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
                     txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
                 }
+				//var reader  = new FileReader();
+				 // reader.onchange = function () {
+				 //   preview.src = reader.result;
+				 // }
+			 	//reader.readAsDataURL(file);
+			 	//var file_src = reader.result;
             //document.getElementById("demo").innerHTML = txt;
-            temp += "<div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='140px' alt='"+file.name+"'><h4 style='color:white;'>"+txt+"</h4></div>";
+            temp += "<div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='140px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4><h5 class='form-signin-heading padding_bottom'>Update Photo Details</h5><input type='text' name='email' class='form-control padding_bottom' placeholder='Caption' value="+file.name+" autofocus><input type='text' name='email' class='form-control padding_bottom' placeholder='Location' value='' autofocus><textarea type='textarea' name='password' class='form-control padding_bottom' placeholder='Description'></textarea></div>";
             total_size = total_size + file.size;
             }
             total_size = Math.ceil((total_size/1000000) * 100)/100;
@@ -238,8 +180,60 @@ function myFunction(){
     }
     document.getElementById("thumb_img1").innerHTML = temp;
     document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
+    document.getElementById("save_button").innerHTML ="<button class='btn btn-sm btn-success' type='submit'>Save Details</button>";
 }
 </script>
+
+<script>
+
+/*window.onload = function(){  
+    //Check File API support
+
+	//<label for="files">Select multiple files: </label>
+	//<input id="files" type="file" multiple/>
+	//<output id="result" />
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("files");
+        filesInput.addEventListener("change", function(event){
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var num_files = files.length;
+            var txt = "";
+            for(var i = 0; i< files.length; i++)
+            {
+            	txt = "";
+                var file = files[i];
+                if ('name' in files[i]) {
+                    txt += "" + files[i].name + "<br>";
+                }
+                if ('size' in files[i]) {
+                    //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                    txt += "Size: " + Math.ceil((files[i].size/1000000) * 100)/100 + " Mbytes <br>";
+                }
+                //Only pics
+                if(!file.type.match('image'))
+                  continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load",function(event){
+	                var picFile = event.target;
+                    var div = document.createElement("div");
+                    div.innerHTML = "<div class='col-lg-4'><img class='img-rounded' src='" + picFile.result + "' height='140px' alt='"+picFile.name+"'><h4 style='color:black;'>"+txt+"</h4><h5 class='form-signin-heading padding_bottom'>Update Photo Details</h5><input type='text' name='email' class='form-control padding_bottom' placeholder='Caption' value="+file.name+" autofocus><input type='text' name='email' class='form-control padding_bottom' placeholder='Location' value='' autofocus><textarea type='textarea' name='password' class='form-control padding_bottom' placeholder='Description'></textarea><button class='btn btn-sm btn-success' type='submit'>Done</button></div>";
+                    output.insertBefore(div,null);            
+                });
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }    
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+txt+" Photos";                           
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}*/
+</script>
+
 {%endblock%}
 {%block javascript%}
 {%endblock%}

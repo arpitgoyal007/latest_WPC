@@ -139,6 +139,28 @@ class BlogNewHandler(PageHandler):
 		else:
 			self.redirect('/')
 
+class GroupNewHandler(PageHandler):
+	def get(self):
+		if self.user:
+			templateVals = {'me': self.user}
+			self.render('new_group.html', **templateVals)
+		else:
+			self.redirect('/')
+
+	def post(self):
+		if self.user:
+			title = self.request.get('title')
+			content = self.request.get('content')
+			if title and content:
+				create_blog(title, content, self.user.key)
+				self.redirect('/%s/blogs' % self.user.key.id())
+			else:
+				errorMsg = "Please enter both title and content!"
+				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
+				self.render('new_blog.html', **templateVals)
+		else:
+			self.redirect('/')
+
 class BlogsHandler(PageHandler):
 	def get(self):
 		if self.user:
@@ -158,6 +180,29 @@ class BlogsHandler(PageHandler):
 				errorMsg = "Please enter both title and content!"
 				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
 				self.render('blogs.html', **templateVals)
+		else:
+			self.redirect('/')
+
+
+class SearchResultsHandler(PageHandler):
+	def get(self):
+		if self.user:
+			templateVals = {'me': self.user}
+			self.render('search_results.html', **templateVals)
+		else:
+			self.redirect('/')
+
+	def post(self):
+		if self.user:
+			title = self.request.get('title')
+			content = self.request.get('content')
+			if title and content:
+				create_blog(title, content, self.user.key)
+				self.redirect('/%s/blogs' % self.user.key.id())
+			else:
+				errorMsg = "Please enter both title and content!"
+				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
+				self.render('search_results.html', **templateVals)
 		else:
 			self.redirect('/')
 
@@ -518,9 +563,11 @@ app = webapp2.WSGIApplication([
 			('/photo/([^/]+)', PhotoPermpageHandler),
 			('/editblog/([^/]+)', BlogEditHandler),
 			('/newblog', BlogNewHandler),
+			('/newgroup', GroupNewHandler),
 			('/blog' , BlogsHandler),
 			('/groups' , GroupsHandler),
 			('/forum', ForumNewHandler),
+			('/search_results', SearchResultsHandler),
 			('/editphoto', PhotoEditHandler),
 			('/newphoto', PhotoNewHandler),
 			('/uploadphoto', PhotoUploadHandler),

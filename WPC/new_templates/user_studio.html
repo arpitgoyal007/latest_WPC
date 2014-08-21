@@ -111,37 +111,37 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-2 text-center">
+                <div class="col-lg-2 col-md-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-plane"></i>
                         <h4>Travel</h4>
                     </div>
                 </div>
-                <div class="col-xs-2 text-center">
+                <div class="col-lg-2 col-md-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-bug"></i>
                         <h4>WildLife Photography</h4>
                     </div>
                 </div>
-                <div class="col-xs-2 text-center">
+                <div class="col-lg-2 col-md-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-female"></i>
                         <h4>Fashion Photography</h4>
                     </div>
                 </div>
-                <div class="col-xs-2 text-center">
+                <div class="col-lg-2 col-md-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-music"></i>
                         <h4>Music</h4>
                     </div>
                 </div>
-                <div class="col-xs-2 text-center">
+                <div class="col-lg-2 col-md-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-book"></i>
                         <h4>Documentary</h4>
                     </div>
                 </div>
-                <div class="col-xs-2 text-center">
+                <div class="col-lg-2 col-md-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-road"></i>
                         <h4>Street</h4>
@@ -196,21 +196,6 @@
                       </ul>
                     </li>
                   </ul>   
-                  <ul class="nav navbar-nav navbar-right" style="margin-right:20px;">                    
-                      <li>My Albums</li><br>
-                      <button type="submit" class="btn btn-warning btn-xs">New York</button>
-                      <button type="submit" class="btn btn-warning btn-xs">Brooklyn Bridge</button>
-                      <button type="submit" class="btn btn-warning btn-xs">Fashion</button>
-                      <button type="submit" class="btn btn-warning btn-xs">Delhi</button>
-                      <button type="submit" class="btn btn-warning btn-xs">India Gate</button>
-                  </ul>       
-                  <ul class="nav navbar-nav navbar-right"  style="margin-right:20px;">                    
-                      <li>My Tags</li><br>
-                      <button type="submit" class="btn btn-danger btn-xs">New York</button>
-                      <button type="submit" class="btn btn-danger btn-xs">Brooklyn Bridge</button>
-                      <button type="submit" class="btn btn-danger btn-xs">Fashion</button>
-                      <button type="submit" class="btn btn-danger btn-xs">Delhi</button>                
-                  </ul>
               </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
       </nav>
@@ -223,7 +208,7 @@
         <div id="main_img" class="main_img">
             {%for p in photos%}
                 {% if loop.index <= 1 %}
-                    <img alt="" src="/servephoto/{{p.blobKey}}" height="600px"/>
+                    <img alt="" src="/servephoto/{{p.blobKey}}" class="img_display"/>
                  {% endif %}
             {%endfor%}
         </div>
@@ -282,7 +267,7 @@
     <script>
       function initialize() {
         var map_canvas = document.getElementById('map_canvas');
-        var myLatlng = new google.maps.LatLng(44.5403, -78.5463);
+        var myLatlng = new google.maps.LatLng(28.600822, 77.314625);
         var map_options = {
           center: myLatlng,
           zoom: 8,
@@ -347,7 +332,7 @@
     </script>
 <script type="text/javascript">
 function change_main_image(img_key) {
-    document.getElementById("main_img").innerHTML = "<img alt='' src='"+img_key+"' height='600px'/>";
+    document.getElementById("main_img").innerHTML = "<img alt='' src='"+img_key+"' class='img_display'/>";
 } 
 </script>
 {%endblock%}

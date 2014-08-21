@@ -81,6 +81,7 @@ class Item(Post):
 
 class Picture(Item): # Parent=User
 	caption = ndb.StringProperty(default='')
+	location = ndb.StringProperty(default='')
 	blobKey = ndb.BlobKeyProperty()
 	description = ndb.TextProperty(default='')
 

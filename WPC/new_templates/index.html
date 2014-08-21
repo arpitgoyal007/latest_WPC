@@ -16,7 +16,7 @@
 
 		{%block styleSheets%}
 		<!-- Bootstrap core CSS -->
-		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/bootstrap.css" rel="stylesheet">
 		<link href="/css/cover.css" rel="stylesheet">
 		<!-- Custom styles for this template -->
 		<link href="/css/carousel.css" rel="stylesheet">
@@ -85,7 +85,7 @@
                       <li><a href="www.dribble.com"><i class="fa fa-pinterest fa-2x"></i></a></li>
                       {%endblock%}
                   </ul>
-                  <form class="navbar-form navbar-left" role="search" action="/search" method="get">
+                  <form class="navbar-form navbar-left" role="search" action="/search_results" method="get">
                       <div class="form-group">
                           <input type="text" class="form-control" placeholder="Find Photos, Communities, Photographers, Blogs and Forums" size="62">
                       </div>
@@ -100,8 +100,8 @@
                                 <div class="form_signin_container">
                                     <form class="form-signin" role="form"  onsubmit="return validateLogin()" action="/login" method="post" name="login_form">
                                         <h2 class="form-signin-heading">Please sign in</h2>
-                                        <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-                                        <input type="password" name="pass" class="form-control" placeholder="Password" required>
+                                        <input type="text" name="email" class="form-control" placeholder="Email address" value="{{signupEmail}}" required autofocus>
+                                        <input type="password" name="password" class="form-control" placeholder="Password" required>
                                         <label><input type="checkbox" value="remember-me"> Remember Me</label>
                                         <button class="btn btn-lg btn-success btn-block" type="submit">Log In</button>
                                     </form>
@@ -117,13 +117,13 @@
           </div><!-- /.container-fluid -->
       </nav>
 {%block signup_links%}  
-    <div class="carousel-caption">
+    <div class="carousel-caption carousel-caption-welcome-text">
         <h1 style="text-align:center;">Aloha !!<br><em>World Photographer's Club</em></h1>
     </div>
 
-    <div class="carousel-caption carousel-signup">
+    <div class="carousel-caption carousel-caption-welcome-text carousel-signup">
         <div class="signup_buttons">
-		<a href="/signin"><button class="btn btn-lg btn-success" type="button"><i class="fa fa-facebook" style="color:white;"></i>  Sign in with Email</button></a>
+		<a href="/signin"><button class="btn btn-lg btn-success" type="button"><i class="fa fa-envelope" style="color:white;"></i>  Sign in with Email</button></a>
 		<a href="/signin"><button class="btn btn-lg btn-primary" type="button"><i class="fa fa-facebook" style="color:white;"></i>  Sign in with Facebook</button></a>
 		<a href="/signin"><button class="btn btn-lg btn-danger" type="button"><i class="fa fa-google-plus" style="color:white;"></i>  Sign in with Google</button></a>
         </div>
@@ -137,7 +137,7 @@
 				<div class="item active">
 					<img src="/images/Brooklyn_Bridge.jpg" alt="First slide"/>
 					<div class="container">
-						<div class="carousel-caption">
+						<div class="carousel-caption-photo-options">
 		              	  <p><a href="my_studio.html">Photographers Name</a></p>
 		                  <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-4"><em>Go to Portfolio</em></p>
 		                  <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-5"><em>Like the Photo</em></p>
@@ -149,7 +149,7 @@
 				<div class="item">
 					<img src="/images/DSC_1582.jpg" alt="Second slide"/>
 					<div class="container">
-						<div class="carousel-caption">
+						<div class="carousel-caption-photo-options">
 		              	  <p><a href="my_studio.html">Photographers Name</a></p>
 		                  <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-4"><em>Go to Portfolio</em></p>
 		                  <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-5"><em>Like the Photo</em></p>
@@ -161,7 +161,7 @@
 				<div class="item">
 					<img src="/images/DSC_1737.jpg" alt= "Third slide"/>
 					<div class="container">
-						<div class="carousel-caption">
+						<div class="carousel-caption-photo-options">
 		              	  <p><a href="my_studio.html">Photographers Name</a></p>
 		                  <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-4"><em>Go to Portfolio</em></p>
 		                  <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-5"><em>Like the Photo</em></p>

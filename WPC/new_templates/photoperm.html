@@ -1,5 +1,7 @@
 {%extends "user_studio.html"%}
 
+{%block signup_links%}  
+ {%endblock%} 
 {%block pageContent%}
     <div class="transbox_right_permapage">
             <ul class="list-inline">
@@ -9,40 +11,52 @@
                   <img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br>
                 {% endif %}
                 {%if me.facebook%}
-                  <li color="white"><a href="{{me.facebook}}"><i class="fa fa-facebook fa-3x" style="color:white;"></i></a></li><br><br>
+                  <li color="white"><a href="{{me.facebook}}"><i class="fa fa-facebook fa-3x" style="color:black;"></i></a></li><br><br>
                 {% endif %}
                 {%if me.twitter%}
-                  <li color="white"><a href="{{me.twitter}}"><i class="fa fa-twitter fa-3x" style="color:white;"></i></a></li><br><br>
+                  <li color="white"><a href="{{me.twitter}}"><i class="fa fa-twitter fa-3x" style="color:black;"></i></a></li><br><br>
                 {% endif %}
                 {%if me.youtube%}
-                  <li color="white"><a href="{{me.youtube}}"><i class="fa fa-youtube fa-3x" style="color:white;"></i></a></li><br><br>
+                  <li color="white"><a href="{{me.youtube}}"><i class="fa fa-youtube fa-3x" style="color:black;"></i></a></li><br><br>
                 {% endif %}
                 {%if me.pinterest%}
-                  <li color="white"><a href="{{me.pinterest}}"><i class="fa fa-pinterest fa-3x" style="color:white;"></i></a></li><br><br>
+                  <li color="white"><a href="{{me.pinterest}}"><i class="fa fa-pinterest fa-3x" style="color:black;"></i></a></li><br><br>
                 {% endif %}
                 {%if me.google_plus%}
-                  <li color="white"><a href="{{me.google_plus}}"><i class="fa fa-google-plus fa-3x" style="color:white;"></i></a></li>
+                  <li color="white"><a href="{{me.google_plus}}"><i class="fa fa-google-plus fa-3x" style="color:black;"></i></a></li>
                 {% endif %}
             </ul>
     </div>
 	<div class="photopermpage">
 		<img src="/servephoto/{{photo.blobKey}}" height="600px" alt="photo">
+    <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{user.name}}<em></h5></a>
 	</div>
+  {%if me%}
 	<div class="row edit_delete_bottons text-center">
-		<div class="col-sm-1 col-sm-offset-5">
-			<form method="post">
-				<input type="hidden" name="actionType" value="edit">
-				<button class="btn btn-success" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span> Edit</button>
-			</form>
+    <div class="col-md-4 col-md-offset-5">
+		  <div class="col-md-1">
+  			<form method="post">
+  				<input type="hidden" name="actionType" value="edit">
+  				<button class="btn btn-success" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span> Edit</button>
+  			</form>
 	    </div>
-	    <div class="col-sm-1">
-			<form method="post">
-				<input type="hidden" name="actionType" value="delete">
-				<button class="btn btn-success" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span> Delete</button>
-			</form>
+	    <div class="col-md-1 padding">
+  			<form method="post">
+  				<input type="hidden" name="actionType" value="delete">
+  				<button class="btn btn-success" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span> Delete</button>
+  			</form>
 	    </div>
+      <div class="col-md-1">
+        <form method="post">
+          <input type="hidden" name="actionType" value="delete">
+          <button class="btn btn-success" type="submit" value="Delete"><span class="glyphicon glyphicon-share" style="color:white;"></span> Share</button>
+        </form>
+      </div>
+    </div>
+
 	</div>
-	<br><br>
+  {% endif %}
+  <hr>
 	<div class="thumb_imgs">
 	    {%for p in photos%}
 	         <a href="/photo/{{p.key.urlsafe()}}"><img src="/servephoto/{{p.blobKey}}" height="100px" alt="photo"></a>
@@ -53,20 +67,20 @@
 	<script src="/js/holder.js"></script>
 	<div class="container marketing">
 	    <div class="row ">
-	        <div class="col-lg-2 col-md-4 col-xs-6 col-md-offset-1">
-	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:10 Likes" alt="Generic placeholder image">
+	        <div class="col-md-2 col-xs-6 col-md-offset-1 btn_padding_right">
+	             <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-thumbs-up" style="color:white;"></i> Like</button>
 	        </div><!-- /.col-lg-4 -->
-	        <div class="col-lg-2 col-md-4 col-xs-6">
-	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:5 Comments" alt="Generic placeholder image">
+	        <div class="col-md-2 col-xs-6 btn_padding_right">
+	            <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-comment" style="color:white;"></i> Comment</button>
 	        </div><!-- /.col-lg-4 -->
-	        <div class="col-lg-2 col-md-4 col-xs-6">
-	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:1 Awards" alt="Generic placeholder image">
+	        <div class="col-md-2 col-xs-6 btn_padding_right">
+	            <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-trophy" style="color:white;"></i> Awards</button>
 	        </div><!-- /.col-lg-4 -->
-	        <div class="col-lg-2 col-md-4 col-xs-6">
-	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:20 Views" alt="Generic placeholder image">
+	        <div class="col-md-2 col-xs-6 btn_padding_right">
+	            <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-eye" style="color:white;"></i> Views</button>
 	        </div><!-- /.col-lg-4 -->
-	        <div class="col-lg-2 col-md-4 col-xs-6">
-	            <img class="img-rounded" data-src="/js/holder.js/140x50/sky/text:2.5 Rating" alt="Generic placeholder image">
+	        <div class="col-md-2 col-xs-6">
+	            <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-star" style="color:white;"></i> Rating</button>
 	        </div><!-- /.col-lg-4 -->
 	    </div><!-- /.row -->
 	</div>

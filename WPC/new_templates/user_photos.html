@@ -7,11 +7,36 @@ My Photos | WPC
 <!-- Bootstrap core CSS -->
 <link href="/css/bootstrap.css" rel="stylesheet">
 <!-- Add custom CSS here -->
+<link href="/css/carousel.css" rel="stylesheet">
 <link href="/css/my_studio.css" rel="stylesheet">
 <link href="/css/font.css" rel="stylesheet">
 {%endblock%}
 {%block pageContent%}
   <br><br><br><br>
+      <div class="transbox_right_permapage">
+            <ul class="list-inline">
+                {%if me.website%}
+                  <a href="{{me.website}}"><img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br><a>
+                {%else%}
+                  <img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br>
+                {% endif %}
+                {%if me.facebook%}
+                  <li color="white"><a href="{{me.facebook}}"><i class="fa fa-facebook fa-3x" style="color:black;"></i></a></li><br><br>
+                {% endif %}
+                {%if me.twitter%}
+                  <li color="white"><a href="{{me.twitter}}"><i class="fa fa-twitter fa-3x" style="color:black;"></i></a></li><br><br>
+                {% endif %}
+                {%if me.youtube%}
+                  <li color="white"><a href="{{me.youtube}}"><i class="fa fa-youtube fa-3x" style="color:black;"></i></a></li><br><br>
+                {% endif %}
+                {%if me.pinterest%}
+                  <li color="white"><a href="{{me.pinterest}}"><i class="fa fa-pinterest fa-3x" style="color:black;"></i></a></li><br><br>
+                {% endif %}
+                {%if me.google_plus%}
+                  <li color="white"><a href="{{me.google_plus}}"><i class="fa fa-google-plus fa-3x" style="color:black;"></i></a></li>
+                {% endif %}
+            </ul>
+    </div>
       <div id="photos" class="portfolio main">
         <nav class="navbar" role="navigation">
           <div class="container-fluid">
@@ -30,7 +55,7 @@ My Photos | WPC
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search Photos <b class="caret"></b></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search My Photos <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <li>
                           <form class="navbar-form navbar-left" role="search" action="photos.html">
@@ -78,7 +103,7 @@ My Photos | WPC
 		        		<div class="col-lg-2 col-sm-3 col-xs-4 col-lg-offset-1" align="center">
 							<a href="/photo/{{p.key.urlsafe()}}"><img src="/servephoto/{{p.blobKey}}" height="140px" alt="photo"></a>
               <br>
-								<div class="button-container post-action">
+								<div class="button-container post-action padding_top">
 									<form method="post">
 										<input type="hidden" name="actionType" value="edit">
 										<button class="btn btn-primary btn-xs" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span></button>
