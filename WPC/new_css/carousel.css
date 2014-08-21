@@ -595,8 +595,12 @@ p {
   border-top-right-radius: 0;
 }
 
-.form_signin_container{
+.messages_container{
     min-width:300px;
+    max-height: 500px;
+    overflow: scroll;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .dropdown_container {

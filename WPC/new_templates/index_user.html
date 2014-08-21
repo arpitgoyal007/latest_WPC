@@ -30,13 +30,23 @@ Home | WPC
                               <li><a href="/logout"><span class="glyphicon glyphicon-send"></span> Sign Out</a></li>
                           </ul>
                       </li>
-                      <li>
+                      <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope"></span><b class="caret"></b><span class="badge pull-right">42</span></a>
-                          <ul class="dropdown-menu" role="menu">
-                              <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Messages<span class="badge">20</span></a></li>
-                              <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span> Notifications<span class="badge">10</span></a></li>
-                              <li class="divider"></li>
-                              <li><a href="#"><span class="glyphicon glyphicon-ok"></span> My Answers<span class="badge">12</span></a></li>
+                          <ul class="dropdown-menu">
+                              <li>
+                                <div class="messages_container">
+                                  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
+                                  <p>Photographer added new Photos</p></a>
+
+                                  <hr class="horizontal-line">
+                                  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
+                                  <p>Your photo is used by Photographer in his blog/forum/group XYZ</p></a>
+                                  
+                                  <hr class="horizontal-line">
+                                  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
+                                  <p>Photographer Commented on your photo</p></a>
+                                </div>
+                              </li>
                           </ul>
                       </li>
                   </ul>

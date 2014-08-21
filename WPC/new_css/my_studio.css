@@ -35,6 +35,12 @@ body {
   color:gold;
 }
 
+.messages_container{
+    min-width:300px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .lenses_center {
   margin-top: 0px;
   padding-top: 0px;
@@ -311,7 +317,11 @@ my_photo_body{padding-top:50px}
 .img-portfolio {
   margin: 0 auto;
 }
-
+.horizontal-line{
+    height:2px;
+    border-width:0;
+    background-color:blue;
+}
 
 /* Call to Action */
 
