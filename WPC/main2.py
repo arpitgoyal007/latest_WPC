@@ -117,6 +117,25 @@ class BlogPermpageHandler(PageHandler):
 			elif action == "edit":
 				self.redirect('/editblog/%s' % resource)
 
+class UserBlogsHandler(PageHandler):
+	def get(self, resource):
+		userid = resource
+		user = User.get_by_id(userid)
+		templateVals = {'me': self.user}
+		if user:
+			if self.user:
+				if self.user == user:
+					templateVals['user'] = self.user
+				else:
+					templateVals['user'] = user
+			else:
+				templateVals['user'] = user
+			blogs = Blog.of_ancestor(user.key)
+			templateVals['blogs'] = blogs
+			self.render('user_blogs.html', **templateVals)
+		else:
+			self.redirect('/')
+			
 class BlogNewHandler(PageHandler):
 	def get(self):
 		if self.user:
@@ -163,11 +182,12 @@ class GroupNewHandler(PageHandler):
 
 class BlogsHandler(PageHandler):
 	def get(self):
-		if self.user:
-			templateVals = {'me': self.user}
+		if not self.user:
+			templateVals = {'me': ""}
 			self.render('blogs.html', **templateVals)
 		else:
-			self.redirect('/')
+			templateVals = {'me': self.user}
+			self.render('blogs.html', **templateVals)
 
 	def post(self):
 		if self.user:
@@ -208,11 +228,12 @@ class SearchResultsHandler(PageHandler):
 
 class GroupsHandler(PageHandler):
 	def get(self):
-		if self.user:
-			templateVals = {'me': self.user}
+		if not self.user:
+			templateVals = {'me': ""}
 			self.render('groups.html', **templateVals)
 		else:
-			self.redirect('/')
+			templateVals = {'me': self.user}
+			self.render('groups.html', **templateVals)
 
 	def post(self):
 		if self.user:
@@ -228,13 +249,14 @@ class GroupsHandler(PageHandler):
 		else:
 			self.redirect('/')
 
-class ForumNewHandler(PageHandler):
+class ForumHandler(PageHandler):
 	def get(self):
-		if self.user:
-			templateVals = {'me': self.user}
-			self.render('user_forum.html', **templateVals)
+		if not self.user:
+			templateVals = {'me': ""}
+			self.render('forum.html', **templateVals)
 		else:
-			self.redirect('/')
+			templateVals = {'me': self.user}
+			self.render('forum.html', **templateVals)
 
 	def post(self):
 		if self.user:
@@ -246,7 +268,7 @@ class ForumNewHandler(PageHandler):
 			else:
 				errorMsg = "Please enter both title and content!"
 				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
-				self.render('user_forum.html', **templateVals)
+				self.render('forum.html', **templateVals)
 		else:
 			self.redirect('/')
 
@@ -446,25 +468,6 @@ class UserStudioHandler(PageHandler):
 			self.redirect('/')
 			
 
-class UserBlogsHandler(PageHandler):
-	def get(self, resource):
-		userid = resource
-		user = User.get_by_id(userid)
-		templateVals = {'me': self.user}
-		if user:
-			if self.user:
-				if self.user == user:
-					templateVals['user'] = self.user
-				else:
-					templateVals['user'] = user
-			else:
-				templateVals['user'] = user
-			blogs = Blog.of_ancestor(user.key)
-			templateVals['blogs'] = blogs
-			self.render('user_blogs.html', **templateVals)
-		else:
-			self.redirect('/')
-
 class UserPhotosHandler(PageHandler):
 	def get(self, resource):
 		userid = resource
@@ -566,7 +569,7 @@ app = webapp2.WSGIApplication([
 			('/newgroup', GroupNewHandler),
 			('/blog' , BlogsHandler),
 			('/groups' , GroupsHandler),
-			('/forum', ForumNewHandler),
+			('/forum', ForumHandler),
 			('/search_results', SearchResultsHandler),
 			('/editphoto', PhotoEditHandler),
 			('/newphoto', PhotoNewHandler),

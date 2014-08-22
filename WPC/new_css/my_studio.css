@@ -35,8 +35,50 @@ body {
   color:gold;
 }
 
+.form-signin {
+  max-width: 300px;
+  padding: 0px 0px;
+  margin:1px 10px;
+  margin-bottom: 20px;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form_signin_container{
+  min-width:300px;
+}
+
 .messages_container{
     min-width:300px;
+    max-height: 500px;
+    overflow: scroll;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -146,7 +188,7 @@ body {
     text-align: center;
     width: 70px;
     height: 580px;
-    margin: 150px 20px;
+    margin: 50px 20px;
     background-color: transparent;
     opacity: 1.0;
     filter: alpha(opacity=60); /* For IE8 and earlier */
@@ -681,3 +723,17 @@ i.scroll:hover {
     }
 }
 
+.padding-top {
+  margin-top: 2px;
+}
+
+.top-photos-panel {
+    width: 100%;
+    height: 100px;
+    background-color: #888;
+    opacity: 1.0;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+    position: absolute;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}

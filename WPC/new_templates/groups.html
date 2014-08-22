@@ -5,7 +5,11 @@
 {%endif%}
 
 {%block title%}
-{{me.name}} | WPC
+  {%if me%}
+    {{me.name}} | Groups | WPC
+  {%else%}
+    Groups | WPC
+  {%endif%}
 {%endblock%}
 
 {%block styleSheets%}
@@ -22,8 +26,16 @@
 {%endblock%}
 
 {%block pageContent%}
-    <h1> WPC<em>groups</em> </h1>
+    <h1> WPC<em>groups</em>  {%if not me%}<a href="/signin"><button class="btn btn-xs btn-danger" type="button"><i class="fa fa-register" style="color:white;"></i>  Register with WPC</button></a>{%endif%}</h1>
+
+    {%block signup_links%}  
+    {%endblock%}  
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
       <div class="carousel-inner">
         <div class="item active">
           <div class="container">
@@ -74,9 +86,9 @@
     <h1> Trending Groups </h1>
     <hr class="horizontal-line">
     {%if me%}
-    <h4>Filter By :<a>	Trendiest	</a>|<a>	Newest	</a>|<a>	Oldest	</a>|<a>	Highest Rating	</a>|<a>	<em>My Groups</em>	</a></h4>
+    <h4>Filter By :</h4><a href=""> Trendiest </a>|<a href="">  Newest  </a>|<a href="">  Oldest  </a>|<a href="">  Highest Rating  </a>|<a href="">  <em>My Groups</em> </a>
     {%else%}
-    <h4>Filter By :<a>	Trendiest	</a>|<a>	Newest	</a>|<a>	Oldest	</a>|<a>	Highest Rating	</a></h4>
+    <h4>Filter By :</h4><a href=""> Trendiest </a>|<a href="">  Newest  </a>|<a href="">  Oldest  </a>|<a href="">  Highest Rating  </a>
     {%endif%}
   	<div class="col-md-12">
   		<div class="col-md-4 col-sm-4">

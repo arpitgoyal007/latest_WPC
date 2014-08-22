@@ -1,0 +1,169 @@
+{%if me%}
+		{%extends "index_user.html"%}
+{%else%}
+		{%extends "index.html"%}
+{%endif%}
+
+{%set user = me%}
+
+{%block title%}
+  {%if me%}
+    {{me.name}} | Forum | WPC
+  {%else%}
+    Forum | WPC
+  {%endif%}
+{%endblock%}
+
+{%block styleSheets%}
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<!-- Add custom CSS here -->
+<link href="/css/my_studio.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
+<link href="/css/forum.css" rel="stylesheet">
+
+{%endblock%}
+
+{%block carousel%}
+{%endblock%}
+
+{%block pageContent%}
+    <h1> WPC<em>forum</em>  {%if not me%}<a href="/signin"><button class="btn btn-xs btn-danger" type="button"><i class="fa fa-register" style="color:white;"></i>  Register with WPC</button></a>{%endif%}</h1>
+
+    {%block signup_links%}  
+    {%endblock%}  
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1><img src="/images/Overload.jpg" alt="Profile Image" class="img-rounded" width="100px">  Overloaded INDIA!!</h1>
+              <p></p>
+              <p><a class="btn btn-sm btn-success" href="#" role="button">Go To Question</a></p>
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5></a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1><img src="/images/Artists_2.jpg" alt="Profile Image" class="img-rounded" width="100px">  How to take good Music Photographs</h1>
+              <p></p>
+              <p><a class="btn btn-sm btn-success" href="#" role="button">Go To Question</a></p>
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5></a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1><img src="/images/AnuragMathur-2.jpg" alt="Profile Image" class="img-rounded" width="100px">  New York, New York</h1>
+              <p></p>
+              <p><a class="btn btn-sm btn-success" href="#" role="button">Go To Question</a></p>
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+
+    <div id="about" class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h2></h2>
+                    <p class="lead">Place for Ads <br><a target="_blank" href="http://www.worldphotographersclub.com/">worldphotographersclub</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-8 col-sm-offset-2">
+      <form class="forum_ques" role="form" method="post">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Ask any question about photography">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" style="color:white;"></span></button>
+                </div><!-- /btn-group -->
+              </div><!-- /input-group -->
+      </form><br>
+    </div><!-- /.col-lg-6 -->
+
+    <div class="row" style="text-align:left;">      
+        <div class="col-sm-5 col-sm-offset-1">
+          <h2>Trending Posts</h2>
+          {%if me%}
+          <h4>Filter By :</h4><a href=""> Trendiest </a>|<a href="">  Newest  </a>|<a href="">  Oldest  </a>|<a href="">  Highest Rating  </a>|<a href="">  <em>My Questions</em> </a>
+          {%else%}
+          <h4>Filter By :</h4><a href=""> Trendiest </a>|<a href="">  Newest  </a>|<a href="">  Oldest  </a>|<a href="">  Highest Rating  </a>
+          {%endif%}
+          <div class="row" id="my_ques">
+              <hr class="horizontal-line">
+              <p>What is wrong about the photograph?</p>
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+              <img src="/images/Artists_2.jpg" alt="Profile Image" class="img-rounded" width="300px">
+                <form class="navbar-form navbar-left" role="search">
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button> 
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><br><br>
+                      <div class="input-group">
+                        <input type="text" class="form-control" size="50" placeholder="Answer or Comment">
+                          <button type="button" class="btn btn-sm btn-success dropdown-toggle padding_top" data-toggle="dropdown">Post</button>
+                      </div><!-- /input-group -->
+                </form>         
+          </div>  
+          <div class="row" id="my_ques">
+              <hr class="horizontal-line">
+              <p>What is wrong about the photograph?</p>
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+              <img src="/images/Artist_1.jpg" alt="Profile Image" class="img-rounded" width="300px">
+                <form class="navbar-form navbar-left" role="search">
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button> 
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><br><br>
+                      <div class="input-group">
+                        <input type="text" class="form-control" size="50" placeholder="Answer or Comment">
+                          <button type="button" class="btn btn-sm btn-success dropdown-toggle padding_top" data-toggle="dropdown">Post</button>
+                      </div><!-- /input-group -->
+                </form>         
+          </div>  
+          <div class="row" id="my_ques">
+              <hr class="horizontal-line">
+              <p>What is wrong about the photograph?</p>
+              <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}<em></h5></a>
+              <img src="/images/Into_the_storm.jpg" alt="Profile Image" class="img-rounded" width="300px">
+                <form class="navbar-form navbar-left" role="search">
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button>
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button> 
+                      <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><br><br>
+                      <div class="input-group">
+                        <input type="text" class="form-control" size="50" placeholder="Answer or Comment">
+                          <button type="button" class="btn btn-sm btn-success dropdown-toggle padding_top" data-toggle="dropdown">Post</button>
+                      </div><!-- /input-group -->
+                </form>         
+          </div>
+          <div class="row">
+              <hr class="horizontal-line">
+              <h3 style="color:black;">Ad</h3>
+              <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded" width="300px">
+          </div>
+          <hr class="horizontal-line">
+        </div>
+        
+        <div class="col-sm-2 col-sm-offset-1">
+          <h4><em>Related Posts</em></h4>
+          <hr class="horizontal-line">
+        </div>
+        <div class="col-sm-2 col-sm-offset-1">
+          <h4><em>Suggested Posts</em></h4>
+          <hr class="horizontal-line">
+        </div>
+    </div>
+{%endblock%}

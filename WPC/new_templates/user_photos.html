@@ -12,8 +12,62 @@ My Photos | WPC
 <link href="/css/font.css" rel="stylesheet">
 {%endblock%}
 {%block pageContent%}
-  <br><br><br><br>
-      <div class="transbox_right_permapage">
+  <br><br>
+      <div id="photos" class="portfolio main">
+        <div class="row">
+          <div class="col-md-2"><a class="navbar-brand" href="my_photos.html" style="font-family:verdana;color:black;font-size:30px;"> My Photos</a></div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="col-md-1">
+            <div class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search My Photos</a>
+              <ul class="dropdown-menu">
+                <li>
+                  <form class="navbar-form navbar-left" role="search" action="photos.html">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Find Photos">
+                    </div>
+                  </form>                        
+                </li>
+              </ul>
+           </div>
+         </div>
+         <div class="col-md-1">
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filter<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Most Viewed</a></li>
+              <li><a href="#">Most Liked</a></li>
+              <li><a href="#">Most Commented</a></li>
+              <li><a href="#">Most Shared</a></li>
+              <li><a href="#">Most Pinned</a></li>
+              <li><a href="#">Tags</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 col-md-offset-1  ">
+        <ul class="nav navbar-nav navbar-right" style="margin-right:20px;">                    
+            <li>My Albums</li><br>
+            <button type="submit" class="btn btn-warning btn-xs padding-top">New York</button>
+            <button type="submit" class="btn btn-warning btn-xs padding-top">Brooklyn Bridge</button>
+            <button type="submit" class="btn btn-warning btn-xs padding-top">Fashion</button>
+            <button type="submit" class="btn btn-warning btn-xs padding-top">Delhi</button>
+            <button type="submit" class="btn btn-warning btn-xs padding-top">India Gate</button>
+        </ul>
+        </div>
+        <div class="col-md-3">
+        <ul class="nav navbar-nav navbar-right"  style="margin-right:20px;">                    
+            <li>My Tags</li><br>
+            <button type="submit" class="btn btn-danger btn-xs padding-top">New York</button>
+            <button type="submit" class="btn btn-danger btn-xs padding-top">Brooklyn Bridge</button>
+            <button type="submit" class="btn btn-danger btn-xs padding-top">Fashion</button>
+            <button type="submit" class="btn btn-danger btn-xs padding-top">Delhi</button>                
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="horizontal-line">
+        <div class="transbox_right_permapage">
             <ul class="list-inline">
                 {%if me.website%}
                   <a href="{{me.website}}"><img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br><a>
@@ -37,66 +91,6 @@ My Photos | WPC
                 {% endif %}
             </ul>
     </div>
-      <div id="photos" class="portfolio main">
-        <nav class="navbar" role="navigation">
-          <div class="container-fluid">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand" href="my_photos.html" style="font-family:verdana;color:black;font-size:30px;"> My Photos</a>
-              </div>
-
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search My Photos <b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <form class="navbar-form navbar-left" role="search" action="photos.html">
-                            <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Find Photos">
-                            </div>
-                          </form>                        
-                        </li>
-                      </ul>
-                   </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filter<b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Most Viewed</a></li>
-                        <li><a href="#">Most Liked</a></li>
-                        <li><a href="#">Most Commented</a></li>
-                        <li><a href="#">Most Shared</a></li>
-                        <li><a href="#">Most Pinned</a></li>
-                        <li><a href="#">Tags</a></li>
-                      </ul>
-                    </li>
-                  </ul>   
-                  <ul class="nav navbar-nav navbar-right" style="margin-right:20px;">                    
-                      <li>My Albums</li><br>
-                      <button type="submit" class="btn btn-warning btn-xs">New York</button>
-                      <button type="submit" class="btn btn-warning btn-xs">Brooklyn Bridge</button>
-                      <button type="submit" class="btn btn-warning btn-xs">Fashion</button>
-                      <button type="submit" class="btn btn-warning btn-xs">Delhi</button>
-                      <button type="submit" class="btn btn-warning btn-xs">India Gate</button>
-                  </ul>       
-                  <ul class="nav navbar-nav navbar-right"  style="margin-right:20px;">                    
-                      <li>My Tags</li><br>
-                      <button type="submit" class="btn btn-danger btn-xs">New York</button>
-                      <button type="submit" class="btn btn-danger btn-xs">Brooklyn Bridge</button>
-                      <button type="submit" class="btn btn-danger btn-xs">Fashion</button>
-                      <button type="submit" class="btn btn-danger btn-xs">Delhi</button>                
-                  </ul>
-              </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-      </nav>   
-
 		    <div class="row">	
 		        	<div class="container">
 					{%for p in photos%}

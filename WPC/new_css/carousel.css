@@ -603,6 +603,9 @@ p {
     padding-right: 10px;
 }
 
+.form_signin_container{
+  min-width:300px;
+}
 .dropdown_container {
   position:fixed;
   right:-300px;
@@ -829,11 +832,12 @@ fieldset#form_body {
  font-weight:400;
  font-size:11px;
 }
-.panel .panel-default {
- border-color:#cccccc;
+.card {
+  border-color:black;
+  box-shadow: 5px 5px 5px #888888;
 }
 .panel .panel-thumbnail {
- padding:0;
+  padding:0;
 }
 .panel .img-circle {
  width:50px;
