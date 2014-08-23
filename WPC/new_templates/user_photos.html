@@ -100,10 +100,12 @@ My Photos | WPC
 								<div class="button-container post-action padding_top">
 									<form method="post">
 										<input type="hidden" name="actionType" value="edit">
+                    <input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
 										<button class="btn btn-primary btn-xs" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span></button>
 									</form>
 									<form method="post">
 										<input type="hidden" name="actionType" value="delete">
+                    <input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
 										<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
 									</form>
 								</div>

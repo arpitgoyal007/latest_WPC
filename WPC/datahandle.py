@@ -1,4 +1,5 @@
 from datamodel import *
+from google.appengine.ext import blobstore
 import utils
 import logging
 
@@ -11,46 +12,43 @@ def create_user(email, name, password):
 	mysbook = create_mystorybook(userKey)
 	return user
 
-def update_user_name(name):
+def update_user_name(name, user):
 	if name:
-		User.name = name
-	return User.name
+		user.name = name
+	return user
 
-def update_user_alt_email(email):
+def update_user_alt_email(email, user):
 	if email:
-		User.alt_email = email
-	return User.alt_email
+		user.alt_email = email
+	return user
 
-def update_user_password(password):
-	email = User.email
-	User.passwordHash = utils.hash_password(email, password)
-
-def update_user_country(country):
+def update_user_country(country, user):
 	if country:
-		User.country = country
-	return User.country
+		user.country = country
+	return user
 
-def update_social_profiles(facebook, youtube, google_plus, twitter, pinterest, website):
+def update_social_profiles(facebook, youtube, google_plus, twitter, pinterest, website, user):
 	if facebook:
-		User.facebook=facebook
+		user.facebook=facebook
 	if youtube:
-		User.youtube=youtube
+		user.youtube=youtube
 	if google_plus:
-		User.google_plus=google_plus
+		user.google_plus=google_plus
 	if twitter:	
-		User.twitter=twitter
+		user.twitter=twitter
 	if pinterest:
-		User.pinterest=pinterest
+		user.pinterest=pinterest
 	if website:
-		User.website=website
+		user.website=website
+	return user
 
 def create_blog(title, content, parent_key):
 	blog = Blog(title=title, content=content, likes=0, parent=parent_key)
 	blogKey = blog.put()
 	return blog
 
-def create_picture(blobKey, parent_key):
-	pic = Picture(blobKey=blobKey, likes=0, parent=parent_key)
+def create_picture(blobKey, caption, description, location, parent_key):
+	pic = Picture(blobKey=blobKey, caption=caption, description=description, location=location, parent=parent_key)
 	picKey = pic.put()
 	return pic
 

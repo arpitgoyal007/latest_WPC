@@ -135,7 +135,7 @@ class UserBlogsHandler(PageHandler):
 			self.render('user_blogs.html', **templateVals)
 		else:
 			self.redirect('/')
-			
+
 class BlogNewHandler(PageHandler):
 	def get(self):
 		if self.user:
@@ -149,8 +149,8 @@ class BlogNewHandler(PageHandler):
 			title = self.request.get('title')
 			content = self.request.get('content')
 			if title and content:
-				create_blog(title, content, self.user.key)
-				self.redirect('/%s/blogs' % self.user.key.id())
+				blog = create_blog(title, content, self.user.key)
+				self.redirect('/blog/%s' % blog.key.urlsafe())
 			else:
 				errorMsg = "Please enter both title and content!"
 				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
@@ -400,37 +400,50 @@ class UserSettingsHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler
 			self.redirect('/')
 
 	def post(self):
-		name = self.request.get('name')
-		alt_email = self.request.get('alt_email')
-		password = self.request.get('password')
-		verifyPassword = self.request.get('verifyPassword')
-		country = self.request.get('country')
-		facebook = self.request.get('facebook')
-		youtube = self.request.get('youtube')
-		google_plus = self.request.get('google_plus')
-		twitter = self.request.get('twitter')
-		pinterest = self.request.get('pinterest')
-		website = self.request.get('website')
-
-		update_user_name (name)
-		update_user_alt_email (alt_email)
-		update_user_country(country)
-		update_social_profiles(facebook, youtube, google_plus, twitter, pinterest, website)
-		self.redirect('usersettings.html')
+		if self.user:
+			name = self.request.get('name')
+			alt_email = self.request.get('alt_email')
+			password = self.request.get('password')
+			verifyPassword = self.request.get('verifyPassword')
+			country = self.request.get('country')
+			facebook = self.request.get('facebook')
+			youtube = self.request.get('youtube')
+			google_plus = self.request.get('google_plus')
+			twitter = self.request.get('twitter')
+			pinterest = self.request.get('pinterest')
+			website = self.request.get('website')	
+			user = self.user
+			user = update_user_name(name, user)
+			user = update_user_alt_email(alt_email, user)
+			user = update_user_country(country, user)
+			user = update_social_profiles(facebook, youtube, google_plus, twitter, pinterest, website, user)
+			user.put()
+			self.redirect('/usersettings')
+		else:
+			self.redirect('/')
 
 class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler):
 	def post(self):
 		if self.user:
 			uploads = self.get_uploads('files')
-			photoList = []
+			captionList = self.request.get_all('caption')
+			descriptionList = self.request.get_all('description')
+			locationList = self.request.get_all('location')
 			if len(uploads)>0:
-				for upload in uploads:
-					blobInfo = upload
-					photo = create_picture(blobInfo.key(), self.user.key)
-					photoList.append(photo)
-				resource = get_edit_photo_urlstring(photoList)
-				if len(photoList) != 0:
-					uploaddone = 1;
+				for i in range(len(uploads)):
+					blobInfo = uploads[i]
+					caption = captionList[i]
+					description = descriptionList[i]
+					location = locationList[i]
+					logging.info(blobInfo.key())
+					logging.info(caption)
+					logging.info(description)
+					logging.info(location)
+					photo = create_picture(blobInfo.key(), caption, description, location, self.user.key)
+				#	photoList.append(photo)
+				#resource = get_edit_photo_urlstring(photoList)
+				#if len(photoList) != 0:
+				#	uploaddone = 1;
 				#self.redirect('/editphoto?ids=%s' % resource)
 				self.redirect('/%s/photos' % self.user.key.id())
 			else:
@@ -488,14 +501,24 @@ class UserPhotosHandler(PageHandler):
 			self.redirect('/')
 			
 	def post(self, resource):
-		photoKey = get_key_urlunsafe(resource)
-		if photoKey:
-			action = self.request.get('actionType')
-			if action == "delete":
-				delete_photo(photoKey, self.user.key)
-				self.redirect('/%s/photos' % self.user.key.id())
-			elif action == "edit":
-				self.redirect('/editphoto/%s' % resource)
+		userid = resource
+		user = User.get_by_id(userid)
+		if user:
+			if self.user:
+				if self.user == user:
+					action = self.request.get('actionType')
+					photoKey = get_key_urlunsafe(self.request.get('photoKey'))
+					if action == "delete":
+						delete_photo(photoKey, self.user.key)
+						self.redirect('/%s/photos' % self.user.key.id())
+					elif action == "edit":
+						self.redirect('/editphoto/%s' % photoKey.urlsafe())
+				else:
+					self.redirect('/')
+			else:
+				self.redirect('/')
+		else:
+			self.redirect('/')
 
 class SigninHandler(PageHandler):
 	def get(self):

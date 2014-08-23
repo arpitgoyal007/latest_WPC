@@ -42,6 +42,11 @@ Upload Photos | WPC
 					  </div>
 					</div>
 				</div>
+				<div class="container" id="thumb_img1">
+				</div>
+				<!--<input type="hidden" id="myCaption" name="captions">
+				<input type="hidden" id="myDescription" name="descriptions">
+				<input type="hidden" id="myLocation" name="locations"> -->
 				<!-- The table listing the files available for upload/download -->
 				<table role="presentation" class="table table-striped">
 					<tbody class="files">
@@ -102,14 +107,9 @@ Upload Photos | WPC
 			
 			<div class="row">
 				<!-- Three columns of text below the carousel -->
-				<form method="post">
-					<div class="row">
-						<div class="container" id="thumb_img1">
-						</div>
-					</div>
-					<div class="error">{{submitError}}</div><br>
-					<div id="save_button"></div>
-				</form>
+				<div class="container" id="thumb_img1">
+				</div>
+				<div id="save_button"></div>
 			</div>
 
 			<p id="demo"></p>
@@ -164,7 +164,7 @@ function myFunction(){
 			 	//reader.readAsDataURL(file);
 			 	//var file_src = reader.result;
             //document.getElementById("demo").innerHTML = txt;
-            temp += "<div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='140px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4><h5 class='form-signin-heading padding_bottom'>Update Photo Details</h5><input type='text' name='email' class='form-control padding_bottom' placeholder='Caption' value="+file.name+" autofocus><input type='text' name='email' class='form-control padding_bottom' placeholder='Location' value='' autofocus><textarea type='textarea' name='password' class='form-control padding_bottom' placeholder='Description'></textarea></div>";
+            temp += "<div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='140px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4><h5 class='form-signin-heading padding_bottom'>Update Photo Details</h5><input type='text' id='picCaption' name='caption' class='form-control padding_bottom' placeholder='Caption' value="+file.name+" autofocus><input type='text' id='picLocation' name='location' class='form-control padding_bottom' placeholder='Location' autofocus><textarea type='textarea' id='picDescription' name='description' class='form-control padding_bottom' placeholder='Description'></textarea></div>";
             total_size = total_size + file.size;
             }
             total_size = Math.ceil((total_size/1000000) * 100)/100;
@@ -180,12 +180,28 @@ function myFunction(){
     }
     document.getElementById("thumb_img1").innerHTML = temp;
     document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
-    document.getElementById("save_button").innerHTML ="<button class='btn btn-sm btn-success' type='submit'>Save Details</button>";
+    //document.getElementById("save_button").innerHTML ="<button class='btn btn-sm btn-success' id='saveDetails'>Save Details</button>";
+    //document.getElementById("saveDetails").onclick = function(){appendFunction(x.files.length);};
 }
+</script>
+	
+<script>
+/*function appendFunction(len){
+	var captions = [];
+	var descriptions = [];
+	var locations = [];
+	for (var i = 0; i<len; i++) {
+		captions.push(document.getElementById("picCaption{{i}}").value);
+		locations.push(document.getElementById("picLocation{{i}}").value);
+		descriptions.push(document.getElementById("picDescription{{i}}").value);
+	}
+	document.getElementById("myCaption").value = captions;
+	document.getElementById("myLocation").value = locations;
+	document.getElementById("myDescription").value = descriptions;
+}*/
 </script>
 
 <script>
-
 /*window.onload = function(){  
     //Check File API support
 

@@ -80,10 +80,10 @@ class Item(Post):
 	followed = ndb.KeyProperty(kind='User', repeated=True)
 
 class Picture(Item): # Parent=User
-	caption = ndb.StringProperty(default='')
-	location = ndb.StringProperty(default='')
+	caption = ndb.StringProperty()
+	location = ndb.StringProperty()
 	blobKey = ndb.BlobKeyProperty()
-	description = ndb.TextProperty(default='')
+	description = ndb.TextProperty()
 
 class Blog(Item): # Parent=User
 	title = ndb.StringProperty(required=True)
