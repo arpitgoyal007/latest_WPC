@@ -1,0 +1,54 @@
+{%if me%}
+		{%extends "index_user.html"%}
+{%else%}
+		{%extends "index.html"%}
+{%endif%}
+
+{%block title%}
+  {%if me%}
+    {{me.name}} | Blogs | WPC
+  {%else%}
+    Blogs | WPC
+  {%endif%}
+{%endblock%}
+
+{%block styleSheets%}
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<!-- Add custom CSS here -->
+<link href="/css/my_studio.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
+<link href="/css/blog.css" rel="stylesheet">
+{%endblock%}
+
+{%block carousel%}
+{%endblock%}
+
+{%block pageContent%}
+  <h1>WPC<em>blogs</em></h1>
+  <hr class="horizontal-line">
+<div class="post">
+  <div class="post-heading">
+    <div class="post-title">
+      <h3>{{blog.title}}</h3>
+      <div class="button-container post-action padding_top">
+        <form method="post">
+          <input type="hidden" name="actionType" value="edit">
+          <input type="hidden" name="photoKey" value="{{blog.key.urlsafe()}}">
+          <button class="btn btn-primary btn-xs" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span></button>
+        </form>
+        <form method="post">
+          <input type="hidden" name="actionType" value="delete">
+          <input type="hidden" name="photoKey" value="{{blog.key.urlsafe()}}">
+          <button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
+        </form>
+      </div>
+    </div>
+    <div class="post-date">
+      {{blog.updated.strftime("%b %d, %Y")}}
+    </div>
+  <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 post-content blog_content" style="text-align:justify;" id="blog_content">
+    <pre>{{blog.content | safe}}</pre>
+  </div>
+</div>
+{%endblock%}

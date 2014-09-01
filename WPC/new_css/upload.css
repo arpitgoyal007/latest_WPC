@@ -6,7 +6,9 @@ body {
   color: #000;
   text-align: center;
 }
-
+body {
+  padding-top: 50px;
+}
 h3 {
   color: black;
 }

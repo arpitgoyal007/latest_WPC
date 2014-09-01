@@ -22,6 +22,7 @@ class Group(ndb.Model): # Parent=User (Admin)
 	name = ndb.StringProperty(required=True)
 	members = ndb.KeyProperty(kind='User', repeated=True)
 	created = ndb.DateTimeProperty(auto_now_add=True)
+	description = ndb.TextProperty()
 
 class Itembook(ndb.Model):
 	name = ndb.StringProperty(required=True)

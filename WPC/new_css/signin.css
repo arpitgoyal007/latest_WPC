@@ -17,6 +17,9 @@ body a {
   color: #fff;
 }
 
+h2 {
+  color: white;
+}
 .form-signup {
   padding: 0px 0px;
   margin-top:100px;
@@ -31,4 +34,44 @@ body a {
     width: 1px;
     float: left;
     position: absolute;
+}
+
+.form-signin {
+  max-width: 300px;
+  padding: 0px 0px;
+  margin:1px 10px;
+  margin-bottom: 20px;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form_signin_container{
+  min-width:300px;
 }

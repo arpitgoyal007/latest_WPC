@@ -87,11 +87,12 @@
     <h1> All Blogs </h1>
     <hr class="horizontal-line">
     {%if me%}
-        <h4>Filter By :</h4><a href="">	Trendiest	</a>|<a href="">	Newest	</a>|<a href="">	Oldest	</a>|<a href="">	Highest Rating	</a>|<a href="">	<em>My Blogs</em>	</a>
+        <h4>Filter By :</h4><a href="">	Trendiest	</a>|<a href="">	Newest	</a>|<a href="">	Oldest	</a>|<a href="">	Highest Rating	</a>|<a onclick="myblogs();" href="javascript:void(0);">	<em>My Blogs</em>	</a>
     {%else%}
         <h4>Filter By :</h4><a href="">	Trendiest	</a>|<a href="">	Newest	</a>|<a href="">	Oldest	</a>|<a href="">	Highest Rating	</a>
     {%endif%}
-  	<div class="col-md-12">
+
+  	<div class="col-md-12" id="blogs_section">
   		<div class="col-md-4 col-sm-6">
   			<a href=""><h3><em>How to take good Music Photographs</em></h3>
   			<img src="/images/Artists_2.jpg" alt="Profile Image" class="img-rounded" width="300px"></a>
@@ -138,4 +139,15 @@
               <hr class="horizontal-line">
   		</div>
   	</div>
+
+    <div id="myblogs">
+      {%if me%}
+        {%for b in blogs%}
+        <div class="col-md-4 col-sm-6">
+          {{b.title}}
+          {{b.content | safe }}
+        </div>
+        {% endfor %}
+      {%endif%}
+    </div>      
 {%endblock%}

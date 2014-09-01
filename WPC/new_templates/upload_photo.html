@@ -6,13 +6,14 @@ Upload Photos | WPC
 
 {%block styleSheets%}
 <link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/my_studio.css">
 <link rel="stylesheet" href="/css/font.css">
 <link rel="stylesheet" href="/css/upload.css">
 {%endblock%}
 
 {%block pageContent%}
+  <h1>Add New Photos</h1>
+  <hr class="horizontal-line">
 			<form id="photoupload" action="{{uploadUrl}}" method="post" enctype="multipart/form-data">
 				<div class="column fileupload-buttonbar">
 					<div class="row col-sm-4">
@@ -42,19 +43,7 @@ Upload Photos | WPC
 					  </div>
 					</div>
 				</div>
-				<div class="container" id="thumb_img1">
-				</div>
-				<!--<input type="hidden" id="myCaption" name="captions">
-				<input type="hidden" id="myDescription" name="descriptions">
-				<input type="hidden" id="myLocation" name="locations"> -->
-				<!-- The table listing the files available for upload/download -->
-				<table role="presentation" class="table table-striped">
-					<tbody class="files">
-					</tbody>
-				</table>
-			</form>
-			<h3>Update properties for all photos or update later after uploading is done</h3>
-            <form action="" method="post" name="photos_info">
+				<h3>Update properties for all photos or update later after uploading is done</h3>
 				   <div class="col-lg-4 col-lg-offset-4">
 				    <div class="input-group">
 				      <input type="text" class="form-control" placeholder="Add New Album">
@@ -103,6 +92,16 @@ Upload Photos | WPC
 			<div class="col-lg-4 col-lg-offset-4">
 				<button class="btn btn-sm btn-success" type="submit">Add to all Photos</button>	
 			</div>
+				<div class="container" id="thumb_img1">
+				</div>
+				<!--<input type="hidden" id="myCaption" name="captions">
+				<input type="hidden" id="myDescription" name="descriptions">
+				<input type="hidden" id="myLocation" name="locations"> -->
+				<!-- The table listing the files available for upload/download -->
+				<table role="presentation" class="table table-striped">
+					<tbody class="files">
+					</tbody>
+				</table>
 			</form>
 			
 			<div class="row">

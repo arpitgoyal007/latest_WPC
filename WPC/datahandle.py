@@ -52,6 +52,11 @@ def create_picture(blobKey, caption, description, location, parent_key):
 	picKey = pic.put()
 	return pic
 
+def create_group(name, description, parent_key):
+	grp = Group(name=name, description=description, parent=parent_key)
+	grpKey = grp.put()
+	return grp
+
 def create_favoritebook(parent_key):
 	fbook = Favoritebook(parent=parent_key)
 	fbookKey = fbook.put()

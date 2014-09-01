@@ -1,0 +1,110 @@
+{%extends "user_studio.html"%}
+
+{%block signup_links%}  
+ {%endblock%} 
+{%block pageContent%}
+    <div class="transbox_right_permapage">
+        <ul class="list-inline">
+          <form method="post">
+            <input type="hidden" name="actionType" value="delete">
+            <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
+            <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-trash-o fa-2x"></i></button>
+          </form><br>
+          <form method="post">
+            <input type="hidden" name="actionType" value="delete">
+            <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
+            <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-crop fa-2x"></i></button>
+          </form><br>
+          <form method="post">
+            <input type="hidden" name="actionType" value="delete">
+            <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
+            <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-rotate-left fa-2x"></i></button>
+          </form><br>
+          <form method="post">
+            <input type="hidden" name="actionType" value="delete">
+            <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
+            <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-rotate-right fa-2x"></i></button>
+          </form>
+        </ul>
+    </div>
+
+	<div class="photopermpage">
+		<img src="/servephoto/{{photo.blobKey}}" height="600px" alt="photo">
+    <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{user.name}}<em></h5></a>
+	</div>
+  <hr>
+  <h3 style="color:black;">Edit/Update Photo Details</h3>
+  <div class="col-md-4 col-md-offset-1">
+      <p>Edit Photo Caption</p>
+      <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="Caption" value="{{photo.caption}}" autofocus><br>
+      <p>Edit Photo Location</p>
+      <input type="text" id="picLocation" name="location" class="form-control padding_bottom" placeholder="Location" value="{{photo.location}}" autofocus><br>
+      <p>Edit Photo Description</p>
+      <textarea type="textarea" id="picDescription" name="description" class="form-control padding_bottom" placeholder="Description">{{photo.description}}</textarea>
+      <br>
+      <div class="panel panel-default">
+          <div class="panel-heading"><h4>Associated Tags</h4></div>
+              <div class="panel-body">                
+                  <button class="btn btn-warning btn-xs btn_padding">New York</button>
+                  <button class="btn btn-warning btn-xs btn_padding">Brooklyn Bridge</button>
+                  <button class="btn btn-warning btn-xs btn_padding">Fashion</button>
+                  <button class="btn btn-warning btn-xs btn_padding">Delhi</button>    
+                  <button class="btn btn-warning btn-xs btn_padding">New York</button>
+                  <button class="btn btn-warning btn-xs btn_padding">Brooklyn Bridge</button>
+                  <button class="btn btn-warning btn-xs btn_padding">Fashion</button>
+                  <hr>
+                  <input type="text" class="form-control" placeholder="Add a new Tag">
+              </div>
+              <div class="panel-heading"><h4>Albums</h4></div>
+              <div class="panel-body">                
+                  <button class="btn btn-danger btn-xs btn_padding">New York</button>
+                  <button class="btn btn-danger btn-xs btn_padding">Brooklyn Bridge</button>
+                  <button class="btn btn-danger btn-xs btn_padding">Fashion</button>
+                  <button class="btn btn-danger btn-xs btn_padding">Delhi</button>    
+                  <button class="btn btn-danger btn-xs btn_padding">New York</button>
+                  <button class="btn btn-danger btn-xs btn_padding">Brooklyn Bridge</button>
+                  <button class="btn btn-danger btn-xs btn_padding">Fashion</button>
+                  <hr>
+                  <input type="text" class="form-control" placeholder="Add photo to a new album">
+              </div>
+          </div> 
+      </div>
+  </div>
+  <div class="col-md-4 col-md-offset-1 permapage_container">
+      <div class="panel-heading"><h4>Camera Details</h4></div>
+          <div class="panel-body">
+              <img src="/fonts/Cameras/Nikon_D80.png" alt="camera" width="80px">
+              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="Camera" value="{{photo.camera}}" autofocus><br>
+              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="Lense" value="{{photo.lense}}" autofocus><br>
+              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="Shutter Speed" value="{{photo.shutter_speed}}" autofocus><br>
+              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="Aperture" value="{{photo.aperture}}" autofocus><br>
+              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="ISO" value="{{photo.iso}}" autofocus><br><br>
+              <h4>Permissions</h4><br>
+              <div style="text-align:left;">
+                <label><input type="checkbox" name="remember"> Make this photo Private, only visible to me</label><br>
+                <label><input type="checkbox" name="remember"> All users are allowed to use this photo in their blogs, forums and groups</label><br>
+            </div>
+          </div>
+      </div>
+  </div>
+   
+	<footer>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+			<button class="btn btn-sm btn-success" type="submit">Save Details</button><br><br><hr>
+      <ul class="list-inline">
+				<li><a href="https://www.facebook.com/pages/Anurag-Mathurs-Photography/215979155096125?ref=hl&ref_type=bookmark"><i class="fa fa-facebook fa-3x"></i></a>
+				</li>
+				<li><a href="www.twitter.com"><i class="fa fa-twitter fa-3x"></i></a>
+				</li>
+				<li><a href="www.dribble.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+				</li>
+				<li><a href="www.dribble.com"><i class="fa fa-pinterest fa-3x"></i></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<p class="pull-right back-to-top"><a href="#">Back to top</a></p>
+	<p>&copy; 2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
+	</footer>
+{%endblock%}

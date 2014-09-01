@@ -9,7 +9,9 @@ body {
 }
 
 
-
+.textarea_no_border {
+  border:0px solid red;
+}
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 

@@ -88,34 +88,6 @@ class MainHandler(PageHandler):
 		else:
 			self.render('index_user.html', me=self.user)
 
-class BlogPermpageHandler(PageHandler):
-	def get(self, resource):
-		blogKey = get_key_urlunsafe(resource)
-		if blogKey:
-			userKey = blogKey.parent()
-			user = userKey.get()
-			templateVals = {'me': self.user}
-			if self.user:
-				if self.user == user:
-					templateVals['user'] = self.user
-				else:
-					templateVals['user'] = user
-			else:
-				templateVals['user'] = user
-			templateVals['blog'] = blogKey.get()
-			self.render('blogperm.html', **templateVals)
-		else:
-			self.redirect('/')
-
-	def post(self, resource):
-		blogKey = get_key_urlunsafe(resource)
-		if blogKey:
-			action = self.request.get('actionType')
-			if action == "delete":
-				delete_blog(blogKey, self.user.key)
-				self.redirect('/%s/blogs' % self.user.key.id())
-			elif action == "edit":
-				self.redirect('/editblog/%s' % resource)
 
 class UserBlogsHandler(PageHandler):
 	def get(self, resource):
@@ -168,14 +140,14 @@ class GroupNewHandler(PageHandler):
 
 	def post(self):
 		if self.user:
-			title = self.request.get('title')
-			content = self.request.get('content')
-			if title and content:
-				create_blog(title, content, self.user.key)
-				self.redirect('/%s/blogs' % self.user.key.id())
+			name = self.request.get('name')
+			description = self.request.get('description')
+			if name and description:
+				group = create_group(name, description, self.user.key)
+				self.redirect('/group/%s' % group.key.urlsafe())
 			else:
 				errorMsg = "Please enter both title and content!"
-				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
+				templateVals = {'me': self.user, 'name': name, 'description': description, 'submitError': errorMsg}
 				self.render('new_blog.html', **templateVals)
 		else:
 			self.redirect('/')
@@ -187,6 +159,8 @@ class BlogsHandler(PageHandler):
 			self.render('blogs.html', **templateVals)
 		else:
 			templateVals = {'me': self.user}
+			blogs = Blog.of_ancestor(self.user.key)
+			templateVals['blogs'] = blogs	
 			self.render('blogs.html', **templateVals)
 
 	def post(self):
@@ -344,13 +318,82 @@ class PhotoPermpageHandler(PageHandler):
 
 	def post(self, resource):
 		photoKey = get_key_urlunsafe(resource)
-		if photoKey:
+		userKey = photoKey.parent()
+		user = userKey.get()
+		if user:
+			if self.user:
+				if self.user == user:
+					action = self.request.get('actionType')
+					photoKey = get_key_urlunsafe(self.request.get('photoKey'))
+					if action == "delete":
+						delete_photo(photoKey, self.user.key)
+						self.redirect('/%s/photos' % self.user.key.id())
+					elif action == "edit":
+						self.redirect('/editphoto/%s' % photoKey.urlsafe())
+				else:
+					self.redirect('/')
+			else:
+				self.redirect('/')
+		else:
+			self.redirect('/')
+
+class BlogPermpageHandler(PageHandler):
+	def get(self, resource):
+		blogKey = get_key_urlunsafe(resource)
+		if blogKey:
+			userKey = blogKey.parent()
+			user = userKey.get()
+			templateVals = {'me': self.user}
+			if self.user:
+				if self.user == user:
+					templateVals['user'] = self.user
+				else:
+					templateVals['user'] = user
+			else:
+				templateVals['user'] = user
+			templateVals['blog'] = blogKey.get()
+			self.render('blogperm.html', **templateVals)
+		else:
+			self.redirect('/')
+
+	def post(self, resource):
+		blogKey = get_key_urlunsafe(resource)
+		if blogKey:
 			action = self.request.get('actionType')
 			if action == "delete":
-				delete_photo(photoKey, self.user.key)
-				self.redirect('/%s/photos' % self.user.key.id())
+				delete_blog(blogKey, self.user.key)
+				self.redirect('/%s/blogs' % self.user.key.id())
 			elif action == "edit":
-				self.redirect('/editphoto/%s' % resource)
+				self.redirect('/editblog/%s' % resource)
+
+class GroupPermpageHandler(PageHandler):
+	def get(self, resource):
+		groupKey = get_key_urlunsafe(resource)
+		if groupKey:
+			userKey = groupKey.parent()
+			user = userKey.get()
+			templateVals = {'me': self.user}
+			if self.user:
+				if self.user == user:
+					templateVals['user'] = self.user
+				else:
+					templateVals['user'] = user
+			else:
+				templateVals['user'] = user
+			templateVals['group'] = groupKey.get()
+			self.render('groupperm.html', **templateVals)
+		else:
+			self.redirect('/')
+
+	def post(self, resource):
+		blogKey = get_key_urlunsafe(resource)
+		if blogKey:
+			action = self.request.get('actionType')
+			if action == "delete":
+				delete_blog(blogKey, self.user.key)
+				self.redirect('/%s/blogs' % self.user.key.id())
+			elif action == "edit":
+				self.redirect('/editgroup/%s' % resource)
 
 class PhotoNewHandler(PageHandler):
 	def get(self):
@@ -363,14 +406,23 @@ class PhotoNewHandler(PageHandler):
 			self.redirect('/')
 
 class PhotoEditHandler(PageHandler):
-	def get(self):
-		if self.user:
+	def get(self, resource):
+		photoKey = get_key_urlunsafe(resource)
+		if photoKey:
+			userKey = photoKey.parent()
+			user = userKey.get()
 			templateVals = {'me': self.user}
-			resource = self.request.get('ids')
-			logging.info(resource)
-			photoList = get_photolist_from_urlstring(resource, self.user.key)
-			templateVals['photos'] = photoList
-			self.render('edit_photo.html', **templateVals)
+			if self.user:
+				if self.user == user:
+					templateVals['user'] = self.user
+				else:
+					templateVals['user'] = user
+			else:
+				templateVals['user'] = user
+			photos = Picture.of_ancestor(user.key)
+			templateVals['photos'] = photos	
+			templateVals['photo'] = photoKey.get()
+			self.render('photoedit.html', **templateVals)
 		else:
 			self.redirect('/')
 
@@ -435,16 +487,7 @@ class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler)
 					caption = captionList[i]
 					description = descriptionList[i]
 					location = locationList[i]
-					logging.info(blobInfo.key())
-					logging.info(caption)
-					logging.info(description)
-					logging.info(location)
 					photo = create_picture(blobInfo.key(), caption, description, location, self.user.key)
-				#	photoList.append(photo)
-				#resource = get_edit_photo_urlstring(photoList)
-				#if len(photoList) != 0:
-				#	uploaddone = 1;
-				#self.redirect('/editphoto?ids=%s' % resource)
 				self.redirect('/%s/photos' % self.user.key.id())
 			else:
 				uploadUrl = blobstore.create_upload_url('/uploadphoto')
@@ -455,6 +498,12 @@ class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler)
 			self.redirect('/')
 
 class PhotoServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
+	def get(self, resource):
+		resource = str(urllib.unquote(resource))
+		blobInfo = blobstore.BlobInfo.get(resource)
+		self.send_blob(blobInfo)
+
+class BlogServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
 	def get(self, resource):
 		resource = str(urllib.unquote(resource))
 		blobInfo = blobstore.BlobInfo.get(resource)
@@ -503,6 +552,8 @@ class UserPhotosHandler(PageHandler):
 	def post(self, resource):
 		userid = resource
 		user = User.get_by_id(userid)
+		logging.info(userid)
+		logging.info(user)
 		if user:
 			if self.user:
 				if self.user == user:
@@ -586,6 +637,7 @@ app = webapp2.WSGIApplication([
 			('/login', LoginHandler),
 			('/logout', LogoutHandler),
 			('/blog/([^/]+)', BlogPermpageHandler),
+			('/group/([^/]+)', GroupPermpageHandler),
 			('/photo/([^/]+)', PhotoPermpageHandler),
 			('/editblog/([^/]+)', BlogEditHandler),
 			('/newblog', BlogNewHandler),
@@ -594,11 +646,12 @@ app = webapp2.WSGIApplication([
 			('/groups' , GroupsHandler),
 			('/forum', ForumHandler),
 			('/search_results', SearchResultsHandler),
-			('/editphoto', PhotoEditHandler),
+			('/editphoto/([^/]+)', PhotoEditHandler),
 			('/newphoto', PhotoNewHandler),
 			('/uploadphoto', PhotoUploadHandler),
 			('/usersettings', UserSettingsHandler),
 			('/servephoto/([^/]+)', PhotoServeHandler),
+			('/serveblog/([^/]+)', BlogServeHandler),
 			('/([^/]+)/blogs', UserBlogsHandler),
 			('/([^/]+)/photos', UserPhotosHandler),
 			('/([^/]+)', UserStudioHandler),

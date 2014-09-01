@@ -24,7 +24,7 @@ Home | WPC
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
                           <ul class="dropdown-menu" role="menu">
                               <li><a href="/usersettings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                              <li><a href="/usersettings"><i class="fa fa-phone"></i> Invite Friends</a></li>
+                              <li><a href="" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-phone"></i> Invite Friends</a></li>
                               <li><a href="#my_portfolios"><span class="glyphicon glyphicon-heart-empty"></span> My Ideabook</a></li>
                               <li class="divider"></li>
                               <li><a href="/logout"><span class="glyphicon glyphicon-send"></span> Sign Out</a></li>
@@ -37,18 +37,14 @@ Home | WPC
                                 <div class="messages_container">
                                   <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
                                   <p>Photographer added new Photos</p></a>
-                                  <img src="http://localhost:8080/servephoto/zZ1le8tTbkgCluEDBMzmxg==" height="50px" alt="First slide"/>
-                                  <img src="http://localhost:8080/servephoto/unsvkFZ5X_llAigGqwMDQA==" height="50px" alt="First slide"/>
 
                                   <hr class="horizontal-line">
                                   <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
                                   <p>Your photo is used by Photographer in his blog/forum/group XYZ</p></a>
-                                  <img src="http://localhost:8080/servephoto/zZ1le8tTbkgCluEDBMzmxg==" height="50px" alt="First slide"/>
                                   
                                   <hr class="horizontal-line">
                                   <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
                                   <p>Photographer Commented on your photo</p></a>
-                                  <img src="http://localhost:8080/servephoto/unsvkFZ5X_llAigGqwMDQA==" height="50px" alt="First slide"/>
 
                                   <hr class="horizontal-line">
                                   <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
@@ -57,12 +53,10 @@ Home | WPC
                                   <hr class="horizontal-line">
                                   <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
                                   <p>Your photo is used by Photographer in his blog/forum/group XYZ</p></a>
-                                  <img src="http://localhost:8080/servephoto/unsvkFZ5X_llAigGqwMDQA==" height="50px" alt="First slide"/>
                                   
                                   <hr class="horizontal-line">
                                   <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
                                   <p>Photographer Commented on your photo</p></a>
-                                  <img src="http://localhost:8080/servephoto/wKb-b0McLYImut2zlx0aRQ==" height="50px" alt="First slide"/>
                                 </div>
                               </li>
                           </ul>
@@ -74,10 +68,28 @@ Home | WPC
 {%block pageContent%}
     {%block carousel%}
     {%endblock%}
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Invite Friends to join WPC</h4>
+          </div>
+          <div class="modal-body">
+              <textarea class="textarea_no_border" name="title" cols="130" rows="2" placeholder="Enter Email Addresses seperated by commas" ></textarea><br>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-xs btn-primary">Send Invitations</button>  or
+            <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-facebook fa-1x"></i></button>
+            <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-google-plus fa-1x"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="item active">
-          <img src="http://localhost:8080/servephoto/_2tA2kgGe-6s8HxcaED7_A==" alt="First slide"/>
+          <img src="/images/Artists_2.jpg" alt="First slide"/>
           <div class="container">
             <div class="carousel-caption">
                 <p><a href="my_studio.html">Photographers Name</a></p>
