@@ -1,8 +1,4 @@
-{%if me%}
-    {%extends "index_user.html"%}
-{%else%}
-    {%extends "index.html"%}
-{%endif%}
+{%extends "user_studio.html"%}
 
 {%set user = me%}
 
@@ -412,7 +408,7 @@
         <div id="portfolio" class="col-sm-9 col-sm-offset-4 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Portfolio Settings</h1>
               
-              <form onsubmit="validate()" id="photoupload" action="{{uploadUrl}}" method="post" enctype="multipart/form-data">
+              <form role="form" method="post">
                 <div class="col-sm-4">
                 <p >Select Profile Image</p>
                 <div class="column fileupload-buttonbar">
@@ -599,7 +595,6 @@
                 }
             }
             document.getElementById("thumb_img").innerHTML = temp;
-            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
         }
         </script>
         <script>
@@ -640,7 +635,6 @@
                 }
             }
             document.getElementById("thumb_img1").innerHTML = temp1;
-            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
         }
         </script>
         <script>
@@ -681,7 +675,6 @@
                 }
             }
             document.getElementById("thumb_img2").innerHTML = temp2;
-            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
         }
         </script>
         <script>
@@ -722,7 +715,6 @@
                 }
             }
             document.getElementById("thumb_img3").innerHTML = temp2;
-            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
         }
         </script>
         <script src="/js/Chart.js"></script>

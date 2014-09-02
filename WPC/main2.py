@@ -463,7 +463,7 @@ class UserSettingsHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler
 			google_plus = self.request.get('google_plus')
 			twitter = self.request.get('twitter')
 			pinterest = self.request.get('pinterest')
-			website = self.request.get('website')	
+			website = self.request.get('website')
 			user = self.user
 			user = update_user_name(name, user)
 			user = update_user_alt_email(alt_email, user)

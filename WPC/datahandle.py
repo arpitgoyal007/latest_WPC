@@ -27,6 +27,11 @@ def update_user_country(country, user):
 		user.country = country
 	return user
 
+def update_user_profile_photo(photo_key, user):
+	if photo_key:
+		user.avatar = "/photo/" + photo_key
+	return user
+
 def update_social_profiles(facebook, youtube, google_plus, twitter, pinterest, website, user):
 	if facebook:
 		user.facebook=facebook
