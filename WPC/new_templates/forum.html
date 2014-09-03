@@ -91,6 +91,7 @@
                 <input type="text" class="form-control" placeholder="Ask any question about photography">
                 <div class="input-group-btn">
                   <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" style="color:white;"></span></button>
+                  <button type="button" class="btn btn-success" onclick="show_popup();"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button>
                 </div><!-- /btn-group -->
               </div><!-- /input-group -->
       </form><br>
@@ -166,4 +167,9 @@
           <hr class="horizontal-line">
         </div>
     </div>
+<script>
+function show_popup() {
+    cuteLittleWindow = window.open("/popupnewphoto", "littleWindow", "location=no,width=640,height=500");
+}
+</script>
 {%endblock%}

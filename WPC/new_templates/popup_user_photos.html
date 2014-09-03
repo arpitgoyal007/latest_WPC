@@ -1,0 +1,83 @@
+{%extends "user_studio.html"%}
+{%set user = me%}
+{%block title%}
+My Photos | WPC
+{%endblock%}
+{%block styleSheets%}
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<!-- Add custom CSS here -->
+<link href="/css/carousel.css" rel="stylesheet">
+<link href="/css/my_studio.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
+{%endblock%}
+{%block pageContent%}
+  <br><br>
+      <div id="photos" class="portfolio main">
+        <div class="row">
+          <div class="col-sm-2"><a class="navbar-brand" href="my_photos.html" style="font-family:verdana;color:black;font-size:30px;"> My Photos</a></div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="col-sm-2">
+            <div class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search My Photos</a>
+              <ul class="dropdown-menu">
+                <li>
+                  <form class="navbar-form" role="search" action="photos.html">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Find Photos">
+                    </div>
+                  </form>                        
+                </li>
+              </ul>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filter<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Most Viewed</a></li>
+              <li><a href="#">Most Liked</a></li>
+              <li><a href="#">Most Commented</a></li>
+              <li><a href="#">Most Shared</a></li>
+              <li><a href="#">Most Pinned</a></li>
+              <li><a href="#">Tags</a></li>
+            </ul>
+          </div>
+           </div>
+         </div>
+         <div class="col-sm-4">
+
+        </div>
+    </div>
+  </div>
+  <hr class="horizontal-line">
+		    <div class="row">	
+		        	<div class="container">
+					{%for p in photos%}
+		        		<div class="col-lg-2 col-sm-3 col-xs-4 col-lg-offset-1" align="center">
+							<a href="/photo/{{p.key.urlsafe()}}"><img src="/servephoto/{{p.blobKey}}" height="140px" alt="photo"></a>
+              <br>
+						</div>
+					{%endfor%}
+					</div>
+			</div>
+		</div>
+			<!-- FOOTER -->
+			<footer class="footer_new">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 text-center">
+						<ul class="list-inline">
+							<li><a href="https://www.facebook.com/pages/Anurag-Mathurs-Photography/215979155096125?ref=hl&ref_type=bookmark"><i class="fa fa-facebook fa-3x"></i></a>
+							</li>
+							<li><a href="www.twitter.com"><i class="fa fa-twitter fa-3x"></i></a>
+							</li>
+							<li><a href="www.dribble.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+							</li>
+							<li><a href="www.dribble.com"><i class="fa fa-pinterest fa-3x"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<p class="pull-right back-to-top"><a href="#">Back to top</a></p>
+				<p>&copy; 2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
+				</footer>
+{%endblock%}

@@ -1,7 +1,7 @@
 {%if me%}
-		{%extends "index_user.html"%}
+    {%extends "index_user.html"%}
 {%else%}
-		{%extends "index.html"%}
+    {%extends "index.html"%}
 {%endif%}
 
 {%set user = me%}
@@ -27,88 +27,109 @@
   <h1>Create A New Group</h1>
   <hr class="horizontal-line">
    <div class="col-md-7 col-md-offset-1 newblog_text">
-		<form action="" method="post">
-			<h3>Add Group Title</h3>
-			<textarea name="name" cols="80" rows="2" placeholder="Title" ></textarea><br>
-			<h3>Add Group Description</h3>
-			<textarea class="" cols="80" id="" name="description" rows="5" placeholder="Description of the group"></textarea><br>
-			<h3>Add Group's Main Image</h3>
-			<span class="btn btn-xs btn-info fileinput-button">
-				<i class="glyphicon glyphicon-plus"></i>
-				<span>Select Image</span>
-				<input type="file" id="myFile1" name="bkg_img_1" onchange="myFunction1()">
-			</span>
-			<div class="container row" id="thumb_img1"></div>
-			<h3>Invite people to join the group</h3>
-			<textarea class="" cols="80" id="" name="description" placeholder="Add WPC User Id or email id of people you'd like to invite, seperated by commas" rows="5"></textarea><br>
-			<h3>Add Group's Permissions</h3>
-			<label><input type="checkbox" name="remember"> Make this group Private, Only visible to members</label><br>
-			<label><input type="checkbox" name="remember"> New members need permission to be added to this group</label><br>
-			<label><input type="checkbox" name="remember"> Anybody can comment or post a message groups entities</label><br><br>
-			<button class="btn btn-xs btn-success" type="submit">Create Group</button>
-		</form>
-	</div>
-	<div class="col-md-1">
-	 	<div class="vertical-line">&nbsp;</div>
-	</div>
-	<div class="col-md-3">
-		<div class="row">
-  			<a href=""><h3>Ad</h3>
-  			<img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded" width="300px">
-        	<hr class="horizontal-line">
-  		</div>
-  		<div class="row">
-  			<a href=""><h3>Ad</h3>
-  			<img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded" width="300px">
-        	<hr class="horizontal-line">
-  		</div>
-  		<div class="row">
-  			<a href=""><h3>Ad</h3>
-  			<img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded" width="300px">
-       		<hr class="horizontal-line">
-  		</div>
-	</div>
+    <form action="" method="post">
+      <h3>Add Group Title</h3>
+      <textarea name="name" cols="80" rows="2" placeholder="Title" ></textarea><br>
+      <h3>Add Group Description</h3>
+      <textarea class="" cols="80" id="" name="description" rows="5" placeholder="Description of the group"></textarea><br>
+      <h3>Add Group's Main Image</h3>
+      <button class="btn btn-xs btn-success" onclick="show_popup_photos()" ><i class="fa fa-hand-o-up"></i> Select Photo</button>
+      <button class="btn btn-xs btn-success" onclick="show_popup()"><i class="fa fa-upload"></i> Upload Photo</button>
+      <div class="container row" id="thumb_img1"></div>
+      <h3>Invite people to join the group</h3>
+      <textarea class="" cols="80" id="" name="description" placeholder="Add WPC User Id or email id of people you'd like to invite, seperated by commas" rows="5"></textarea><br>
+      <h3>Add Group's Permissions</h3>
+      <label><input type="checkbox" name="remember"> Make this group Private, Only visible to members</label><br>
+      <label><input type="checkbox" name="remember"> New members need permission to be added to this group</label><br>
+      <label><input type="checkbox" name="remember"> Anybody can comment or post a message groups entities</label><br><br>
+      <button class="btn btn-xs btn-success" type="submit">Create Group</button>
+    </form>
+  </div>
+  <div class="col-md-1">
+    <div class="vertical-line">&nbsp;</div>
+  </div>
+  <div class="col-md-3">
+    <div class="row">
+        <a href=""><h3>Ad</h3>
+        <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded" width="300px">
+          <hr class="horizontal-line">
+      </div>
+      <div class="row">
+        <a href=""><h3>Ad</h3>
+        <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded" width="300px">
+          <hr class="horizontal-line">
+      </div>
+      <div class="row">
+        <a href=""><h3>Ad</h3>
+        <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded" width="300px">
+          <hr class="horizontal-line">
+      </div>
+  </div>
+<script>
+function show_popup() {
+    cuteLittleWindow = window.open("/popupnewphoto", "littleWindow", "location=no,width=640,height=500");
+}
+</script>
+<script>
+function show_popup_photos() {
+    cuteLittleWindow = window.open("/{{me.key.id()}}/popupphotos", "littleWindow", "location=no,width=640,height=500");
+}
+</script>
+<script>
+window.onload = function(){  
+    //Check File API support
 
-        <script>
-        function myFunction1(){
-            var x = document.getElementById("myFile1");
+  //<label for="files">Select multiple files: </label>
+  //<input id="files" type="file" multiple/>
+  //<output id="result" />
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("myFile1");
+        filesInput.addEventListener("change", function(event){
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("thumb_img1");
+            var num_files = files.length;
             var txt = "";
-            var temp1 = '';
+            var file_name_size = [];
+            var file_name = [];
             var total_size = 0;
-            if ('files' in myFile1) {
-                if (x.files.length == 0) {
-                    txt = "Select one or more files.";
-                } else {
-                  var num_files = x.files.length;
-                    for (var i = 0; i < x.files.length; i++) {
-                      txt = "";
-                        //txt += "<br><strong>" + (i+1) + ". file</strong><br>";
-                        var file = x.files[i];
-                        if ('name' in file) {
-                            txt += "" + file.name + "<br>";
-                        }
-                        if ('size' in file) {
-                            //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
-                            txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
-                        }
-                    //document.getElementById("demo").innerHTML = txt;
-                    temp1 += "<br><div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='100px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4></div>";
-                    total_size = total_size + file.size;
-                    }
-                    total_size = Math.ceil((total_size/1000000) * 100)/100;
+            for(var i = 0; i< files.length; i++)
+            {
+              txt = "";
+                var file = files[i];
+                if ('name' in files[i]) {
+                    txt += "" + files[i].name + "<br>";
                 }
-            } 
-            else {
-                if (x.value == "") {
-                    txt += "Select one or more files.";
-                } else {
-                    txt += "The files property is not supported by your browser!";
-                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                if ('size' in files[i]) {
+                    //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                    txt += "Size: " + Math.ceil((files[i].size/1000000) * 100)/100 + " Mbytes <br>";
                 }
-            }
-            document.getElementById("thumb_img1").innerHTML = temp1;
-            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";
-        }
-        </script>
+                //Only pics
+                file_name_size.push(txt);
+                file_name.push(files[i].name)
+                total_size = total_size + Math.ceil((files[i].size/1000000) * 100)/100;
+                if(!file.type.match('image'))
+                  continue;
+                var picReader = new FileReader();
+                var w = 0;
+                picReader.addEventListener("load",function(event){
+                  var picFile = event.target;
+                    var div = document.createElement("div");
+                    div.innerHTML = "<div class='col-lg-4'><img class='img-rounded' src='" + picFile.result + "' height='140px' alt='"+file_name[w]+"'><h4 style='color:black;'>"+file_name_size[w]+"</h4></div>";
+                    w++;
+                    output.insertBefore(div,null);            
+                });
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }    
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";                         
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+</script>
 {%endblock%}
 

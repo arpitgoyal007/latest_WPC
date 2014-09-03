@@ -130,7 +130,7 @@ class BlogNewHandler(PageHandler):
 		else:
 			self.redirect('/')
 
-class GroupNewHandler(PageHandler):
+class GroupNewHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler):
 	def get(self):
 		if self.user:
 			templateVals = {'me': self.user}
@@ -148,7 +148,7 @@ class GroupNewHandler(PageHandler):
 			else:
 				errorMsg = "Please enter both title and content!"
 				templateVals = {'me': self.user, 'name': name, 'description': description, 'submitError': errorMsg}
-				self.render('new_blog.html', **templateVals)
+				self.render('new_group.html', **templateVals)
 		else:
 			self.redirect('/')
 
@@ -405,6 +405,41 @@ class PhotoNewHandler(PageHandler):
 		else:
 			self.redirect('/')
 
+class PopUpPhotoNewHandler(PageHandler):
+	def get(self):
+		if self.user:
+			templateVals = {'me': self.user}
+			uploadUrl = blobstore.create_upload_url('/popupuploadphoto')
+			templateVals = {'uploadUrl': uploadUrl, 'upload_done': 0}
+			self.render('upload_popup_photo.html', **templateVals)
+		else:
+			self.redirect('/')
+
+class PopUpPhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler):
+	def post(self):
+		if self.user:
+			uploads = self.get_uploads('files')
+			captionList = self.request.get_all('caption')
+			descriptionList = self.request.get_all('description')
+			locationList = self.request.get_all('location')
+			if len(uploads)>0:
+				for i in range(len(uploads)):
+					blobInfo = uploads[i]
+					caption = ""
+					description = ""
+					location = ""
+					photo = create_picture(blobInfo.key(), caption, description, location, self.user.key)
+				templateVals = {'me': self.user, 'upload_done': 1 ,'coverphoto': photo.key.urlsafe()}
+				self.render('upload_popup_photo.html', **templateVals)
+				#self.redirect('/%s/photos' % self.user.key.id())
+			else:
+				uploadUrl = blobstore.create_upload_url('/uploadphoto')
+				errorMsg = "Please choose a photo!"
+				templateVals = {'me': self.user, 'uploadUrl': uploadUrl, 'submitError': errorMsg}
+				self.render('upload_photo.html', **templateVals)
+		else:
+			self.redirect('/')
+
 class PhotoEditHandler(PageHandler):
 	def get(self, resource):
 		photoKey = get_key_urlunsafe(resource)
@@ -571,6 +606,47 @@ class UserPhotosHandler(PageHandler):
 		else:
 			self.redirect('/')
 
+class UserPhotosPopUpHandler(PageHandler):
+	def get(self, resource):
+		userid = resource
+		user = User.get_by_id(userid)
+		templateVals = {'me': self.user}
+		if user:
+			if self.user:
+				if self.user == user:
+					templateVals['user'] = self.user
+				else:
+					templateVals['user'] = user
+			else:
+				templateVals['user'] = user
+			photos = Picture.of_ancestor(user.key)
+			templateVals['photos'] = photos
+			self.render('popup_user_photos.html', **templateVals)
+		else:
+			self.redirect('/')
+			
+	def post(self, resource):
+		userid = resource
+		user = User.get_by_id(userid)
+		logging.info(userid)
+		logging.info(user)
+		if user:
+			if self.user:
+				if self.user == user:
+					action = self.request.get('actionType')
+					photoKey = get_key_urlunsafe(self.request.get('photoKey'))
+					if action == "delete":
+						delete_photo(photoKey, self.user.key)
+						self.redirect('/%s/photos' % self.user.key.id())
+					elif action == "edit":
+						self.redirect('/editphoto/%s' % photoKey.urlsafe())
+				else:
+					self.redirect('/')
+			else:
+				self.redirect('/')
+		else:
+			self.redirect('/')
+
 class SigninHandler(PageHandler):
 	def get(self):
 		if self.user:
@@ -648,12 +724,15 @@ app = webapp2.WSGIApplication([
 			('/search_results', SearchResultsHandler),
 			('/editphoto/([^/]+)', PhotoEditHandler),
 			('/newphoto', PhotoNewHandler),
+			('/popupnewphoto', PopUpPhotoNewHandler),
 			('/uploadphoto', PhotoUploadHandler),
+			('/popupuploadphoto', PopUpPhotoUploadHandler),
 			('/usersettings', UserSettingsHandler),
 			('/servephoto/([^/]+)', PhotoServeHandler),
 			('/serveblog/([^/]+)', BlogServeHandler),
 			('/([^/]+)/blogs', UserBlogsHandler),
 			('/([^/]+)/photos', UserPhotosHandler),
+			('/([^/]+)/popupphotos', UserPhotosPopUpHandler),
 			('/([^/]+)', UserStudioHandler),
 			('/([^.]+)', DefaultHandler),
 			('/', MainHandler)

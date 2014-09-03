@@ -1,0 +1,148 @@
+{%extends "user_studio.html"%}
+{%set user = me%}
+{%block title%}
+Upload Photo | WPC
+{%endblock%}
+
+{%block styleSheets%}
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/my_studio.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/upload.css">
+{%endblock%}
+{%block signup_links%}
+{%endblock%}
+
+{%block pageContent%}
+  <h1>Add Photo</h1>
+  <hr class="horizontal-line">
+			<form id="photoupload" action="{{uploadUrl}}" method="post" enctype="multipart/form-data">
+				<div class="column fileupload-buttonbar">
+					<div class="row col-sm-4">
+						<!-- The fileinput-button span is used to style the file input field as button -->
+						<span class="btn btn-info fileinput-button">
+							<i class="glyphicon glyphicon-plus"></i>
+							<span style="color:white;">Select Files</span>
+							<input type="file" id="myFile" name="files">
+						</span>
+						<button type="submit" class="btn btn-success start">
+							<i class="glyphicon glyphicon-upload"></i>
+							<span style="color:white;">Start upload</span>
+						</button>
+						<button type="reset" class="btn btn-info cancel">
+							<i class="glyphicon glyphicon-ban-circle"></i>
+							<span style="color:white;">Cancel upload</span>
+						</button>
+						<div class="error" style="color:red;">{{submitError}}</div>
+						<!-- The global file processing state -->
+						<span class="fileupload-process"></span>
+					</div>
+				</div>
+				<div class="container" id="thumb_img1">
+				</div>
+				<!--<input type="hidden" id="myCaption" name="captions">
+				<input type="hidden" id="myDescription" name="descriptions">
+				<input type="hidden" id="myLocation" name="locations"> -->
+				<!-- The table listing the files available for upload/download -->
+				<table role="presentation" class="table table-striped">
+					<tbody class="files">
+					</tbody>
+				</table>
+			</form>
+			<div class="row">
+				{%if upload_done%}
+					<h3> Upload Done </h3>
+					<button class="btn btn-primary btn-sm" onclick="closeWin();">Close and Return</button>
+				{% endif %}
+
+				<!-- Three columns of text below the carousel -->
+				<div class="container" id="thumb_img1">
+					
+				</div>
+			</div>
+			<p id="demo"></p>
+			<script src="/js/holder.js"></script>
+			<!-- FOOTER -->
+			<footer class="footer_new">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 text-center">
+						<ul class="list-inline">
+							<li><a href="https://www.facebook.com/pages/Anurag-Mathurs-Photography/215979155096125?ref=hl&ref_type=bookmark"><i class="fa fa-facebook fa-3x"></i></a>
+							</li>
+							<li><a href="www.twitter.com"><i class="fa fa-twitter fa-3x"></i></a>
+							</li>
+							<li><a href="www.dribble.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
+							</li>
+							<li><a href="www.dribble.com"><i class="fa fa-pinterest fa-3x"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<p class="pull-right back-to-top"><a href="#">Back to top</a></p>
+				<p>&copy; 2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
+				</footer>
+
+<script>
+window.onload = function(){  
+    //Check File API support
+
+	//<label for="files">Select multiple files: </label>
+	//<input id="files" type="file" multiple/>
+	//<output id="result" />
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("myFile");
+        filesInput.addEventListener("change", function(event){
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("thumb_img1");
+            var num_files = files.length;
+            var txt = "";
+            var file_name_size = [];
+            var file_name = [];
+            var total_size = 0;
+            for(var i = 0; i< files.length; i++)
+            {
+            	txt = "";
+                var file = files[i];
+                if ('name' in files[i]) {
+                    txt += "" + files[i].name + "<br>";
+                }
+                if ('size' in files[i]) {
+                    //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                    txt += "Size: " + Math.ceil((files[i].size/1000000) * 100)/100 + " Mbytes <br>";
+                }
+                //Only pics
+                file_name_size.push(txt);
+                file_name.push(files[i].name)
+                total_size = total_size + Math.ceil((files[i].size/1000000) * 100)/100;
+                if(!file.type.match('image'))
+                  continue;
+                var picReader = new FileReader();
+                var w = 0;
+                picReader.addEventListener("load",function(event){
+	                var picFile = event.target;
+                    var div = document.createElement("div");
+                    div.innerHTML = "<div class='col-lg-4'><img class='img-rounded' src='" + picFile.result + "' height='140px' alt='"+file_name[w]+"'><h4 style='color:black;'>"+file_name_size[w]+"</h4></div>";
+                    w++;
+                    output.insertBefore(div,null);            
+                });
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }                         
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+</script>
+<script>
+function closeWin() {
+    window.close();
+}
+</script>
+{%endblock%}
+{%block javascript%}
+{%endblock%}
