@@ -1,4 +1,8 @@
-{%extends "user_studio.html"%}
+{%if me%}
+		{%extends "index_user.html"%}
+{%else%}
+		{%extends "index.html"%}
+{%endif%}
 {%set user = me%}
 {%block title%}
 Upload Photo | WPC
@@ -62,26 +66,6 @@ Upload Photo | WPC
 			</div>
 			<p id="demo"></p>
 			<script src="/js/holder.js"></script>
-			<!-- FOOTER -->
-			<footer class="footer_new">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 text-center">
-						<ul class="list-inline">
-							<li><a href="https://www.facebook.com/pages/Anurag-Mathurs-Photography/215979155096125?ref=hl&ref_type=bookmark"><i class="fa fa-facebook fa-3x"></i></a>
-							</li>
-							<li><a href="www.twitter.com"><i class="fa fa-twitter fa-3x"></i></a>
-							</li>
-							<li><a href="www.dribble.com"><i class="fa fa-google-plus-square fa-3x"></i></a>
-							</li>
-							<li><a href="www.dribble.com"><i class="fa fa-pinterest fa-3x"></i></a>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<p class="pull-right back-to-top"><a href="#">Back to top</a></p>
-				<p>&copy; 2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
-				</footer>
 
 <script>
 window.onload = function(){  

@@ -408,9 +408,8 @@ class PhotoNewHandler(PageHandler):
 class PopUpPhotoNewHandler(PageHandler):
 	def get(self):
 		if self.user:
-			templateVals = {'me': self.user}
 			uploadUrl = blobstore.create_upload_url('/popupuploadphoto')
-			templateVals = {'uploadUrl': uploadUrl, 'upload_done': 0}
+			templateVals = {'me': self.user, 'uploadUrl': uploadUrl, 'upload_done': 0}
 			self.render('upload_popup_photo.html', **templateVals)
 		else:
 			self.redirect('/')
@@ -429,7 +428,8 @@ class PopUpPhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler, PageHan
 					description = ""
 					location = ""
 					photo = create_picture(blobInfo.key(), caption, description, location, self.user.key)
-				templateVals = {'me': self.user, 'upload_done': 1 ,'coverphoto': photo.key.urlsafe()}
+				resource = get_photo_urlstring(photo)
+				templateVals = {'me': self.user, 'upload_done': 1 ,'coverphoto': resource}
 				self.render('upload_popup_photo.html', **templateVals)
 				#self.redirect('/%s/photos' % self.user.key.id())
 			else:

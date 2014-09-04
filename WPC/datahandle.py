@@ -104,6 +104,12 @@ def get_edit_photo_urlstring(photoList):
 	urlString = urlString[:-1]
 	return urlString
 
+def get_photo_urlstring(photo):
+	urlString = ""
+	urlString = urlString + str(photo.key.id())
+	urlString = urlString[:-1]
+	return urlString
+
 def get_photolist_from_urlstring(urlString, userKey):
 	photoList = []
 	if urlString:
