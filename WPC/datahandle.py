@@ -57,8 +57,8 @@ def create_picture(blobKey, caption, description, location, parent_key):
 	picKey = pic.put()
 	return pic
 
-def create_group(name, description, parent_key):
-	grp = Group(name=name, description=description, parent=parent_key)
+def create_group(name, description, cover_photo, parent_key):
+	grp = Group(name=name, description=description, cover_photo=cover_photo, parent=parent_key)
 	grpKey = grp.put()
 	return grp
 

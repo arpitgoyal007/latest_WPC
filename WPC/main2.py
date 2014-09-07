@@ -130,25 +130,39 @@ class BlogNewHandler(PageHandler):
 		else:
 			self.redirect('/')
 
-class GroupNewHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler):
-	def get(self):
-		if self.user:
-			templateVals = {'me': self.user}
+class GroupNewHandler(PageHandler ,blobstore_handlers.BlobstoreUploadHandler):
+	def get(self, resource):
+		userid = resource
+		user = User.get_by_id(userid)
+		templateVals = {'me': self.user}
+		if user:
+			if self.user:
+				if self.user == user:
+					templateVals['user'] = self.user
+				else:
+					templateVals['user'] = user
+			else:
+				templateVals['user'] = user
+			photos = Picture.of_ancestor(user.key)
+			templateVals['photos'] = photos
 			self.render('new_group.html', **templateVals)
 		else:
 			self.redirect('/')
 
-	def post(self):
+	def post(self, resource):
 		if self.user:
-			name = self.request.get('name')
-			description = self.request.get('description')
-			if name and description:
-				group = create_group(name, description, self.user.key)
-				self.redirect('/group/%s' % group.key.urlsafe())
-			else:
-				errorMsg = "Please enter both title and content!"
-				templateVals = {'me': self.user, 'name': name, 'description': description, 'submitError': errorMsg}
-				self.render('new_group.html', **templateVals)
+			action = self.request.get('actionType')
+			if action == "create_group":			
+				name = self.request.get('name')
+				description = self.request.get('description')
+				cover_img = self.request.get('cover_img')
+				if name and description:
+					group = create_group(name, description, cover_img, self.user.key)
+					self.redirect('/group/%s' % group.key.urlsafe())
+				else:
+					errorMsg = "Please enter both title and content!"
+					templateVals = {'me': self.user, 'name': name, 'description': description, 'submitError': errorMsg}
+					self.render('new_group.html', **templateVals)
 		else:
 			self.redirect('/')
 
@@ -380,6 +394,8 @@ class GroupPermpageHandler(PageHandler):
 					templateVals['user'] = user
 			else:
 				templateVals['user'] = user
+			photos = Picture.of_ancestor(user.key)
+			templateVals['photos'] = photos
 			templateVals['group'] = groupKey.get()
 			self.render('groupperm.html', **templateVals)
 		else:
@@ -428,8 +444,8 @@ class PopUpPhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler, PageHan
 					description = ""
 					location = ""
 					photo = create_picture(blobInfo.key(), caption, description, location, self.user.key)
-				resource = get_photo_urlstring(photo)
-				templateVals = {'me': self.user, 'upload_done': 1 ,'coverphoto': resource}
+				blobInfo = uploads[0]
+				templateVals = {'me': self.user, 'upload_done': 1 ,'coverphoto': blobInfo.key()}
 				self.render('upload_popup_photo.html', **templateVals)
 				#self.redirect('/%s/photos' % self.user.key.id())
 			else:
@@ -482,6 +498,8 @@ class UserSettingsHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler
 	def get(self):
 		if self.user:
 			templateVals = {'me': self.user}
+			uploadUrl = blobstore.create_upload_url('/photo_upload_settings')
+			templateVals = {'uploadUrl': uploadUrl}
 			self.render('usersettings.html', **templateVals)
 		else:
 			self.redirect('/')
@@ -716,8 +734,8 @@ app = webapp2.WSGIApplication([
 			('/group/([^/]+)', GroupPermpageHandler),
 			('/photo/([^/]+)', PhotoPermpageHandler),
 			('/editblog/([^/]+)', BlogEditHandler),
-			('/newblog', BlogNewHandler),
-			('/newgroup', GroupNewHandler),
+			('/([^/]+)/newblog', BlogNewHandler),
+			('/([^/]+)/newgroup', GroupNewHandler),
 			('/blog' , BlogsHandler),
 			('/groups' , GroupsHandler),
 			('/forum', ForumHandler),
@@ -728,6 +746,7 @@ app = webapp2.WSGIApplication([
 			('/uploadphoto', PhotoUploadHandler),
 			('/popupuploadphoto', PopUpPhotoUploadHandler),
 			('/usersettings', UserSettingsHandler),
+			('/photo_upload_settings',UserSettingsHandler),
 			('/servephoto/([^/]+)', PhotoServeHandler),
 			('/serveblog/([^/]+)', BlogServeHandler),
 			('/([^/]+)/blogs', UserBlogsHandler),

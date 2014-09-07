@@ -28,14 +28,25 @@
   <hr class="horizontal-line">
    <div class="col-md-7 col-md-offset-1 newblog_text">
     <form action="" method="post">
+      <input type="hidden" name="actionType" value="create_group">
       <h3>Add Group Title</h3>
       <textarea name="name" cols="80" rows="2" placeholder="Title" ></textarea><br>
       <h3>Add Group Description</h3>
       <textarea class="" cols="80" id="" name="description" rows="5" placeholder="Description of the group"></textarea><br>
       <h3>Add Group's Main Image</h3>
-      <button class="btn btn-xs btn-success" onclick="show_popup_photos()" ><i class="fa fa-hand-o-up"></i> Select Photo</button>
-      <button class="btn btn-xs btn-success" onclick="show_popup()"><i class="fa fa-upload"></i> Upload Photo</button>
-      <div class="container row" id="thumb_img1"></div>
+      <span class="btn btn-info btn-sm fileinput-button" data-toggle="modal" data-target="#select_photo">
+        <i class="fa fa-hand-o-up"></i>
+        <span style="color:white;">Select Photo</span>
+      </span>
+      <span class="btn btn-info btn-sm fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span style="color:white;">Upload Photo</span>
+        <input type="file" id="myFile" name="cover_photo">
+      </span>
+      <div class="row">
+        <div class="container" id="thumb_img1"></div>
+      </div>
+      <div id="group_cover_image"></div>
       <h3>Invite people to join the group</h3>
       <textarea class="" cols="80" id="" name="description" placeholder="Add WPC User Id or email id of people you'd like to invite, seperated by commas" rows="5"></textarea><br>
       <h3>Add Group's Permissions</h3>
@@ -65,6 +76,40 @@
           <hr class="horizontal-line">
       </div>
   </div>
+
+  <div class="modal fade bs-example-modal-lg" id="select_photo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">Select and Add Photo</h4>
+        </div>
+              <div class="col-lg-12 col-sm-12 col-xs-12" id="photo_select" align="center">
+                <div class="thumb_imgs">
+                      {%for p in photos%}
+                              <a onclick="change_main_image('/servephoto/{{p.blobKey}}');" href="javascript:void(0);"><img src="/servephoto/{{p.blobKey}}" height="100px" alt="photo"></a>
+                      {%endfor%}
+                </div><br>
+                <div id="main_img" class=""></div>
+              </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs btn-primary close" data-dismiss="modal">Select and Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+function change_main_image(img_key) {
+    document.getElementById("main_img").innerHTML = "<img alt='' src='"+img_key+"' height='100%' class='img_display'/>";
+    document.getElementById("group_cover_image").innerHTML = "<input type='hidden' name='cover_img' value='"+img_key+"'>";
+} 
+</script>
+<script type="text/javascript">
+function back_to_image_selector() {
+    document.getElementById("photo_select").innerHTML = "{%for p in photos%}<div class='col-xs-3'><a onclick='change_main_image('/servephoto/{{p.blobKey}}');' href='javascript:void(0);'><img src='/servephoto/{{p.blobKey}}' height='100px' alt='photo'></a></div>{%endfor%}";
+} 
+</script>
 <script>
 function show_popup() {
     cuteLittleWindow = window.open("/popupnewphoto", "littleWindow", "location=no,width=640,height=500");
@@ -84,7 +129,7 @@ window.onload = function(){
   //<output id="result" />
     if(window.File && window.FileList && window.FileReader)
     {
-        var filesInput = document.getElementById("myFile1");
+        var filesInput = document.getElementById("myFile");
         filesInput.addEventListener("change", function(event){
             var files = event.target.files; //FileList object
             var output = document.getElementById("thumb_img1");
@@ -121,8 +166,7 @@ window.onload = function(){
                 });
                  //Read the image
                 picReader.readAsDataURL(file);
-            }    
-            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";                         
+            }                         
         });
     }
     else
