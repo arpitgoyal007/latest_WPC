@@ -34,7 +34,28 @@ body {
   font-weight: 700;
   color:gold;
 }
+@media (max-width: 1435px), (max-height: 800px) {
+.vert-text {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding-top:10px;
+}
 
+.vert-text h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 4.5em;
+  font-weight: 700;
+}
+.vert-text h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 3.5em;
+  font-weight: 700;
+  color:gold;
+}
+}
 .messages_container{
     min-width:300px;
     max-height: 500px;
@@ -69,7 +90,10 @@ body {
   -o-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
 }
-
+.padding_tags {
+	margin-left:2px;
+	margin-right:2px;
+}
 
 #menu-toggle {
   top: 0;
@@ -197,7 +221,7 @@ h4 {
   .transbox_left {
     width: 400px;
     height: 580px;
-    margin: 130px -410px;
+    margin: 100px -410px;
     background-color: transparent;
     opacity: 1.0;
     filter: alpha(opacity=60); /* For IE8 and earlier */

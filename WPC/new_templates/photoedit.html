@@ -3,28 +3,30 @@
 {%block signup_links%}  
  {%endblock%} 
 {%block pageContent%}
+<form method="post">
     <div class="transbox_right_permapage">
         <ul class="list-inline">
-          <form method="post">
+          
             <input type="hidden" name="actionType" value="delete">
             <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
             <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-trash-o fa-2x"></i></button>
-          </form><br>
-          <form method="post">
+          <br>
+		  <br>
+          
             <input type="hidden" name="actionType" value="delete">
             <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
             <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-crop fa-2x"></i></button>
-          </form><br>
-          <form method="post">
+          <br><br>
+          
             <input type="hidden" name="actionType" value="delete">
             <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
             <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-rotate-left fa-2x"></i></button>
-          </form><br>
-          <form method="post">
+          <br><br>
+         
             <input type="hidden" name="actionType" value="delete">
             <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
             <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-rotate-right fa-2x"></i></button>
-          </form>
+         
         </ul>
     </div>
 
@@ -44,28 +46,36 @@
       <br>
       <div class="panel panel-default">
           <div class="panel-heading"><h4>Associated Tags</h4></div>
-              <div class="panel-body">                
-                  <button class="btn btn-warning btn-xs btn_padding">New York</button>
-                  <button class="btn btn-warning btn-xs btn_padding">Brooklyn Bridge</button>
-                  <button class="btn btn-warning btn-xs btn_padding">Fashion</button>
-                  <button class="btn btn-warning btn-xs btn_padding">Delhi</button>    
-                  <button class="btn btn-warning btn-xs btn_padding">New York</button>
-                  <button class="btn btn-warning btn-xs btn_padding">Brooklyn Bridge</button>
-                  <button class="btn btn-warning btn-xs btn_padding">Fashion</button>
+              <div class="panel-body">
+					{%for tag in photo.tags%}
+						<button class="btn btn-warning btn-xs btn_padding">{{tag}}</button>
+					{%endfor%}
+                  <div  class="tag_placement">
+				  </div>
                   <hr>
-                  <input type="text" class="form-control" placeholder="Add a new Tag">
+				  <div class="input-group">
+					<div  class="photo_tags"></div>
+					<input type="text" class="form-control" name="add_tag" id="add_tag" placeholder="Add a Tag">
+					<div class="input-group-btn">
+					  <button type="button" class="btn btn-success" onclick="add_tags()"><span class="glyphicon glyphicon-plus" style="color:white;"></span></button>
+					</div><!-- /btn-group -->
+				  </div><!-- /input-group -->
               </div>
               <div class="panel-heading"><h4>Albums</h4></div>
-              <div class="panel-body">                
-                  <button class="btn btn-danger btn-xs btn_padding">New York</button>
-                  <button class="btn btn-danger btn-xs btn_padding">Brooklyn Bridge</button>
-                  <button class="btn btn-danger btn-xs btn_padding">Fashion</button>
-                  <button class="btn btn-danger btn-xs btn_padding">Delhi</button>    
-                  <button class="btn btn-danger btn-xs btn_padding">New York</button>
-                  <button class="btn btn-danger btn-xs btn_padding">Brooklyn Bridge</button>
-                  <button class="btn btn-danger btn-xs btn_padding">Fashion</button>
+              <div class="panel-body">
+					{%for album in photo.albums%}
+						<button class="btn btn-danger btn-xs btn_padding">{{album}}</button>
+					{%endfor%}   
+					<div  class="album_placement">
+				  </div>
                   <hr>
-                  <input type="text" class="form-control" placeholder="Add photo to a new album">
+				  <div class="input-group">
+					<div  class="photo_albums"></div>
+					<input type="text" class="form-control" name="add_album" id="add_album" placeholder="Add Photo to an Album">
+					<div class="input-group-btn">
+					  <button type="button" class="btn btn-success" onclick="add_albums()"><span class="glyphicon glyphicon-plus" style="color:white;"></span></button>
+					</div><!-- /btn-group -->
+				  </div><!-- /input-group -->
               </div>
           </div> 
       </div>
@@ -73,12 +83,16 @@
   <div class="col-md-4 col-md-offset-1 permapage_container">
       <div class="panel-heading"><h4>Camera Details</h4></div>
           <div class="panel-body">
-              <img src="/fonts/Cameras/Nikon_D80.png" alt="camera" width="80px">
-              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="Camera" value="{{photo.camera}}" autofocus><br>
-              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="Lense" value="{{photo.lense}}" autofocus><br>
-              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="Shutter Speed" value="{{photo.shutter_speed}}" autofocus><br>
-              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="Aperture" value="{{photo.aperture}}" autofocus><br>
-              <input type="text" id="picCaption" name="caption" class="form-control padding_bottom" placeholder="ISO" value="{{photo.iso}}" autofocus><br><br>
+			  <p>Camera</p>
+              <input type="text" id="picCaption" name="camera" class="form-control padding_bottom" placeholder="Camera" value="{{photo.camera}}" autofocus><br>
+              <p>Lense</p>
+			  <input type="text" id="picCaption" name="lense" class="form-control padding_bottom" placeholder="Lense" value="{{photo.lense}}" autofocus><br>
+              <p>Shutter Speed</p>
+			  <input type="text" id="picCaption" name="shutter_speed" class="form-control padding_bottom" placeholder="Shutter Speed" value="{{photo.shutter_speed}}" autofocus><br>
+              <p>Aperture</p>
+			  <input type="text" id="picCaption" name="aperture" class="form-control padding_bottom" placeholder="Aperture" value="{{photo.aperture}}" autofocus><br>
+              <p>ISO</p>
+			  <input type="text" id="picCaption" name="iso" class="form-control padding_bottom" placeholder="ISO" value="{{photo.iso}}" autofocus><br><br>
               <h4>Permissions</h4><br>
               <div style="text-align:left;">
                 <label><input type="checkbox" name="remember"> Make this photo Private, only visible to me</label><br>
@@ -107,4 +121,20 @@
 	<p class="pull-right back-to-top"><a href="#">Back to top</a></p>
 	<p>&copy; 2014 World Photographer's Club &middot; <a href="#">Privacy</a> &middot; <a href="#"> Terms </a>&middot; <a href="#"> Contact Us</a></p>
 	</footer>
+	</form>
+
+	<script>
+	function add_tags() {
+		tag = document.getElementById('add_tag').value;
+		$( ".tag_placement" ).append( "<button class='btn btn-warning btn-xs btn_padding padding_tags'>"+tag+"</button>" );
+		$( ".photo_tags" ).append( "<input type='hidden' name='tags' value='"+tag+"'>" );
+	}
+	</script>
+	<script>
+	function add_albums() {
+		album = document.getElementById('add_album').value;
+		$( ".album_placement" ).append( "<button class='btn btn-danger btn-xs btn_padding padding_tags'>"+album+"</button>" );
+		$( ".photo_albums" ).append( "<input type='hidden' name='albums' value='"+album+"'>" );
+	}
+	</script>
 {%endblock%}

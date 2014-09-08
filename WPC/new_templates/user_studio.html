@@ -60,14 +60,24 @@
             <a href="/usersettings#user_settings"><span class="glyphicon glyphicon-cog"></span></a>
             <br>  
             <a href="https://www.facebook.com"><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:white;"></i></a>
-            <h2><em>123456</em></h2>
-            <button type="submit" class="btn btn-danger">Master Photographer</button><br>
+            <h2><em>{{me.wpc_score}}</em></h2>
+			 {%if me.wpc_score<=5000%}
+				<button type="submit" class="btn btn-danger">Beginner Photographer</button><br>
+			{%elif me.wpc_score>5000 or me.wpc_score<=10000%}
+				<button type="submit" class="btn btn-danger">Amateur Photographer</button><br>
+			{%elif me.wpc_score>10000 or me.wpc_score<=20000%}
+				<button type="submit" class="btn btn-danger">Semi-Pro Photographer</button><br>
+			{%elif me.wpc_score>20000 or me.wpc_score<=25000%}
+				<button type="submit" class="btn btn-danger">Professional Photographer</button><br>
+			{%elif me.wpc_score>25000%}
+				<button type="submit" class="btn btn-danger">Master Photographer</button><br>
+			{% endif %}
             <div class="camera">
-                <img src="/fonts/Cameras/Nikon_D80.png" alt="camera" width="80px"><h4 style="color:white;">Nikon D80<h4>
+                <img src="/fonts/Cameras/Nikon D80.png" alt="camera" width="80px"><h4 style="color:white;">Nikon D80<h4>
                 <a href="/usersettings#my_gear"><span class="glyphicon glyphicon-cog"></span></a>
             </div>
             <div class="col-xs-4 col-xs-offset-5 lenses_center">
-                <div class="col-xs-2"><img src="/fonts/Lenses/Nikkor 18-55.png" alt="camera" width="60px"><h6 style="color:white;">Nikkor 18-55mm<h5></div>
+                <div class="col-xs-2"><img src="/fonts/Lenses/Nikkor 18-55mm.png" alt="camera" width="60px"><h6 style="color:white;">Nikkor 18-55mm<h5></div>
                 <div class="col-xs-2"><img src="/fonts/Lenses/AF-S-VR-Zoom-NIKKOR-55-200mm-f-4-5.6G.png" alt="camera" width="60px"><h6 style="color:white;">Nikkor 55-200mm<h6></div>
                 <div class="col-xs-2"><img src="/fonts/Lenses/af-nikkor-50mm-f-1-80_front.png" alt="camera" width="60px"><h6 style="color:white;">Nikkor 50mm 1.8d<h6></div>
           </div>

@@ -108,15 +108,26 @@ class UserBlogsHandler(PageHandler):
 		else:
 			self.redirect('/')
 
-class BlogNewHandler(PageHandler):
-	def get(self):
-		if self.user:
-			templateVals = {'me': self.user}
+class BlogNewHandler(PageHandler, blobstore_handlers.BlobstoreUploadHandler):
+	def get(self, resource):
+		userid = resource
+		user = User.get_by_id(userid)
+		templateVals = {'me': self.user}
+		if user:
+			if self.user:
+				if self.user == user:
+					templateVals['user'] = self.user
+				else:
+					templateVals['user'] = user
+			else:
+				templateVals['user'] = user
+			photos = Picture.of_ancestor(user.key)
+			templateVals['photos'] = photos
 			self.render('new_blog.html', **templateVals)
 		else:
 			self.redirect('/')
 
-	def post(self):
+	def post(self, resource):
 		if self.user:
 			title = self.request.get('title')
 			content = self.request.get('content')
@@ -477,29 +488,41 @@ class PhotoEditHandler(PageHandler):
 		else:
 			self.redirect('/')
 
-	def post(self):
+	def post(self, resource):
 		if self.user:
-			resource = self.request.get('ids')
-			photoList = get_photolist_from_urlstring(resource, self.user.key)
-			captionList = self.request.get_all('caption')
-			descriptionList = self.request.get_all('description')
-			for i in range(len(photoList)):
-				photo = photoList[i]
-				caption = captionList[i]
-				description = descriptionList[i]
-				photo.caption = caption
-				photo.description = description
-				photo.put()
-				self.redirect('/%s/photos' % self.user.key.id())
+			photoKey = get_key_urlunsafe(resource)
+			photo = photoKey.get()
+			caption = self.request.get('caption')
+			description = self.request.get('description')
+			location = self.request.get('location')
+			camera = self.request.get('camera')
+			lense = self.request.get('lense')
+			shutter_speed = self.request.get('shutter_speed')
+			aperture = self.request.get('aperture')
+			iso = self.request.get('iso')
+			tagList = self.request.get_all('tags')
+			albumList = self.request.get_all('albums')
+			
+			photo.caption = caption
+			photo.description = description
+			photo.location = location
+			photo.camera = camera
+			photo.lense = lense
+			photo.shutter_speed = shutter_speed
+			photo.aperture = aperture
+			photo.iso = iso
+			photo.tags = tagList
+			photo.albums = albumList
+			photo.put()
+			self.redirect('/%s/photos' % self.user.key.id())
 		else:
 			self.redirect('/')
+
 
 class UserSettingsHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler):
 	def get(self):
 		if self.user:
 			templateVals = {'me': self.user}
-			uploadUrl = blobstore.create_upload_url('/photo_upload_settings')
-			templateVals = {'uploadUrl': uploadUrl}
 			self.render('usersettings.html', **templateVals)
 		else:
 			self.redirect('/')

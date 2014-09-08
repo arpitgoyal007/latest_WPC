@@ -18,6 +18,7 @@ class User(ndb.Model):
 	pinterest = ndb.StringProperty()	
 	twitter = ndb.StringProperty()
 	avatar = ndb.StringProperty()
+	wpc_score = ndb.IntegerProperty(default=50)
 
 class Group(ndb.Model): # Parent=User (Admin)
 	name = ndb.StringProperty(required=True)
@@ -87,6 +88,13 @@ class Picture(Item): # Parent=User
 	location = ndb.StringProperty()
 	blobKey = ndb.BlobKeyProperty()
 	description = ndb.TextProperty()
+	camera = ndb.StringProperty()
+	lense = ndb.StringProperty()
+	shutter_speed = ndb.StringProperty()
+	aperture = ndb.StringProperty()
+	iso = ndb.StringProperty()
+	tags = ndb.StringProperty(repeated=True)
+	albums = ndb.StringProperty(repeated=True)
 
 class Blog(Item): # Parent=User
 	title = ndb.StringProperty(required=True)
