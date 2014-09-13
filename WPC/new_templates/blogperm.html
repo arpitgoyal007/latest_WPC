@@ -26,21 +26,42 @@
 
 {%block pageContent%}
   <h1>WPC<em>blogs</em></h1>
-  <hr class="horizontal-line">
 <div class="post">
   <div class="post-heading">
     <div class="post-title">
-      <h3>{{blog.title}}</h3>
+	    <div class="callout" style="background: url({{blog.cover_photo}}) no-repeat center center fixed;background-size: cover;">
+	        <div class="vert-text">
+	            <div class="row">
+	                <div class="col-md-8 col-md-offset-2 text-center">
+	                    <h1>{{blog.title}}</h1>
+						<img class="img-circle" data-src="holder.js/100x100/lava/text:Profile Photo" alt="Generic placeholder image">
+						<a href=""><h5 style="color:white;"><em>{{me.name}}<em></h5></a>
+						<hr>
+	                    <h3>{{blog.likes}} <i class="fa fa-thumbs-o-up fa-1x"></i> | {{blog.viewed}} <i class="fa fa-eye fa-1x"></i></h3>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
       <div class="button-container post-action padding_top">
         <form method="post">
           <input type="hidden" name="actionType" value="edit">
           <input type="hidden" name="photoKey" value="{{blog.key.urlsafe()}}">
-          <button class="btn btn-primary btn-xs" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span></button>
+          <button class="btn btn-success btn-xs" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span></button>
         </form>
         <form method="post">
           <input type="hidden" name="actionType" value="delete">
           <input type="hidden" name="photoKey" value="{{blog.key.urlsafe()}}">
-          <button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
+          <button class="btn btn-success btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
+        </form>
+		<form method="post">
+          <input type="hidden" name="actionType" value="share">
+          <input type="hidden" name="photoKey" value="{{blog.key.urlsafe()}}">
+          <button class="btn btn-success btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
+        </form>
+		<form method="post">
+          <input type="hidden" name="actionType" value="like">
+          <input type="hidden" name="photoKey" value="{{blog.key.urlsafe()}}">
+          <button class="btn btn-info btn-xs" type="submit" value="Delete"><i class="fa fa-thumbs-o-up fa-1x"></i></button>
         </form>
       </div>
     </div>
@@ -50,5 +71,6 @@
   <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 post-content blog_content" style="text-align:justify;" id="blog_content">
     <pre>{{blog.content | safe}}</pre>
   </div>
+</div>
 </div>
 {%endblock%}

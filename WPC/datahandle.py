@@ -47,8 +47,8 @@ def update_social_profiles(facebook, youtube, google_plus, twitter, pinterest, w
 		user.website=website
 	return user
 
-def create_blog(title, content, parent_key):
-	blog = Blog(title=title, content=content, likes=0, parent=parent_key)
+def create_blog(title, content, cover_photo, parent_key):
+	blog = Blog(title=title, content=content, cover_photo=cover_photo, parent=parent_key)
 	blogKey = blog.put()
 	return blog
 

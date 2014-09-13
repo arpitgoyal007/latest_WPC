@@ -93,6 +93,22 @@
     {%endif%}
 
   	<div class="col-md-12" id="blogs_section">
+	    <div id="myblogs">
+      {%if me%}
+	  <div class="col-md-4 col-sm-6">
+        {%for b in blogs%}
+        
+		  <a href="/blog/{{b.key.urlsafe()}}"><h3>{{b.title}}</h3>	
+		  <img src="{{b.cover_photo}}" alt="Profile Image" class="img-rounded" width="300px">
+		  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5></a>
+          <div style="width: 400px; height:100px; overflow: hidden;"><p>{{b.content | safe }}</p></div>
+		  
+		  <hr class="horizontal-line">
+        
+        {% endfor %}
+		</div>
+      {%endif%}
+    </div>
   		<div class="col-md-4 col-sm-6">
   			<a href=""><h3><em>How to take good Music Photographs</em></h3>
   			<img src="/images/Artists_2.jpg" alt="Profile Image" class="img-rounded" width="300px"></a>
@@ -139,15 +155,6 @@
               <hr class="horizontal-line">
   		</div>
   	</div>
-<!--
-    <div id="myblogs">
-      {%if me%}
-        {%for b in blogs%}
-        <div class="col-md-4 col-sm-6">
-          {{b.title}}
-          {{b.content | safe }}
-        </div>
-        {% endfor %}
-      {%endif%}
-    </div>    -->  
+
+
 {%endblock%}

@@ -48,72 +48,89 @@ My Photos | WPC
         <div class="col-md-3 col-md-offset-1 col-sm-6 col-sm-offset-1">
         <ul class="nav navbar-nav navbar-right" style="margin-right:20px;">                    
             <li>My Albums</li><br>
-            <button type="submit" class="btn btn-warning btn-xs padding-top">New York</button>
-            <button type="submit" class="btn btn-warning btn-xs padding-top">Brooklyn Bridge</button>
-            <button type="submit" class="btn btn-warning btn-xs padding-top">Fashion</button>
-            <button type="submit" class="btn btn-warning btn-xs padding-top">Delhi</button>
-            <button type="submit" class="btn btn-warning btn-xs padding-top">India Gate</button>
+			<div class="all_albums">
+			</div>
         </ul>
         </div>
         <div class="col-md-3">
         <ul class="nav navbar-nav navbar-right"  style="margin-right:20px;">                    
             <li>My Tags</li><br>
-            <button type="submit" class="btn btn-danger btn-xs padding-top">New York</button>
-            <button type="submit" class="btn btn-danger btn-xs padding-top">Brooklyn Bridge</button>
-            <button type="submit" class="btn btn-danger btn-xs padding-top">Fashion</button>
-            <button type="submit" class="btn btn-danger btn-xs padding-top">Delhi</button>                
+			<div class="all_tags">
+			</div>
         </ul>
       </div>
     </div>
   </div>
   <hr class="horizontal-line">
-        <div class="transbox_right_permapage">
-            <ul class="list-inline">
-                {%if me.website%}
-                  <a href="{{me.website}}"><img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br><a>
-                {%else%}
-                  <img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br>
-                {% endif %}
-                {%if me.facebook%}
-                  <li color="white"><a href="{{me.facebook}}"><i class="fa fa-facebook fa-3x" style="color:black;"></i></a></li><br><br>
-                {% endif %}
-                {%if me.twitter%}
-                  <li color="white"><a href="{{me.twitter}}"><i class="fa fa-twitter fa-3x" style="color:black;"></i></a></li><br><br>
-                {% endif %}
-                {%if me.youtube%}
-                  <li color="white"><a href="{{me.youtube}}"><i class="fa fa-youtube fa-3x" style="color:black;"></i></a></li><br><br>
-                {% endif %}
-                {%if me.pinterest%}
-                  <li color="white"><a href="{{me.pinterest}}"><i class="fa fa-pinterest fa-3x" style="color:black;"></i></a></li><br><br>
-                {% endif %}
-                {%if me.google_plus%}
-                  <li color="white"><a href="{{me.google_plus}}"><i class="fa fa-google-plus fa-3x" style="color:black;"></i></a></li>
-                {% endif %}
-            </ul>
-    </div>
-		    <div class="row">	
-		        	<div class="container">
-					{%for p in photos%}
-		        		<div class="col-lg-2 col-sm-3 col-xs-4 col-lg-offset-1" align="center">
-							<a href="/photo/{{p.key.urlsafe()}}"><img src="/servephoto/{{p.blobKey}}" height="140px" alt="photo"></a>
-              <br>
-								<div class="button-container post-action padding_top">
-									<form method="post">
-										<input type="hidden" name="actionType" value="edit">
-                    <input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
-										<button class="btn btn-primary btn-xs" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span></button>
-									</form>
-									<form method="post">
-										<input type="hidden" name="actionType" value="delete">
-                    <input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
-										<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
-									</form>
-								</div>
-						</div>
+	<div class="transbox_right_permapage">
+		<ul class="list-inline">
+			{%if me.website%}
+			  <a href="{{me.website}}"><img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br><a>
+			{%else%}
+			  <img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br>
+			{% endif %}
+			{%if me.facebook%}
+			  <li color="white"><a href="{{me.facebook}}"><i class="fa fa-facebook fa-3x" style="color:black;"></i></a></li><br><br>
+			{% endif %}
+			{%if me.twitter%}
+			  <li color="white"><a href="{{me.twitter}}"><i class="fa fa-twitter fa-3x" style="color:black;"></i></a></li><br><br>
+			{% endif %}
+			{%if me.youtube%}
+			  <li color="white"><a href="{{me.youtube}}"><i class="fa fa-youtube fa-3x" style="color:black;"></i></a></li><br><br>
+			{% endif %}
+			{%if me.pinterest%}
+			  <li color="white"><a href="{{me.pinterest}}"><i class="fa fa-pinterest fa-3x" style="color:black;"></i></a></li><br><br>
+			{% endif %}
+			{%if me.google_plus%}
+			  <li color="white"><a href="{{me.google_plus}}"><i class="fa fa-google-plus fa-3x" style="color:black;"></i></a></li>
+			{% endif %}
+		</ul>
+	</div>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<div class="row">	
+		<div class="container">
+			{%for p in photos%}
+				<div class="col-lg-2 col-sm-3 col-xs-4 col-lg-offset-1" align="center">
+					<a href="/photo/{{p.key.urlsafe()}}"><img src="/servephoto/{{p.blobKey}}" height="140px" id="temp1" alt="photo"></a>
+					{%for tags in p.tags%}
+						<script>
+								$( ".all_tags" ).append( "<button type='' onclick='filter_photos()' class='btn btn-warning btn-xs padding-top'>{{tags}}</button>");
+						</script>
 					{%endfor%}
+					{%for albums in p.albums%}
+						<script>
+								$( ".all_albums" ).append( "<button type='' onclick='filter_photos()' class='btn btn-danger btn-xs padding-top'>{{albums}}</button>");
+						</script>
+					{%endfor%}
+					<br>
+					
+					<div class="button-container post-action padding_top">
+						<p>{{p.likes}} <i class="fa fa-thumbs-o-up fa-1x"></i> | {{p.viewed}} <i class="fa fa-eye fa-1x"></i></p>
+						<form method="post">
+							<input type="hidden" name="actionType" value="edit">
+							<input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
+							<button class="btn btn-primary btn-xs" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span></button>
+						</form>
+						<form method="post">
+							<input type="hidden" name="actionType" value="delete">
+							<input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
+							<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
+						</form>
+						<form method="post">
+							<input type="hidden" name="actionType" value="delete">
+							<input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
+							<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
+						</form>
+						<form method="post">
+							<input type="hidden" name="actionType" value="delete">
+							<input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
+							<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
+						</form>
 					</div>
-			</div>
+				</div>
+			{%endfor%}
 		</div>
+	</div>
 			<!-- FOOTER -->
 			<footer class="footer_new">
 				<div class="row">

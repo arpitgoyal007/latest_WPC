@@ -72,6 +72,7 @@ class Post(ndb.Model):
 	upvoted = ndb.KeyProperty(kind='User', repeated=True)
 	downvoted = ndb.KeyProperty(kind='User', repeated=True)
 	likes = ndb.IntegerProperty(default=0)
+	viewed = ndb.IntegerProperty(default=0)
 
 	@classmethod
 	def of_ancestor(cls, ancestor_key):
@@ -99,6 +100,7 @@ class Picture(Item): # Parent=User
 class Blog(Item): # Parent=User
 	title = ndb.StringProperty(required=True)
 	content = ndb.TextProperty(required=True)
+	cover_photo = ndb.StringProperty()
 
 class Question(Post): # Parent=User
 	content = ndb.StringProperty(required=True)

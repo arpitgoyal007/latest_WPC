@@ -33,25 +33,37 @@
 	</div>
   {%if me%}
 	<div class="row edit_delete_bottons text-center">
-    <div class="col-md-4 col-md-offset-5">
-		  <div class="col-md-1">
+    <div class="col-md-4 col-md-offset-4">
+		<div class="col-md-2 col-md-offset-1">
+          <form method="post">
+            <input type="hidden" name="actionType" value="like">
+            <button class="btn btn-info btn-md" type="submit" value="Delete"><i class="fa fa-thumbs-up fa-2x"></i></button>
+          </form>
+	    </div>
+		  <div class="col-md-2">
           <form method="post">
             <input type="hidden" name="actionType" value="edit">
             <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
-            <button class="btn btn-success btn-md" type="submit" value="Edit"><span class="glyphicon glyphicon-edit" style="color:white;"></span>  Edit</button>
+            <button class="btn btn-success btn-md" type="submit" value="Edit"><i class="fa fa-edit fa-2x"></i></button>
           </form>
 	    </div>
-	    <div class="col-md-1 padding">
+	    <div class="col-md-2">
           <form method="post">
             <input type="hidden" name="actionType" value="delete">
             <input type="hidden" name="photoKey" value="{{photo.key.urlsafe()}}">
-            <button class="btn btn-success btn-md" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span>  Delete</button>
+            <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-trash-o fa-2x"></i></button>
           </form>
 	    </div>
-      <div class="col-md-1">
+      <div class="col-md-2">
         <form method="post">
-          <input type="hidden" name="actionType" value="delete">
-          <button class="btn btn-success" type="submit" value="Delete"><span class="glyphicon glyphicon-share" style="color:white;"></span> Share</button>
+          <input type="hidden" name="actionType" value="share">
+          <button class="btn btn-success" type="submit" value="Delete"><i class="fa fa-share fa-2x"></i></button>
+        </form>
+      </div>
+	  <div class="col-md-2">
+        <form method="post">
+          <input type="hidden" name="actionType" value="share">
+          <button class="btn btn-success" type="submit" value="Delete"><i class="fa fa-download fa-2x"></i></button>
         </form>
       </div>
     </div>
@@ -69,37 +81,51 @@
   <h4 style="color:black;">{{photo.description}}</h4>
 	<script src="/js/holder.js"></script>
 	<div class="container marketing">
-	    <div class="row ">
+	    <div class="row">
 	        <div class="col-md-2 col-xs-6 col-md-offset-1 btn_padding_right">
-	             <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-thumbs-up" style="color:white;"></i> Like</button>
+	              <h1 style="font-size:55px;">{{photo.likes}}</h1><i class="fa fa-thumbs-o-up fa-2x"></i><h4 style="color:blue;">likes</h4>
 	        </div><!-- /.col-lg-4 -->
 	        <div class="col-md-2 col-xs-6 btn_padding_right">
-	            <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-comment" style="color:white;"></i> Comment</button>
+	            <h1 style="font-size:55px;">10</h1><i class="fa fa-pencil fa-2x"></i><h4 style="color:blue;">comments</h4>
 	        </div><!-- /.col-lg-4 -->
 	        <div class="col-md-2 col-xs-6 btn_padding_right">
-	            <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-trophy" style="color:white;"></i> Awards</button>
+	            <h1 style="font-size:55px;">2</h1><i class="fa fa-trophy fa-2x"></i><h4 style="color:blue;">awards</h4>
 	        </div><!-- /.col-lg-4 -->
 	        <div class="col-md-2 col-xs-6 btn_padding_right">
-	            <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-eye" style="color:white;"></i> Views</button>
+	            <h1 style="font-size:55px;">{{photo.viewed}}</h1><i class="fa fa-eye fa-2x"></i><h4 style="color:blue;">views</h4>
 	        </div><!-- /.col-lg-4 -->
 	        <div class="col-md-2 col-xs-6">
-	            <button class="btn btn-lg btn-block btn-success" type="submit" value="Edit"><i class="fa fa-star" style="color:white;"></i> Rating</button>
+	            <h1 style="font-size:55px;">4.5</h1><i class="fa fa-star fa-2x"></i><h4 style="color:blue;">rating</h4>
 	        </div><!-- /.col-lg-4 -->
 	    </div><!-- /.row -->
 	</div>
-
+	<hr>
+    <form method="post">
+    <input type="hidden" name="actionType" value="add_comment">
 	<div class="row permapage_container">
 		<div class="col-md-6 col-sm-6 permapage_container_inner">
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Comments on this Photo</h4></div><hr>
 				<div class="panel-body">
 					<div class="clearfix"></div>
-						
+						{%for comment in photo.comments%}
+						<p>{{comment}}</p>
+						<hr>
+						{%endfor%}
 					<hr>
-					<input type="text" class="form-control" placeholder="Add a comment..">
+				  <div class="input-group">
+					<div  class="photo_albums"></div>
+					<input type="text" class="form-control" name="comment" id="comment" placeholder="Add Photo to an Album">
+					<div class="input-group-btn">
+					  <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" style="color:white;"></span></button>
+					</div><!-- /btn-group -->
+				  </div><!-- /input-group -->
 				</div>
 			</div> 
 		</div>
+		</form>
+		<form method="post">
+		<input type="hidden" name="actionType" value="add_tag_album">
 		<div class="col-md-5 col-sm-6 permapage_container_inner">
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Associated Tags</h4></div>
@@ -109,6 +135,7 @@
 					{%endfor%}
 					<div  class="tag_placement">
 				  </div>
+				  {%if me%}
 					<hr>
 				  <div class="input-group">
 					<div  class="photo_tags"></div>
@@ -117,13 +144,15 @@
 					  <button type="button" class="btn btn-success" onclick="add_tags()"><span class="glyphicon glyphicon-plus" style="color:white;"></span></button>
 					</div><!-- /btn-group -->
 				  </div><!-- /input-group -->
+				  {%endif%}
 					<hr>
 					<div class="panel-heading"><h4>Associated Albums</h4></div>
 					{%for album in photo.albums%}
 						<button class="btn btn-danger btn-xs btn_padding">{{album}}</button>
 					{%endfor%}
 					<div  class="album_placement">
-				  </div>					
+				  </div>
+					{%if me%}				  
 					<hr>
 				  <div class="input-group">
 					<div  class="photo_albums"></div>
@@ -132,10 +161,14 @@
 					  <button type="button" class="btn btn-success" onclick="add_albums()"><span class="glyphicon glyphicon-plus" style="color:white;"></span></button>
 					</div><!-- /btn-group -->
 				  </div><!-- /input-group -->
+				  {%endif%}
 				</div>
+				{%if me%}
 				<button class="btn btn-xs btn-success" style="margin-bottom:5px;" type="submit">Save Tags & Albums</button>
+				{%endif%}
 			</div> 
 		</div>
+		</form>
 		<div class="col-md-6 col-sm-6 permapage_container_inner">
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Photo on a Map</h4></div><hr>

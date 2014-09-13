@@ -103,6 +103,7 @@
 function change_main_image(img_key) {
     document.getElementById("main_img").innerHTML = "<img alt='' src='"+img_key+"' height='100%' class='img_display'/>";
     document.getElementById("group_cover_image").innerHTML = "<input type='hidden' name='cover_img' value='"+img_key+"'>";
+	document.getElementById("thumb_img1").innerHTML = "<div class='col-lg-4'><img class='img-rounded' src='" + img_key + "' height='140px' alt='"+img_key+"'></div>";
 } 
 </script>
 <script type="text/javascript">

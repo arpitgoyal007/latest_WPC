@@ -12,6 +12,13 @@ body {
   margin-right: 70px;
 }
 
+.photo_insights .h1 {
+	font-size:40px;
+}
+.photo_insights .h4 {
+	color:blue;
+}
+
 .padding_top {
   margin-top: 5px;
 }

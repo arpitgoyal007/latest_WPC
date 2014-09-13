@@ -131,8 +131,9 @@ class BlogNewHandler(PageHandler, blobstore_handlers.BlobstoreUploadHandler):
 		if self.user:
 			title = self.request.get('title')
 			content = self.request.get('content')
+			cover_img = self.request.get('cover_img')
 			if title and content:
-				blog = create_blog(title, content, self.user.key)
+				blog = create_blog(title, content, cover_img, self.user.key)
 				self.redirect('/blog/%s' % blog.key.urlsafe())
 			else:
 				errorMsg = "Please enter both title and content!"
@@ -144,8 +145,9 @@ class BlogNewHandler(PageHandler, blobstore_handlers.BlobstoreUploadHandler):
 class GroupNewHandler(PageHandler ,blobstore_handlers.BlobstoreUploadHandler):
 	def get(self, resource):
 		userid = resource
+		uploadUrl = blobstore.create_upload_url('/newgroup')
 		user = User.get_by_id(userid)
-		templateVals = {'me': self.user}
+		templateVals = {'me': self.user, 'uploadUrl':uploadUrl}
 		if user:
 			if self.user:
 				if self.user == user:
@@ -166,9 +168,18 @@ class GroupNewHandler(PageHandler ,blobstore_handlers.BlobstoreUploadHandler):
 			if action == "create_group":			
 				name = self.request.get('name')
 				description = self.request.get('description')
-				cover_img = self.request.get('cover_img')
+				uploads = self.get_uploads('cover_photo')
+				if len(uploads)>0:
+					for i in range(len(uploads)):
+						blobInfo = uploads[i]
+						caption = ""
+						description = ""
+						location = ""
+						photo = create_picture(blobInfo.key(), caption, description, location, self.user.key)
+					blobInfo = uploads[0]
+					blobInfo = blobInfo.key()
 				if name and description:
-					group = create_group(name, description, cover_img, self.user.key)
+					group = create_group(name, description, blobInfo.key(), self.user.key)
 					self.redirect('/group/%s' % group.key.urlsafe())
 				else:
 					errorMsg = "Please enter both title and content!"
@@ -323,6 +334,9 @@ class BlogEditHandler(PageHandler):
 class PhotoPermpageHandler(PageHandler):
 	def get(self, resource):
 		photoKey = get_key_urlunsafe(resource)
+		photo = photoKey.get()
+		photo.viewed += 1
+		photo.put()
 		if photoKey:
 			userKey = photoKey.parent()
 			user = userKey.get()
@@ -343,6 +357,7 @@ class PhotoPermpageHandler(PageHandler):
 
 	def post(self, resource):
 		photoKey = get_key_urlunsafe(resource)
+		photo = photoKey.get()
 		userKey = photoKey.parent()
 		user = userKey.get()
 		if user:
@@ -355,6 +370,25 @@ class PhotoPermpageHandler(PageHandler):
 						self.redirect('/%s/photos' % self.user.key.id())
 					elif action == "edit":
 						self.redirect('/editphoto/%s' % photoKey.urlsafe())
+					elif action == "like":	
+						photo.likes += 1
+						photo.put()
+						self.redirect('/%s/photos' % self.user.key.id())
+					elif action == "add_comment":
+						comment = []
+						comment.append(self.request.get('comment'))
+						photo.comments = comment
+						photo.put()
+						self.redirect('/%s/photos' % self.user.key.id())
+					elif action == "add_tag_album":
+						tagList = self.request.get_all('tags')
+						albumList = self.request.get_all('albums')
+						#photo.tags.append(tagList)
+						#photo.albums.append(albumList)
+						photo.tags = tagList
+						photo.albums = albumList
+						photo.put()
+						self.redirect('/%s/photos' % self.user.key.id())
 				else:
 					self.redirect('/')
 			else:
@@ -365,6 +399,9 @@ class PhotoPermpageHandler(PageHandler):
 class BlogPermpageHandler(PageHandler):
 	def get(self, resource):
 		blogKey = get_key_urlunsafe(resource)
+		blog = blogKey.get()
+		blog.viewed += 1
+		blog.put()
 		if blogKey:
 			userKey = blogKey.parent()
 			user = userKey.get()
@@ -383,6 +420,9 @@ class BlogPermpageHandler(PageHandler):
 
 	def post(self, resource):
 		blogKey = get_key_urlunsafe(resource)
+		blog = blogKey.get()
+		templateVals ={'blog': blog, 'me':self.user}
+		
 		if blogKey:
 			action = self.request.get('actionType')
 			if action == "delete":
@@ -390,6 +430,10 @@ class BlogPermpageHandler(PageHandler):
 				self.redirect('/%s/blogs' % self.user.key.id())
 			elif action == "edit":
 				self.redirect('/editblog/%s' % resource)
+			elif action == "like":	
+				blog.likes += 1
+				blog.put()
+				self.render('blogperm.html', **templateVals)
 
 class GroupPermpageHandler(PageHandler):
 	def get(self, resource):
