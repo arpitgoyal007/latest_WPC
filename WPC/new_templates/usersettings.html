@@ -557,166 +557,235 @@
         }
         </script>
 
-        <script>
-        function myFunction(){
-            var x = document.getElementById("myFile");
+<script>
+function f(){  
+    //Check File API support
+
+	//<label for="files">Select multiple files: </label>
+	//<input id="files" type="file" multiple/>
+	//<output id="result" />
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("myFile");
+        filesInput.addEventListener("change", function(event){
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("thumb_img");
+            var num_files = files.length;
             var txt = "";
-            var temp = '';
+            var file_name_size = [];
+            var file_name = [];
             var total_size = 0;
-            if ('files' in myFile) {
-                if (x.files.length == 0) {
-                    txt = "Select one or more files.";
-                } else {
-                  var num_files = x.files.length;
-                    for (var i = 0; i < x.files.length; i++) {
-                      txt = "";
-                        //txt += "<br><strong>" + (i+1) + ". file</strong><br>";
-                        var file = x.files[i];
-                        if ('name' in file) {
-                            txt += "" + file.name + "<br>";
-                        }
-                        if ('size' in file) {
-                            //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
-                            txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
-                        }
-                    //document.getElementById("demo").innerHTML = txt;
-                    temp += "<br><div class='col-lg-4'><img class='img-circle' src='/images/"+file.name+"' height='100px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4></div>";
-                    total_size = total_size + file.size;
-                    }
-                    total_size = Math.ceil((total_size/1000000) * 100)/100;
+            for(var i = 0; i< files.length; i++)
+            {
+            	txt = "";
+                var file = files[i];
+                if ('name' in files[i]) {
+                    txt += "" + files[i].name + "<br>";
                 }
-            } 
-            else {
-                if (x.value == "") {
-                    txt += "Select one or more files.";
-                } else {
-                    txt += "The files property is not supported by your browser!";
-                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                if ('size' in files[i]) {
+                    //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                    txt += "Size: " + Math.ceil((files[i].size/1000000) * 100)/100 + " Mbytes <br>";
                 }
-            }
-            document.getElementById("thumb_img").innerHTML = temp;
-        }
-        </script>
-        <script>
-        function myFunction1(){
-            var x = document.getElementById("myFile1");
+                //Only pics
+                file_name_size.push(txt);
+                file_name.push(files[i].name)
+                total_size = total_size + Math.ceil((files[i].size/1000000) * 100)/100;
+                if(!file.type.match('image'))
+                  continue;
+                var picReader = new FileReader();
+                var w = 0;
+                picReader.addEventListener("load",function(event){
+	                var picFile = event.target;
+                    var div = document.createElement("div");
+                    div.innerHTML = "<br><div class='col-xs-3'><img class='img-circle' src='" + picFile.result + "' height='100px' alt='"+file_name[w]+"'><h4 style='color:black;'>"+file_name_size[w]+"</h4><h5 class='form-signin-heading padding_bottom'>Update Photo Details</h5><input type='text' id='picCaption' name='caption' class='form-control padding_bottom' placeholder='Caption' value="+file_name[w]+" autofocus><input type='text' id='picLocation' name='location' class='form-control padding_bottom' placeholder='Location' autofocus><textarea type='textarea' id='picDescription' name='description' class='form-control padding_bottom' placeholder='Description'></textarea></div>";
+                    w++;
+                    output.insertBefore(div,null);            
+                });
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }    
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";                         
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+
+function f1(){  
+    //Check File API support
+
+	//<label for="files">Select multiple files: </label>
+	//<input id="files" type="file" multiple/>
+	//<output id="result" />
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("myFile1");
+        filesInput.addEventListener("change", function(event){
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("thumb_img1");
+            var num_files = files.length;
             var txt = "";
-            var temp1 = '';
+            var file_name_size = [];
+            var file_name = [];
             var total_size = 0;
-            if ('files' in myFile1) {
-                if (x.files.length == 0) {
-                    txt = "Select one or more files.";
-                } else {
-                  var num_files = x.files.length;
-                    for (var i = 0; i < x.files.length; i++) {
-                      txt = "";
-                        //txt += "<br><strong>" + (i+1) + ". file</strong><br>";
-                        var file = x.files[i];
-                        if ('name' in file) {
-                            txt += "" + file.name + "<br>";
-                        }
-                        if ('size' in file) {
-                            //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
-                            txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
-                        }
-                    //document.getElementById("demo").innerHTML = txt;
-                    temp1 += "<br><div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='100px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4></div>";
-                    total_size = total_size + file.size;
-                    }
-                    total_size = Math.ceil((total_size/1000000) * 100)/100;
+            for(var i = 0; i< files.length; i++)
+            {
+            	txt = "";
+                var file = files[i];
+                if ('name' in files[i]) {
+                    txt += "" + files[i].name + "<br>";
                 }
-            } 
-            else {
-                if (x.value == "") {
-                    txt += "Select one or more files.";
-                } else {
-                    txt += "The files property is not supported by your browser!";
-                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                if ('size' in files[i]) {
+                    //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                    txt += "Size: " + Math.ceil((files[i].size/1000000) * 100)/100 + " Mbytes <br>";
                 }
-            }
-            document.getElementById("thumb_img1").innerHTML = temp1;
-        }
-        </script>
-        <script>
-        function myFunction2(){
-            var x = document.getElementById("myFile2");
+                //Only pics
+                file_name_size.push(txt);
+                file_name.push(files[i].name)
+                total_size = total_size + Math.ceil((files[i].size/1000000) * 100)/100;
+                if(!file.type.match('image'))
+                  continue;
+                var picReader = new FileReader();
+                var w = 0;
+                picReader.addEventListener("load",function(event){
+	                var picFile = event.target;
+                    var div = document.createElement("div");
+                    div.innerHTML = "<br><div class='col-xs-3'><img class='img-rounded' src='" + picFile.result + "' height='100px' alt='"+file_name[w]+"'><h4 style='color:black;'>"+file_name_size[w]+"</h4><h5 class='form-signin-heading padding_bottom'>Update Photo Details</h5><input type='text' id='picCaption' name='caption' class='form-control padding_bottom' placeholder='Caption' value="+file_name[w]+" autofocus><input type='text' id='picLocation' name='location' class='form-control padding_bottom' placeholder='Location' autofocus><textarea type='textarea' id='picDescription' name='description' class='form-control padding_bottom' placeholder='Description'></textarea></div>";
+                    w++;
+                    output.insertBefore(div,null);            
+                });
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }    
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";                         
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+
+function f2(){  
+    //Check File API support
+
+	//<label for="files">Select multiple files: </label>
+	//<input id="files" type="file" multiple/>
+	//<output id="result" />
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("myFile2");
+        filesInput.addEventListener("change", function(event){
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("thumb_img2");
+            var num_files = files.length;
             var txt = "";
-            var temp2 = '';
+            var file_name_size = [];
+            var file_name = [];
             var total_size = 0;
-            if ('files' in myFile2) {
-                if (x.files.length == 0) {
-                    txt = "Select one or more files.";
-                } else {
-                  var num_files = x.files.length;
-                    for (var i = 0; i < x.files.length; i++) {
-                      txt = "";
-                        //txt += "<br><strong>" + (i+1) + ". file</strong><br>";
-                        var file = x.files[i];
-                        if ('name' in file) {
-                            txt += "" + file.name + "<br>";
-                        }
-                        if ('size' in file) {
-                            //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
-                            txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
-                        }
-                    //document.getElementById("demo").innerHTML = txt;
-                    temp2 += "<br><div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='100px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4></div>";
-                    total_size = total_size + file.size;
-                    }
-                    total_size = Math.ceil((total_size/1000000) * 100)/100;
+            for(var i = 0; i< files.length; i++)
+            {
+            	txt = "";
+                var file = files[i];
+                if ('name' in files[i]) {
+                    txt += "" + files[i].name + "<br>";
                 }
-            } 
-            else {
-                if (x.value == "") {
-                    txt += "Select one or more files.";
-                } else {
-                    txt += "The files property is not supported by your browser!";
-                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                if ('size' in files[i]) {
+                    //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                    txt += "Size: " + Math.ceil((files[i].size/1000000) * 100)/100 + " Mbytes <br>";
                 }
-            }
-            document.getElementById("thumb_img2").innerHTML = temp2;
-        }
-        </script>
-        <script>
-        function myFunction3(){
-            var x = document.getElementById("myFile3");
+                //Only pics
+                file_name_size.push(txt);
+                file_name.push(files[i].name)
+                total_size = total_size + Math.ceil((files[i].size/1000000) * 100)/100;
+                if(!file.type.match('image'))
+                  continue;
+                var picReader = new FileReader();
+                var w = 0;
+                picReader.addEventListener("load",function(event){
+	                var picFile = event.target;
+                    var div = document.createElement("div");
+                    div.innerHTML = "<br><div class='col-xs-3'><img class='img-rounded' src='" + picFile.result + "' height='100px' alt='"+file_name[w]+"'><h4 style='color:black;'>"+file_name_size[w]+"</h4><h5 class='form-signin-heading padding_bottom'>Update Photo Details</h5><input type='text' id='picCaption' name='caption' class='form-control padding_bottom' placeholder='Caption' value="+file_name[w]+" autofocus><input type='text' id='picLocation' name='location' class='form-control padding_bottom' placeholder='Location' autofocus><textarea type='textarea' id='picDescription' name='description' class='form-control padding_bottom' placeholder='Description'></textarea></div>";
+                    w++;
+                    output.insertBefore(div,null);            
+                });
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }    
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";                         
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+
+function f3(){  
+    //Check File API support
+
+	//<label for="files">Select multiple files: </label>
+	//<input id="files" type="file" multiple/>
+	//<output id="result" />
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("myFile3");
+        filesInput.addEventListener("change", function(event){
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("thumb_img3");
+            var num_files = files.length;
             var txt = "";
-            var temp2 = '';
+            var file_name_size = [];
+            var file_name = [];
             var total_size = 0;
-            if ('files' in myFile2) {
-                if (x.files.length == 0) {
-                    txt = "Select one or more files.";
-                } else {
-                  var num_files = x.files.length;
-                    for (var i = 0; i < x.files.length; i++) {
-                      txt = "";
-                        //txt += "<br><strong>" + (i+1) + ". file</strong><br>";
-                        var file = x.files[i];
-                        if ('name' in file) {
-                            txt += "" + file.name + "<br>";
-                        }
-                        if ('size' in file) {
-                            //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
-                            txt += "Size: " + Math.ceil((file.size/1000000) * 100)/100 + " Mbytes <br>";
-                        }
-                    //document.getElementById("demo").innerHTML = txt;
-                    temp2 += "<br><div class='col-lg-4'><img class='img-rounded' src='/images/"+file.name+"' height='100px' alt='"+file.name+"'><h4 style='color:black;'>"+txt+"</h4></div>";
-                    total_size = total_size + file.size;
-                    }
-                    total_size = Math.ceil((total_size/1000000) * 100)/100;
+            for(var i = 0; i< files.length; i++)
+            {
+            	txt = "";
+                var file = files[i];
+                if ('name' in files[i]) {
+                    txt += "" + files[i].name + "<br>";
                 }
-            } 
-            else {
-                if (x.value == "") {
-                    txt += "Select one or more files.";
-                } else {
-                    txt += "The files property is not supported by your browser!";
-                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                if ('size' in files[i]) {
+                    //txt += "Size: " + file.size/1000000 + " Mbytes <br>";
+                    txt += "Size: " + Math.ceil((files[i].size/1000000) * 100)/100 + " Mbytes <br>";
                 }
-            }
-            document.getElementById("thumb_img3").innerHTML = temp2;
-        }
-        </script>
+                //Only pics
+                file_name_size.push(txt);
+                file_name.push(files[i].name)
+                total_size = total_size + Math.ceil((files[i].size/1000000) * 100)/100;
+                if(!file.type.match('image'))
+                  continue;
+                var picReader = new FileReader();
+                var w = 0;
+                picReader.addEventListener("load",function(event){
+	                var picFile = event.target;
+                    var div = document.createElement("div");
+                    div.innerHTML = "<br><div class='col-xs-3'><img class='img-rounded' src='" + picFile.result + "' height='100px' alt='"+file_name[w]+"'><h4 style='color:black;'>"+file_name_size[w]+"</h4><h5 class='form-signin-heading padding_bottom'>Update Photo Details</h5><input type='text' id='picCaption' name='caption' class='form-control padding_bottom' placeholder='Caption' value="+file_name[w]+" autofocus><input type='text' id='picLocation' name='location' class='form-control padding_bottom' placeholder='Location' autofocus><textarea type='textarea' id='picDescription' name='description' class='form-control padding_bottom' placeholder='Description'></textarea></div>";
+                    w++;
+                    output.insertBefore(div,null);            
+                });
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }    
+            document.getElementById("num_photos").innerHTML = "Uploaded 0/"+num_files+" Photos, Total Size = "+total_size+"Mbytes";                         
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+
+function start() {
+  f();
+  f1();
+  f2();
+  f3();
+}
+window.onload = start;
+</script>
         <script src="/js/Chart.js"></script>
         <script>
           function bar_graph_fill(){

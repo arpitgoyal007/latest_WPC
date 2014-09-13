@@ -145,9 +145,8 @@ class BlogNewHandler(PageHandler, blobstore_handlers.BlobstoreUploadHandler):
 class GroupNewHandler(PageHandler ,blobstore_handlers.BlobstoreUploadHandler):
 	def get(self, resource):
 		userid = resource
-		uploadUrl = blobstore.create_upload_url('/newgroup')
 		user = User.get_by_id(userid)
-		templateVals = {'me': self.user, 'uploadUrl':uploadUrl}
+		templateVals = {'me': self.user}
 		if user:
 			if self.user:
 				if self.user == user:
@@ -168,18 +167,9 @@ class GroupNewHandler(PageHandler ,blobstore_handlers.BlobstoreUploadHandler):
 			if action == "create_group":			
 				name = self.request.get('name')
 				description = self.request.get('description')
-				uploads = self.get_uploads('cover_photo')
-				if len(uploads)>0:
-					for i in range(len(uploads)):
-						blobInfo = uploads[i]
-						caption = ""
-						description = ""
-						location = ""
-						photo = create_picture(blobInfo.key(), caption, description, location, self.user.key)
-					blobInfo = uploads[0]
-					blobInfo = blobInfo.key()
+				cover_img = self.request.get('cover_img')
 				if name and description:
-					group = create_group(name, description, blobInfo.key(), self.user.key)
+					group = create_group(name, description, cover_img, self.user.key)
 					self.redirect('/group/%s' % group.key.urlsafe())
 				else:
 					errorMsg = "Please enter both title and content!"

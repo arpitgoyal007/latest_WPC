@@ -90,7 +90,7 @@ My Photos | WPC
 	<div class="row">	
 		<div class="container">
 			{%for p in photos%}
-				<div class="col-lg-2 col-sm-3 col-xs-4 col-lg-offset-1" align="center">
+				<div class="col-lg-2 col-sm-3 col-xs-4 col-lg-offset-1" style="overflow:hidden;" align="center">
 					<a href="/photo/{{p.key.urlsafe()}}"><img src="/servephoto/{{p.blobKey}}" height="140px" id="temp1" alt="photo"></a>
 					{%for tags in p.tags%}
 						<script>
