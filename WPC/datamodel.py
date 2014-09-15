@@ -19,6 +19,7 @@ class User(ndb.Model):
 	twitter = ndb.StringProperty()
 	avatar = ndb.StringProperty()
 	wpc_score = ndb.IntegerProperty(default=50)
+	total_likes = ndb.IntegerProperty(default=0)
 
 class Group(ndb.Model): # Parent=User (Admin)
 	name = ndb.StringProperty(required=True)

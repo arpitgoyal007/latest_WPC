@@ -3899,6 +3899,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-toggle:focus {
   outline: 0;
 }
+
+.nav_width {
+  width:50%;
+}
 .navbar-toggle .icon-bar {
   display: block;
   width: 22px;

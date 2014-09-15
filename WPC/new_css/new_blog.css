@@ -18,6 +18,10 @@ input, textarea, select, option, optgroup, button, td, th
 	font-size: 100%;
 }
 
+.modal-lg {
+    width: 100%;
+  }
+  
 pre
 {
 	-moz-tab-size: 4;

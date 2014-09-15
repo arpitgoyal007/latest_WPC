@@ -324,9 +324,6 @@ class BlogEditHandler(PageHandler):
 class PhotoPermpageHandler(PageHandler):
 	def get(self, resource):
 		photoKey = get_key_urlunsafe(resource)
-		photo = photoKey.get()
-		photo.viewed += 1
-		photo.put()
 		if photoKey:
 			userKey = photoKey.parent()
 			user = userKey.get()
@@ -335,8 +332,14 @@ class PhotoPermpageHandler(PageHandler):
 				if self.user == user:
 					templateVals['user'] = self.user
 				else:
+					photo = photoKey.get()
+					photo.viewed += 1
+					photo.put()
 					templateVals['user'] = user
 			else:
+				photo = photoKey.get()
+				photo.viewed += 1
+				photo.put()
 				templateVals['user'] = user
 			photos = Picture.of_ancestor(user.key)
 			templateVals['photos'] = photos	
@@ -389,9 +392,6 @@ class PhotoPermpageHandler(PageHandler):
 class BlogPermpageHandler(PageHandler):
 	def get(self, resource):
 		blogKey = get_key_urlunsafe(resource)
-		blog = blogKey.get()
-		blog.viewed += 1
-		blog.put()
 		if blogKey:
 			userKey = blogKey.parent()
 			user = userKey.get()
@@ -400,8 +400,14 @@ class BlogPermpageHandler(PageHandler):
 				if self.user == user:
 					templateVals['user'] = self.user
 				else:
+					blog = blogKey.get()
+					blog.viewed += 1
+					blog.put()
 					templateVals['user'] = user
 			else:
+				blog = blogKey.get()
+				blog.viewed += 1
+				blog.put()
 				templateVals['user'] = user
 			templateVals['blog'] = blogKey.get()
 			self.render('blogperm.html', **templateVals)

@@ -32,7 +32,7 @@
 		<img src="/servephoto/{{photo.blobKey}}" width="100%" alt="photo">
 		<a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{user.name}}<em></h5></a>
 	</div>
-  {%if me%}
+  
 	<div class="row edit_delete_bottons text-center">
     <div class="col-md-4 col-md-offset-4">
 		<div class="col-md-2 col-md-offset-1">
@@ -41,6 +41,7 @@
             <button class="btn btn-info btn-md" type="submit" value="Delete"><i class="fa fa-thumbs-up fa-2x"></i></button>
           </form>
 	    </div>
+		  {%if me%}
 		  <div class="col-md-2">
           <form method="post">
             <input type="hidden" name="actionType" value="edit">
@@ -55,22 +56,25 @@
             <button class="btn btn-success btn-md" type="submit" value="Delete"><i class="fa fa-trash-o fa-2x"></i></button>
           </form>
 	    </div>
+		 {% endif %}
       <div class="col-md-2">
         <form method="post">
           <input type="hidden" name="actionType" value="share">
           <button class="btn btn-success" type="submit" value="Delete"><i class="fa fa-share fa-2x"></i></button>
         </form>
       </div>
+	    {%if me%}
 	  <div class="col-md-2">
         <form method="post">
-          <input type="hidden" name="actionType" value="share">
+          <input type="hidden" name="actionType" value="download">
           <button class="btn btn-success" type="submit" value="Delete"><i class="fa fa-download fa-2x"></i></button>
         </form>
       </div>
+	   {% endif %}
     </div>
 
 	</div>
-  {% endif %}
+  
   <hr>
 	<div class="thumb_imgs">
 	    {%for p in photos%}
@@ -136,9 +140,10 @@
 					{%endfor%}
 					<div  class="tag_placement">
 				  </div>
-				  {%if me%}
+				  
 					<hr>
 				  <div class="input-group">
+				  {%if me%}
 					<div  class="photo_tags"></div>
 					<input type="text" class="form-control" name="add_tag" id="add_tag" placeholder="Add a Tag">
 					<div class="input-group-btn">
@@ -153,9 +158,10 @@
 					{%endfor%}
 					<div  class="album_placement">
 				  </div>
-					{%if me%}				  
+									  
 					<hr>
 				  <div class="input-group">
+				  {%if me%}
 					<div  class="photo_albums"></div>
 					<input type="text" class="form-control" name="add_album" id="add_album" placeholder="Add Photo to an Album">
 					<div class="input-group-btn">

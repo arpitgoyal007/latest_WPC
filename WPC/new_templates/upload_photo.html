@@ -50,10 +50,11 @@ Upload Photos | WPC
 				      <div class="input-group-btn">
 				        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Existing Albums <span class="caret"></span></button>
 				        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-				          <li><a href="#">Album 1</a></li>
-				          <li><a href="#">Album 2</a></li>
-				          <li><a href="#">Album 3</a></li>
-				          <li><a href="#">Album 4</a></li>
+						{%for p in photos%}
+								{%for albums in p.albums%}
+									<<li><a href="#">{{albums}}</a></li>
+								{%endfor%}
+						{%endfor%}
 				        </ul>
 				      </div><!-- /btn-group -->
 				    </div><!-- /input-group -->
@@ -80,10 +81,11 @@ Upload Photos | WPC
 				      <div class="input-group-btn">
 				        <button type="button" class="btn btn-default	 dropdown-toggle" data-toggle="dropdown">Existing Tags <span class="caret"></span></button>
 				        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-				          <li><a href="#">Tag 1</a></li>
-				          <li><a href="#">Tag 2</a></li>
-				          <li><a href="#">Tag 3</a></li>
-				          <li><a href="#">Tag 4</a></li>
+						{%for p in photos%}
+								{%for tags in p.tags%}
+									<<li><a href="#">{{tags}}</a></li>
+								{%endfor%}
+						{%endfor%}
 				        </ul>
 				      </div><!-- /btn-group -->
 				    </div><!-- /input-group -->

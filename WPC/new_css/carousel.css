@@ -22,6 +22,7 @@ body {
   right: 0;
   left: 0;
   z-index: 20;
+  max-width: 60px;
 }
 
 /* Flip around the padding for proper display in narrow viewports */
@@ -45,6 +46,7 @@ body {
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
+  position:absolute;
   z-index: 10;
 }
 
@@ -720,11 +722,23 @@ fieldset#form_body {
   text-align:left;
   text-shadow: 0px;
 }
-
+.padding-top {
+	margin-top:50px;
+}
 .navbar-default {
   background-color: black;
   border-color: #e7e7e7;
 }
+
+.position-absolute {
+  position: absolute;
+}
+.navbar-transparent {
+  background: rgba(0, 0, 0, .3);
+  width:350px;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
 .navbar-default .navbar-brand {
   color: #777;
 }
