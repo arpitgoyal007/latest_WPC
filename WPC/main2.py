@@ -107,6 +107,25 @@ class UserBlogsHandler(PageHandler):
 			self.render('user_blogs.html', **templateVals)
 		else:
 			self.redirect('/')
+			
+class UserGroupsHandler(PageHandler):
+	def get(self, resource):
+		userid = resource
+		user = User.get_by_id(userid)
+		templateVals = {'me': self.user}
+		if user:
+			if self.user:
+				if self.user == user:
+					templateVals['user'] = self.user
+				else:
+					templateVals['user'] = user
+			else:
+				templateVals['user'] = user
+			groups = Group.of_ancestor(user.key)
+			templateVals['groups'] = groups
+			self.render('user_groups.html', **templateVals)
+		else:
+			self.redirect('/')
 
 class BlogNewHandler(PageHandler, blobstore_handlers.BlobstoreUploadHandler):
 	def get(self, resource):
@@ -803,7 +822,8 @@ app = webapp2.WSGIApplication([
 			('/photo_upload_settings',UserSettingsHandler),
 			('/servephoto/([^/]+)', PhotoServeHandler),
 			('/serveblog/([^/]+)', BlogServeHandler),
-			('/([^/]+)/blogs', UserBlogsHandler),
+			('/([^/]+)/user_blogs', UserBlogsHandler),
+			('/([^/]+)/user_groups', UserGroupsHandler),
 			('/([^/]+)/photos', UserPhotosHandler),
 			('/([^/]+)/popupphotos', UserPhotosPopUpHandler),
 			('/([^/]+)', UserStudioHandler),

@@ -12,6 +12,10 @@ body {
   margin-right: 70px;
 }
 
+.modal-lg {
+    width: 80%;
+  }
+  
 .photo_insights .h1 {
 	font-size:40px;
 }
@@ -320,7 +324,7 @@ i.service-icon {
 .callout {
   color: #ffffff;
   display: table;
-  height: 400px;
+  height: 350px;
   width: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
