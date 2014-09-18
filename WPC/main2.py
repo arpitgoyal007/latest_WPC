@@ -235,20 +235,6 @@ class GroupsHandler(PageHandler):
 			templateVals = {'me': self.user}
 			self.render('groups.html', **templateVals)
 
-	def post(self):
-		if self.user:
-			title = self.request.get('title')
-			content = self.request.get('content')
-			if title and content:
-				create_blog(title, content, self.user.key)
-				self.redirect('/%s/blogs' % self.user.key.id())
-			else:
-				errorMsg = "Please enter both title and content!"
-				templateVals = {'me': self.user, 'title': title, 'content': content, 'submitError': errorMsg}
-				self.render('groups.html', **templateVals)
-		else:
-			self.redirect('/')
-
 class ForumHandler(PageHandler):
 	def get(self):
 		if not self.user:
@@ -580,7 +566,12 @@ class UserSettingsHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler
 			twitter = self.request.get('twitter')
 			pinterest = self.request.get('pinterest')
 			website = self.request.get('website')
+			city = self.request.get('city')
+			phone_num = self.request.get('phone_num')
+			
 			user = self.user
+			user.city = city
+			user.phone_num = phone_num
 			user = update_user_name(name, user)
 			user = update_user_alt_email(alt_email, user)
 			user = update_user_country(country, user)

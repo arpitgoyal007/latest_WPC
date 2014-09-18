@@ -20,10 +20,19 @@ class User(ndb.Model):
 	avatar = ndb.StringProperty()
 	wpc_score = ndb.IntegerProperty(default=50)
 	total_likes = ndb.IntegerProperty(default=0)
+	city = ndb.StringProperty(default="Please enter the city you live in")
+	phone_num = ndb.StringProperty()
+	all_comments = ndb.IntegerProperty(default=0)
+	awards = ndb.StringProperty(repeated=True)
+	profile_shares = ndb.IntegerProperty(default=0)
+	profile_views = ndb.IntegerProperty(default=0)
+	
+	
 
 class Group(ndb.Model): # Parent=User (Admin)
 	name = ndb.StringProperty(required=True)
 	members = ndb.KeyProperty(kind='User', repeated=True)
+	photos = ndb.KeyProperty(kind='Picture', repeated=True)
 	created = ndb.DateTimeProperty(auto_now_add=True)
 	description = ndb.TextProperty()
 	cover_photo = ndb.StringProperty()

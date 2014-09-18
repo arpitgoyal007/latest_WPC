@@ -91,6 +91,16 @@
     <h4>Filter By :</h4><a href=""> Trendiest </a>|<a href="">  Newest  </a>|<a href="">  Oldest  </a>|<a href="">  Highest Rating  </a>
     {%endif%}
   	<div class="col-md-12">
+	    {%for b in groups%}
+        
+		  <a href="/blog/{{b.key.urlsafe()}}"><h3>{{b.name}}</h3>	
+		  <img src="{{b.cover_photo}}" alt="Profile Image" class="img-rounded" width="300px">
+		  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5></a>
+          <div style="width: 400px; height:100px; overflow: hidden;"><p>{{b.description}}</p></div>
+		  
+		  <hr class="horizontal-line">
+        
+        {% endfor %}
   		<div class="col-md-4 col-sm-4">
   			<a href=""><h3>Ad</h3>
   			<img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded" width="300px">

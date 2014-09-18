@@ -117,12 +117,17 @@ My Photos | WPC
 							<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
 						</form>
 						<form method="post">
-							<input type="hidden" name="actionType" value="delete">
+							<input type="hidden" name="actionType" value="add">
+							<input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
+							<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-plus" style="color:white;"></span></button>
+						</form>
+						<form method="post">
+							<input type="hidden" name="actionType" value="share">
 							<input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
 							<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
 						</form>
 						<form method="post">
-							<input type="hidden" name="actionType" value="delete">
+							<input type="hidden" name="actionType" value="download">
 							<input type="hidden" name="photoKey" value="{{p.key.urlsafe()}}">
 							<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
 						</form>

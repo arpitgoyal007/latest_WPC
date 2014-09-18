@@ -168,7 +168,7 @@ body {
     text-align: center;
     width: 70px;
     height: 580px;
-    margin: 200px 20px;
+    margin: 130px 20px;
     background-color: transparent;
     opacity: 1.0;
     filter: alpha(opacity=60); /* For IE8 and earlier */
@@ -727,4 +727,10 @@ i.scroll:hover {
     position: absolute;
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
+}
+
+.navbar-transparent {
+  background: rgba(0, 0, 0, .3);
+  width:350px;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
 }

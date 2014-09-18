@@ -7,67 +7,66 @@ Home | WPC
 {%endblock%}
 
 {%block userNavLinks%}
-                  <ul class="nav navbar-nav navbar-right" style="text-align:left;">
-                  	<li><a class="" href="/{{me.key.id()}}" style="color:yellow;font-size:20px;" ><em>{{me.name}}</em></a></li>
-                    <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
-                    <li><a href="/{{me.key.id()}}/photos"><span class="glyphicon glyphicon-picture"></span></a></li>
-                      <li>
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span><b class="caret"></b></a>
-                          <ul class="dropdown-menu" role="menu">
-                              <li><a href="/newphoto"><span class="glyphicon glyphicon-camera"></span> Photos</a></li>
-                              <li><a href="/{{me.key.id()}}/newblog"><span class="glyphicon glyphicon-pencil"></span> Blog Post</a></li>
-                              <li><a href="/{{me.key.id()}}/newgroup"><i class="fa fa-group"></i> Group</a></li>
-                              <li><a href="/forum"><span class="glyphicon glyphicon-bell"></span> A Question</a></li>
-                          </ul>
-                      </li>
-                      <li>
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
-                          <ul class="dropdown-menu" role="menu">
-                              <li><a href="/usersettings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                              <li><a href="" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-phone"></i> Invite Friends</a></li>
-                              <li><a href="#my_portfolios"><span class="glyphicon glyphicon-heart-empty"></span> My Ideabook</a></li>
-                              <li class="divider"></li>
-                              <li><a href="/logout"><span class="glyphicon glyphicon-send"></span> Sign Out</a></li>
-                          </ul>
-                      </li>
-                      <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope"></span><b class="caret"></b><span class="badge pull-right">42</span></a>
-                          <ul class="dropdown-menu">
-                              <li>
-                                <div class="messages_container">
-                                  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
-                                  <p>Photographer added new Photos</p></a>
+	<ul class="nav navbar-nav navbar-right" style="text-align:left;">
+		<li><a class="" href="/{{me.key.id()}}" style="color:yellow;font-size:20px;" ><em>{{me.name}}</em></a></li>
+		<li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+		<li><a href="/{{me.key.id()}}/photos"><span class="glyphicon glyphicon-picture"></span></a></li>
+		  <li>
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span><b class="caret"></b></a>
+			  <ul class="dropdown-menu" role="menu">
+				  <li><a href="/newphoto"><span class="glyphicon glyphicon-camera"></span> Photos</a></li>
+				  <li><a href="/{{me.key.id()}}/newblog"><span class="glyphicon glyphicon-pencil"></span> Blog Post</a></li>
+				  <li><a href="/{{me.key.id()}}/newgroup"><i class="fa fa-group"></i> Group</a></li>
+				  <li><a href="/forum"><span class="glyphicon glyphicon-bell"></span> A Question</a></li>
+			  </ul>
+		  </li>
+		  <li>
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
+			  <ul class="dropdown-menu" role="menu">
+				  <li><a href="/usersettings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+				  <li><a href="" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-phone"></i> Invite Friends</a></li>
+				  <li><a href="#my_portfolios"><span class="glyphicon glyphicon-heart-empty"></span> My Ideabook</a></li>
+				  <li class="divider"></li>
+				  <li><a href="/logout"><span class="glyphicon glyphicon-send"></span> Sign Out</a></li>
+			  </ul>
+		  </li>
+		  <li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope"></span><b class="caret"></b><span class="badge pull-right">42</span></a>
+			  <ul class="dropdown-menu">
+				  <li>
+					<div class="messages_container">
+					  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
+					  <p>Photographer added new Photos</p></a>
 
-                                  <hr class="horizontal-line">
-                                  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
-                                  <p>Your photo is used by Photographer in his blog/forum/group XYZ</p></a>
-                                  
-                                  <hr class="horizontal-line">
-                                  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
-                                  <p>Photographer Commented on your photo</p></a>
+					  <hr class="horizontal-line">
+					  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
+					  <p>Your photo is used by Photographer in his blog/forum/group XYZ</p></a>
+					  
+					  <hr class="horizontal-line">
+					  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
+					  <p>Photographer Commented on your photo</p></a>
 
-                                  <hr class="horizontal-line">
-                                  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
-                                  <p>Photographer added new Photos</p></a>
+					  <hr class="horizontal-line">
+					  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
+					  <p>Photographer added new Photos</p></a>
 
-                                  <hr class="horizontal-line">
-                                  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
-                                  <p>Your photo is used by Photographer in his blog/forum/group XYZ</p></a>
-                                  
-                                  <hr class="horizontal-line">
-                                  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
-                                  <p>Photographer Commented on your photo</p></a>
-                                </div>
-                              </li>
-                          </ul>
-                      </li>
-                  </ul>
+					  <hr class="horizontal-line">
+					  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
+					  <p>Your photo is used by Photographer in his blog/forum/group XYZ</p></a>
+					  
+					  <hr class="horizontal-line">
+					  <a href=""><h5 style="color:green;"><img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="25px"> <em>{{me.name}}</em></h5>
+					  <p>Photographer Commented on your photo</p></a>
+					</div>
+				  </li>
+			  </ul>
+		  </li>
+	</ul>
 {%endblock%}
 {%block signup_links%}  
 {%endblock%}
 {%block pageContent%}
-    {%block carousel%}
-    {%endblock%}
+
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -86,111 +85,7 @@ Home | WPC
         </div>
       </div>
     </div>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="item active">
-          <img src="/images/Artists_2.jpg" alt="First slide"/>
-          <div class="container">
-            <div class="carousel-caption">
-				<div class="navbar-wrapper">
-				  <div class="container">
-					<div class="navbar navbar-transparent padding-top" role="navigation">
-					  <div class="container">
-						<div class="navbar-header">
-						  <a class="navbar-brand" href="#">Anurag Mathur</a>
-						</div>
-						<div class="navbar-collapse collapse">
-						  <ul class="nav navbar-nav">
-							<li><a href="#"></i><i class="fa fa-thumbs-o-up" style="color:white;"></i></a></li>
-							<li><a href="#"></i><i class="fa fa-plus" style="color:white;"></i></a></li>
-							<li><a href="#"></i><i class="fa fa-share" style="color:white;"></i></a></li>
-							<li><a href="#"></i><span class="glyphicon glyphicon-pushpin"></span></a></li>
-						  </ul>
-						</div>
-					  </div>
-					</div>
-				  </div>
-				</div>
-				<!--
-                <p><a href="my_studio.html">Photographers Name</a></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-4"><em>Go to Portfolio</em></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-5"><em>Like the Photo</em></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-6"><em>Add this Photo to your Ideabook</em></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-7"><em>Add Photographer to your Ideabook</em></p>
-				-->
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/images/DSC_1582.jpg" alt="Second slide"/>
-          <div class="container">
-            <div class="carousel-caption">
-				<div class="navbar-wrapper">
-				  <div class="container">
-					<div class="navbar navbar-transparent navbar-static-top padding-top" role="navigation">
-					  <div class="container">
-						<div class="navbar-header">
-						  <a class="navbar-brand" href="#">Anurag Mathur</a>
-						</div>
-						<div class="navbar-collapse collapse">
-						  <ul class="nav navbar-nav">
-							<li><a href="#"></i><i class="fa fa-thumbs-o-up" style="color:white;"></i></a></li>
-							<li><a href="#"></i><i class="fa fa-plus" style="color:white;"></i></a></li>
-							<li><a href="#"></i><i class="fa fa-share" style="color:white;"></i></a></li>
-							<li><a href="#"></i><span class="glyphicon glyphicon-pushpin"></span></a></li>
-						  </ul>
-						</div>
-					  </div>
-					</div>
-				  </div>
-				</div>
-				<!--
-                <p><a href="my_studio.html">Photographers Name</a></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-4"><em>Go to Portfolio</em></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-5"><em>Like the Photo</em></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-6"><em>Add this Photo to your Ideabook</em></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-7"><em>Add Photographer to your Ideabook</em></p>
-				-->
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/images/DSC_1737.jpg" alt= "Third slide"/>
-          <div class="container">
-            <div class="carousel-caption">
-				<div class="navbar-wrapper">
-				  <div class="container">
-					<div class="navbar navbar-transparent padding-top" role="navigation">
-					  <div class="container">
-						<div class="navbar-header">
-						  <a class="navbar-brand" href="#">Anurag Mathur</a>
-						</div>
-						<div class="navbar-collapse collapse">
-						  <ul class="nav navbar-nav">
-							<li><a href="#"></i><i class="fa fa-thumbs-o-up" style="color:white;"></i></a></li>
-							<li><a href="#"></i><i class="fa fa-plus" style="color:white;"></i></a></li>
-							<li><a href="#"></i><i class="fa fa-share" style="color:white;"></i></a></li>
-							<li><a href="#"></i><span class="glyphicon glyphicon-pushpin"></span></a></li>
-						  </ul>
-						</div>
-					  </div>
-					</div>
-				  </div>
-				</div>
-				<!--
-                <p><a href="my_studio.html">Photographers Name</a></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-picture" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-4"><em>Go to Portfolio</em></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span></button><p class="message col-sm-2 col-sm-offset-5"><em>Like the Photo</em></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-plus-sign" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-6"><em>Add this Photo to your Ideabook</em></p>
-                <button type="button" class="btn btn-success btn-xs photographer_options"><span class="glyphicon glyphicon-pushpin" style="color:white;"></span></button><p class="message col-sm-4 col-sm-offset-7"><em>Add Photographer to your Ideabook</em></p> 
-				-->
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div>
+
  <div class="container" id="main">
       <h1>My Feed</h1>
 

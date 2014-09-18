@@ -50,14 +50,18 @@
                   <li color="white"><a href="{{me.google_plus}}"><i class="fa fa-google-plus fa-3x" style="color:white;"></i></a></li>
                 {% endif %}
             </ul>
+			{%if me%}
             <a href="/usersettings#social_profiles"><span class="glyphicon glyphicon-cog"></span></a>
+			{% endif %}
         </div>
         <div class="vert-text">
             <img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="90px"><br>
             <a href="/usersettings#portfolio"><span class="glyphicon glyphicon-cog"></span></a>
             <h3 style="margin-top:0px;"><em>Welcome!</em> {{me.name}}</h3>
             <a href="#map_canvas"><img src="/fonts/Flags/{{me.country}}.png" alt="country" width="40px"></a><br>
-            <a href="/usersettings#user_settings"><span class="glyphicon glyphicon-cog"></span></a>
+			{%if me%}
+				<a href="/usersettings#user_settings"><span class="glyphicon glyphicon-cog"></span></a>
+			{% endif %}
             <br>  
             <a href="https://www.facebook.com"><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:white;"></i></a>
             <h2><em>{{me.wpc_score}}</em></h2>
@@ -72,9 +76,14 @@
 			{%elif me.wpc_score>25000%}
 				<button type="submit" class="btn btn-danger">Master Photographer</button><br>
 			{% endif %}
+			{%if not me%}
+				<br><button type="submit" class="btn btn-xs btn-info"><span style="color:white;" class="glyphicon glyphicon-pushpin"></span> Follow</button><br>
+			{% endif %}
             <div class="camera">
                 <img src="/fonts/Cameras/Nikon D80.png" alt="camera" width="80px"><h4 style="color:white;">Nikon D80<h4>
+				{%if me%}
                 <a href="/usersettings#my_gear"><span class="glyphicon glyphicon-cog"></span></a>
+				{% endif %}
             </div>
             <div class="col-xs-4 col-xs-offset-5 lenses_center">
                 <div class="col-xs-2"><img src="/fonts/Lenses/Nikkor 18-55mm.png" alt="camera" width="60px"><h6 style="color:white;">Nikkor 18-55mm<h5></div>
@@ -83,14 +92,14 @@
           </div>
         </div>
         <div class="transbox_left">
-            <h1>1038<h1><h2>likes</h2>
-            <h1>138<h1><h2>comments</h2>
-            <h1>10<h1><h2>awards</h2>
-            <h1>23<h1><h2>shares</h2>
-            <h1>343<h1><h2>followers</h2>
-            <h1>242<h1><h2>following</h2>
-            <h1>4533<h1><h2>profile views</h2>
-            <a href="/{{me.key.id()}}/photos"><h1>453<h1><h2>photos</h2></a>
+            <h1>{{user.total_likes}}<h1><h2>likes</h2>
+            <h1>{{user.all_comments}}<h1><h2>comments</h2>
+            <h1>{{user.awards}}<h1><h2>awards</h2>
+            <h1>{{user.profile_shares}}<h1><h2>shares</h2>
+            <h1>{{user.followers}}<h1><h2>followers</h2>
+            <h1>{{user.following}}<h1><h2>following</h2>
+            <h1>{{user.profile_views}}<h1><h2>profile views</h2>
+            <a href="/{{me.key.id()}}/photos"><h1>{{photos.count()}}<h1><h2>photos</h2></a>
         </div>
 
     </div>
@@ -211,14 +220,14 @@
       </nav>
       <div class="thumb_imgs">
             {%for p in photos%}
-                    <a onclick="change_main_image('/servephoto/{{p.blobKey}}');" href="javascript:void(0);"><img src="/servephoto/{{p.blobKey}}" height="100px" alt="photo"></a>
+                    <a onclick="change_main_image('/servephoto/{{p.blobKey}}', '/photo/{{p.key.urlsafe()}}');" href="javascript:void(0);"><img src="/servephoto/{{p.blobKey}}" height="100px" alt="photo"></a>
             {%endfor%}
       </div>
       <br>      
         <div id="main_img" class="main_img">
             {%for p in photos%}
                 {% if loop.index <= 1 %}
-                    <img alt="" src="/servephoto/{{p.blobKey}}" class="img_display"/>
+                    <a href="/photo/{{p.key.urlsafe()}}"><img alt="" src="/servephoto/{{p.blobKey}}" class="img_display"/></a>
                  {% endif %}
             {%endfor%}
         </div>
@@ -242,8 +251,12 @@
     <!-- /Intro -->
 
     <!-- Map -->
-    <div id="map_canvas" class="map">
-    </div>
+	<iframe
+	  width="100%"
+	  height="300"
+	  frameborder="0" style="border:0"
+	  src="https://www.google.com/maps/embed/v1/search?key=AIzaSyA98__FHcA4bnhiXVRNPHswC6VNnVfiKnc&q={{user.city}}+{{user.country}}">
+	</iframe>
     <!-- /Map -->
     {%block footer%}
     {%endblock%}
@@ -341,8 +354,9 @@
       });
     </script>
 <script type="text/javascript">
-function change_main_image(img_key) {
-    document.getElementById("main_img").innerHTML = "<img alt='' src='"+img_key+"' class='img_display'/>";
+function change_main_image(img_key, img_link) {
+    //document.getElementById("main_img").innerHTML = "<img alt='' src='"+img_key+"' class='img_display'/>";
+	document.getElementById("main_img").innerHTML = "<a href='"+img_link+"'><img alt='' src='"+img_key+"' class='img_display'/></a>";
 } 
 </script>
 {%endblock%}

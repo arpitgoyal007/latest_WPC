@@ -500,6 +500,13 @@
         <hr>
         <div id="contact" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Contact Information</h1>
+                <form role="form" method="post">
+                    <div class="col-sm-4">
+                        <p>City</p><input type="text" name="city" class="form-control" placeholder="Please enter the city you live in" value="{{user.city}}"><br>
+                        <p>Phone Number</p><input type="text" name="phone_num" class="form-control" placeholder="Please Enter your phone number" value="{{user.phone_num}}"><br>
+                        <button class="btn btn-xs btn-success" type="submit">Save Contact Details</button>
+                    </div>
+                </form>
         </div>
         <hr>
         <div id="sharing" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
