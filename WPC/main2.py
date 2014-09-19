@@ -254,6 +254,15 @@ class GroupsHandler(PageHandler):
 			templateVals = {'me': self.user}
 			self.render('groups.html', **templateVals)
 
+class PhotosHandler(PageHandler):
+	def get(self):
+		if not self.user:
+			templateVals = {'me': ""}
+			self.render('photos.html', **templateVals)
+		else:
+			templateVals = {'me': self.user}
+			self.render('photos.html', **templateVals)
+
 class ForumHandler(PageHandler):
 	def get(self):
 		if not self.user:
@@ -811,6 +820,7 @@ app = webapp2.WSGIApplication([
 			('/([^/]+)/newgroup', GroupNewHandler),
 			('/blog' , BlogsHandler),
 			('/groups' , GroupsHandler),
+			('/photos' , PhotosHandler),
 			('/forum', ForumHandler),
 			('/search_results', SearchResultsHandler),
 			('/editphoto/([^/]+)', PhotoEditHandler),

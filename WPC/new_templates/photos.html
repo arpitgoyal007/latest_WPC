@@ -1,0 +1,140 @@
+{%if me%}
+		{%extends "index_user.html"%}
+{%else%}
+		{%extends "index.html"%}
+{%endif%}
+
+{%block title%}
+  {%if me%}
+    {{me.name}} | Groups | WPC
+  {%else%}
+    Groups | WPC
+  {%endif%}
+{%endblock%}
+
+{%block styleSheets%}
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<!-- Add custom CSS here -->
+<link href="/css/my_studio.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
+<link href="/css/blog.css" rel="stylesheet">
+
+{%endblock%}
+
+{%block carousel%}
+{%endblock%}
+
+{%block pageContent%}
+ <div class="row">
+    <div class="col-md-2">
+        <form role="search" action="/search_results" method="post">
+                <input type="text" class="form-control" placeholder="Search Photos" size="40">
+        </form>
+    </div>
+    <div class="col-md-4 col-md-offset-2">
+        <h1> WPC<em>photos</em>  {%if not me%}<a href="/signin"><button class="btn btn-xs btn-danger" type="button"><i class="fa fa-register" style="color:white;"></i>  Register with WPC</button></a>{%endif%}</h1>
+    </div>
+  </div>
+    {%block signup_links%}  
+    {%endblock%}
+    <hr>
+    <h4>WPC Top 100 Photos</h4><a>View All</a>
+    <div class="col-md-12 top_photos">
+      
+      <img src="/images/Overload.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+      <img src="/images/Artists_2.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+      <img src="/images/Artist_1.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+      <img src="/images/AnuragMathur.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+      <img src="/images/AnuragMathur-2.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+      <img src="/images/asli_India_4_WMedited.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+      <img src="/images/asli_India_WM.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+      <img src="/images/DSC_1596.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+      <img src="/images/faith_disrupted.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+      <img src="/images/Brooklyn_Bridge.jpg" alt="Profile Image" class="img-rounded shadow_class" height="400px">
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <h4>WPC Recommended Photos</h4><a>View All</a>
+    <div class="col-md-12 small_photos">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_1.jpg" alt="Profile Image" class="img-rounded " height="100px">
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <h4>Most Viewed Photos</h4><a>View All</a>
+    <div class="col-md-12 small_photos">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_8.jpg" alt="Profile Image" class="img-rounded " height="100px">
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    
+    <div class="col-md-5 col-md-offset-1">
+      <h4>Popular Tags</h4><br>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-danger padding-top">Beginner Photographer</button>
+      <hr>
+    </div>
+    <div class="col-md-5">
+      <h4>Popular Locations</h4><br>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <button type="submit" class="btn btn-info padding-top">Beginner Photographer</button>
+      <hr>
+    </div>
+    <div class="row">
+    </div>
+    <h4>Most liked Photos</h4><a>View All</a>
+    <div class="col-md-12 small_photos">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+      <img src="/images/img_2.jpg" alt="Profile Image" class="img-rounded " height="100px">
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+
+
+{%endblock%}

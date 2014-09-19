@@ -726,7 +726,7 @@ fieldset#form_body {
 	margin-top:50px;
 }
 .navbar-default {
-  background-color: black;
+  background: rgba(0, 0, 0, .5);
   border-color: #e7e7e7;
 }
 
