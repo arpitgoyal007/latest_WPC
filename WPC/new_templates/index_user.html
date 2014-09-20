@@ -23,14 +23,9 @@ Home | WPC
 		  <li>
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
 			  <ul class="dropdown-menu" role="menu">
-				  <li><a href="/{{me.key.id()}}/user_blogs"><span class="glyphicon glyphicon-heart-empty"></span> My Blogs</a></li>
-				  <li><a href="/{{me.key.id()}}/user_forum"><span class="glyphicon glyphicon-heart-empty"></span> My Questions</a></li>
-				  <li><a href="/{{me.key.id()}}/user_groups"><span class="glyphicon glyphicon-heart-empty"></span> My Groups</a></li>
-				  <li><a href="/{{me.key.id()}}/user_ideabook"><span class="glyphicon glyphicon-heart-empty"></span> My Ideabook</a></li>
-				  <li><a data-toggle="modal" data-target=".my_portfolios"><span class="glyphicon glyphicon-heart-empty"></span> My Portfolios</a></li>
-				  <li class="divider"></li>
-				  <li><a href="" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-phone"></i> Invite Friends</a></li>
 				  <li><a href="/usersettings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+				  <li><a href="" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-phone"></i> Invite Friends</a></li>
+				  <li><a href="#my_portfolios"><span class="glyphicon glyphicon-heart-empty"></span> My Ideabook</a></li>
 				  <li class="divider"></li>
 				  <li><a href="/logout"><span class="glyphicon glyphicon-send"></span> Sign Out</a></li>
 			  </ul>
@@ -80,7 +75,7 @@ Home | WPC
             <h4 class="modal-title">Invite Friends to join WPC</h4>
           </div>
           <div class="modal-body">
-              <textarea class="textarea_no_border" name="title" cols="100" rows="2" placeholder="Enter Email Addresses seperated by commas" ></textarea><br>
+              <textarea class="textarea_no_border" name="title" cols="130" rows="2" placeholder="Enter Email Addresses seperated by commas" ></textarea><br>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-xs btn-primary">Send Invitations</button>  or
@@ -90,102 +85,7 @@ Home | WPC
         </div>
       </div>
     </div>
-	<div class="modal fade my_portfolios" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">My Portfolios</h4>
-          </div>
-			<div class="col-md-3">
-			  <a href=""><h4>All Photos</h4>	
-			  <img src="http://localhost:8080/servephoto/dO70iCYthqnzzeuJcQVpdw==" alt="Profile Image" class="img-rounded" width="140px"></a><br>
-				<div class="button-container post-action padding_top">
-					<form method="post">
-						<input type="hidden" name="actionType" value="delete">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
-					</form>
-					<form method="post">
-						<input type="hidden" name="actionType" value="share">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
-					</form>
-					<form method="post">
-						<input type="hidden" name="actionType" value="download">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
-					</form>
-				</div>
-			</div>
-			<div class="col-md-3">
-			  <a href=""><h4>All Photos</h4>	
-			  <img src="http://localhost:8080/servephoto/dO70iCYthqnzzeuJcQVpdw==" alt="Profile Image" class="img-rounded" width="140px"></a><br>
-				<div class="button-container post-action padding_top">
-					<form method="post">
-						<input type="hidden" name="actionType" value="delete">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
-					</form>
-					<form method="post">
-						<input type="hidden" name="actionType" value="share">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
-					</form>
-					<form method="post">
-						<input type="hidden" name="actionType" value="download">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
-					</form>
-				</div>
-			</div>
-			<div class="col-md-3">
-			  <a href=""><h4>All Photos</h4>	
-			  <img src="http://localhost:8080/servephoto/dO70iCYthqnzzeuJcQVpdw==" alt="Profile Image" class="img-rounded" width="140px"></a><br>
-				<div class="button-container post-action padding_top">
-					<form method="post">
-						<input type="hidden" name="actionType" value="delete">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
-					</form>
-					<form method="post">
-						<input type="hidden" name="actionType" value="share">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
-					</form>
-					<form method="post">
-						<input type="hidden" name="actionType" value="download">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
-					</form>
-				</div>
-			</div>
-			<div class="col-md-3">
-			  <a href=""><h4>All Photos</h4>	
-			  <img src="http://localhost:8080/servephoto/dO70iCYthqnzzeuJcQVpdw==" alt="Profile Image" class="img-rounded" width="140px"></a><br>
-				<div class="button-container post-action padding_top">
-					<form method="post">
-						<input type="hidden" name="actionType" value="delete">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
-					</form>
-					<form method="post">
-						<input type="hidden" name="actionType" value="share">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
-					</form>
-					<form method="post">
-						<input type="hidden" name="actionType" value="download">
-						<input type="hidden" name="photoKey" value="">
-						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
-					</form>
-				</div>
-			</div>
-          <div class="modal-footer">
-          </div>
-        </div>
-      </div>
-    </div>
+
  <div class="container" id="main">
       <h1>My Feed</h1>
 
