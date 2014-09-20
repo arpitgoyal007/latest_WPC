@@ -124,6 +124,25 @@ class UserSettingsHandler(blobstore_handlers.BlobstoreUploadHandler, PageHandler
 			self.redirect('/usersettings')
 		else:
 			self.redirect('/')
+			
+class UserGroupsHandler(PageHandler):
+	def get(self, resource):
+		userid = resource
+		user = User.get_by_id(userid)
+		templateVals = {'me': self.user}
+		if user:
+			if self.user:
+				if self.user == user:
+					templateVals['user'] = self.user
+				else:
+					templateVals['user'] = user
+			else:
+				templateVals['user'] = user
+			groups = Group.of_ancestor(user.key)
+			templateVals['groups'] = groups
+			self.render('user_groups.html', **templateVals)
+		else:
+			self.redirect('/')
 
 class SearchResultsHandler(PageHandler):           ## TODO
 	def get(self):
@@ -332,6 +351,21 @@ class PhotoEditHandler(PageHandler):
 			photo.albums = albumList
 			photo.put()
 			self.redirect('/%s/photos' % self.user.key.id())
+
+class PhotosHandler(PageHandler):
+	def get(self):
+		if not self.user:
+			templateVals = {'me': ""}
+			self.render('photos.html', **templateVals)
+		else:
+			templateVals = {'me': self.user}
+			self.render('photos.html', **templateVals)
+
+class ForumHandler(PageHandler):
+	def get(self):
+		if not self.user:
+			templateVals = {'me': ""}
+			self.render('forum.html', **templateVals)
 		else:
 			self.redirect('/')
 
@@ -696,6 +730,7 @@ app = webapp2.WSGIApplication([
 			('/search', SearchResultsHandler),
 			('/forum', ForumHandler),
 			('/groups' , GroupsHandler),
+			('/photos' , PhotosHandler),
 			('/blog' , BlogsHandler),
 			('/group/([^/]+)', GroupPermpageHandler),
 			('/photo/([^/]+)', PhotoPermpageHandler),
@@ -710,9 +745,5 @@ app = webapp2.WSGIApplication([
 			('/([^/]+)/photos', UserPhotosHandler),
 			('/([^/]+)/blogs', UserBlogsHandler),
 			('/([^/]+)', UserStudioHandler),
-			('/([^.]+)', DefaultHandler),
-			('/([^/]+)/popupphotos', UserPhotosPopUpHandler),
-			('/popupnewphoto', PopUpPhotoNewHandler),
-			('/popupuploadphoto', PopUpPhotoUploadHandler),
-			('/serveblog/([^/]+)', BlogServeHandler)
+			('/([^.]+)', DefaultHandler)
 			], debug=True)
