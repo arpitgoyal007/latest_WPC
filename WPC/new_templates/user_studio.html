@@ -92,13 +92,13 @@
           </div>
         </div>
         <div class="transbox_left">
-            <h1>{{user.total_likes}}<h1><h2>likes</h2>
-            <h1>{{user.all_comments}}<h1><h2>comments</h2>
-            <h1>{{user.awards}}<h1><h2>awards</h2>
-            <h1>{{user.profile_shares}}<h1><h2>shares</h2>
-            <h1>{{user.followers}}<h1><h2>followers</h2>
-            <h1>{{user.following}}<h1><h2>following</h2>
-            <h1>{{user.profile_views}}<h1><h2>profile views</h2>
+            <h1>{{me.total_likes}}<h1><h2>likes</h2>
+            <h1>{{me.all_comments}}<h1><h2>comments</h2>
+            <h1>{{me.awards}}<h1><h2>awards</h2>
+            <h1>{{me.profile_shares}}<h1><h2>shares</h2>
+            <h1>{{me.followers}}<h1><h2>followers</h2>
+            <h1>{{me.following}}<h1><h2>following</h2>
+            <h1>{{me.profile_views}}<h1><h2>profile views</h2>
             <a href="/{{me.key.id()}}/photos"><h1>{{photos.count()}}<h1><h2>photos</h2></a>
         </div>
 
@@ -109,17 +109,121 @@
     <div id= "my_portfolios" class="call-to-action">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <h3>My Portfolios</h3>
-                    <a href="#" class="btn btn-lg btn-success">All Photos</a>
-                    <a href="#" class="btn btn-lg btn-success">Travel Photography</a>
-                    <a href="#" class="btn btn-lg btn-success">Potraits</a>
+				<div class="col-md-3 text-center">
+					<a href="/{{me.key.id()}}/user_blogs"><h3>My Blogs</h3></a>
+				</div>
+				<div class="col-md-3 text-center">
+					<h3>My Questions</h3>
+				</div>
+				<div class="col-md-3 text-center">
+					<a href="/{{me.key.id()}}/user_groups"><h3>My Groups</h3></a>
+				</div>
+                <div class="col-md-3 text-center">
+                    <a data-toggle="modal" data-target=".my_portfolios"><h3>My Portfolios</h3></a>
                 </div>
             </div>
         </div>
     </div>
+	<br>
     <!-- /Call to Action -->
 
+	<div class="modal fade my_portfolios" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">My Portfolios</h4>
+          </div>
+			<div class="col-md-3">
+			  <a href=""><h4>All Photos</h4>	
+			  <img src="http://localhost:8080/servephoto/dO70iCYthqnzzeuJcQVpdw==" alt="Profile Image" class="img-rounded" width="140px"></a><br>
+				<div class="button-container post-action padding_top">
+					<form method="post">
+						<input type="hidden" name="actionType" value="delete">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
+					</form>
+					<form method="post">
+						<input type="hidden" name="actionType" value="share">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
+					</form>
+					<form method="post">
+						<input type="hidden" name="actionType" value="download">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-3">
+			  <a href=""><h4>All Photos</h4>	
+			  <img src="http://localhost:8080/servephoto/dO70iCYthqnzzeuJcQVpdw==" alt="Profile Image" class="img-rounded" width="140px"></a><br>
+				<div class="button-container post-action padding_top">
+					<form method="post">
+						<input type="hidden" name="actionType" value="delete">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
+					</form>
+					<form method="post">
+						<input type="hidden" name="actionType" value="share">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
+					</form>
+					<form method="post">
+						<input type="hidden" name="actionType" value="download">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-3">
+			  <a href=""><h4>All Photos</h4>	
+			  <img src="http://localhost:8080/servephoto/dO70iCYthqnzzeuJcQVpdw==" alt="Profile Image" class="img-rounded" width="140px"></a><br>
+				<div class="button-container post-action padding_top">
+					<form method="post">
+						<input type="hidden" name="actionType" value="delete">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
+					</form>
+					<form method="post">
+						<input type="hidden" name="actionType" value="share">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
+					</form>
+					<form method="post">
+						<input type="hidden" name="actionType" value="download">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-3">
+			  <a href=""><h4>All Photos</h4>	
+			  <img src="http://localhost:8080/servephoto/dO70iCYthqnzzeuJcQVpdw==" alt="Profile Image" class="img-rounded" width="140px"></a><br>
+				<div class="button-container post-action padding_top">
+					<form method="post">
+						<input type="hidden" name="actionType" value="delete">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><span class="glyphicon glyphicon-trash" style="color:white;"></span></button>
+					</form>
+					<form method="post">
+						<input type="hidden" name="actionType" value="share">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-share fa-1x"></i></button>
+					</form>
+					<form method="post">
+						<input type="hidden" name="actionType" value="download">
+						<input type="hidden" name="photoKey" value="">
+						<button class="btn btn-primary btn-xs" type="submit" value="Delete"><i class="fa fa-download fa-1x"></i></button>
+					</form>
+				</div>
+			</div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+	
     <!-- Callout -->
     <div class="callout" style="background: url(/images/into_the_storm.jpg) no-repeat center center fixed;background-size: cover;">
         <div class="vert-text">
@@ -171,7 +275,7 @@
     </div>
     <!-- /Callout -->
 
-    <br><br>
+    <br>
     <!-- Portfolio -->
     <div id="my_photos" class="portfolio main1">
         <nav class="navbar" role="navigation">
