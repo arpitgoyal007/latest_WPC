@@ -29,7 +29,7 @@
   <hr class="horizontal-line">
    <script src="/js/ckeditor.js"></script>
    <div class="col-md-10 col-md-offset-1 newblog_text">
-		<form action="" method="post">
+		<form action="{{uploadUrl}}" method="post" enctype="multipart/form-data">
 			<h3>Add Blog Title</h3>
 			<textarea name="title" value="{{title}}" cols="80" rows="2"></textarea>
 			  <h3>Add Blog's Main Image</h3>
@@ -40,7 +40,7 @@
 			  <span class="btn btn-info btn-sm fileinput-button">
 				<i class="glyphicon glyphicon-plus"></i>
 				<span style="color:white;">Upload Photo</span>
-				<input type="file" id="myFile" name="cover_photo">
+				<input type="file" id="myFile" name="cover_photo" multiple>
 			  </span>
 			  <div class="row">
 				<div class="container" id="thumb_img1"></div>
@@ -92,7 +92,7 @@
 <script type="text/javascript">
 function change_main_image(img_key) {
     document.getElementById("main_img").innerHTML = "<img alt='' src='"+img_key+"' height='100%' class='img_display'/>";
-    document.getElementById("group_cover_image").innerHTML = "<input type='hidden' name='cover_img' value='"+img_key+"'>";
+    document.getElementById("group_cover_image").innerHTML = "<input type='hidden' name='cover_img' value='"+img_key+"'><input type='hidden' name='inputType' value='select_photo'>";
 	document.getElementById("thumb_img1").innerHTML = "<div class='col-lg-4'><img class='img-rounded' src='" + img_key + "' height='140px' alt='"+img_key+"'></div>";
 } 
 </script>
@@ -141,7 +141,7 @@ window.onload = function(){
                 picReader.addEventListener("load",function(event){
                   var picFile = event.target;
                     var div = document.createElement("div");
-                    div.innerHTML = "<div class='col-lg-4'><img class='img-rounded' src='" + picFile.result + "' height='140px' alt='"+file_name[w]+"'><h4 style='color:black;'>"+file_name_size[w]+"</h4></div>";
+                    div.innerHTML = "<div class='col-lg-4'><img class='img-rounded' src='" + picFile.result + "' height='140px' alt='"+file_name[w]+"'><h4 style='color:black;'>"+file_name_size[w]+"</h4></div><input type='hidden' name='inputType' value='upload_photo'>";
                     w++;
                     output.insertBefore(div,null);            
                 });

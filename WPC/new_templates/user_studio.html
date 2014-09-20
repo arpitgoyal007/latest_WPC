@@ -4,10 +4,8 @@
 		{%extends "index.html"%}
 {%endif%}
 
-{%set user = me%}
-
 {%block title%}
-{{me.name}} | WPC
+{{user.name}} | WPC
 {%endblock%}
 
 {%block styleSheets%}
@@ -23,31 +21,34 @@
 {%block carousel%}
 {%endblock%}
 
+{%block signup_links%}  
+{%endblock%}
+
 {%block pageContent%}
     <!-- Full Page Image Header Area -->
     <div id="top" class="header" style="background: url(/images/Artists_2.jpg) no-repeat center center fixed;background-size: cover;">
     
         <div class="transbox_right">
             <ul class="list-inline">
-                {%if me.website%}
-                  <a href="{{me.website}}"><img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br><a>
+                {%if user.website%}
+                  <a href="{{user.website}}"><img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br><a>
                 {%else%}
                   <img src="/images/WPC_app_icon.jpg" alt="Profile Image" width="60px"><br><br><br>
                 {% endif %}
-                {%if me.facebook%}
-                  <li color="white"><a href="{{me.facebook}}"><i class="fa fa-facebook fa-3x" style="color:white;"></i></a></li><br><br>
+                {%if user.facebook%}
+                  <li color="white"><a href="{{user.facebook}}"><i class="fa fa-facebook fa-3x" style="color:white;"></i></a></li><br><br>
                 {% endif %}
-                {%if me.twitter%}
-                  <li color="white"><a href="{{me.twitter}}"><i class="fa fa-twitter fa-3x" style="color:white;"></i></a></li><br><br>
+                {%if user.twitter%}
+                  <li color="white"><a href="{{user.twitter}}"><i class="fa fa-twitter fa-3x" style="color:white;"></i></a></li><br><br>
                 {% endif %}
-                {%if me.youtube%}
-                  <li color="white"><a href="{{me.youtube}}"><i class="fa fa-youtube fa-3x" style="color:white;"></i></a></li><br><br>
+                {%if user.youtube%}
+                  <li color="white"><a href="{{user.youtube}}"><i class="fa fa-youtube fa-3x" style="color:white;"></i></a></li><br><br>
                 {% endif %}
-                {%if me.pinterest%}
-                  <li color="white"><a href="{{me.pinterest}}"><i class="fa fa-pinterest fa-3x" style="color:white;"></i></a></li><br><br>
+                {%if user.pinterest%}
+                  <li color="white"><a href="{{user.pinterest}}"><i class="fa fa-pinterest fa-3x" style="color:white;"></i></a></li><br><br>
                 {% endif %}
-                {%if me.google_plus%}
-                  <li color="white"><a href="{{me.google_plus}}"><i class="fa fa-google-plus fa-3x" style="color:white;"></i></a></li>
+                {%if user.google_plus%}
+                  <li color="white"><a href="{{user.google_plus}}"><i class="fa fa-google-plus fa-3x" style="color:white;"></i></a></li>
                 {% endif %}
             </ul>
 			{%if me%}
@@ -57,26 +58,26 @@
         <div class="vert-text">
             <img src="/images/image-2.jpg" alt="Profile Image" class="img-circle" width="90px"><br>
             <a href="/usersettings#portfolio"><span class="glyphicon glyphicon-cog"></span></a>
-            <h3 style="margin-top:0px;"><em>Welcome!</em> {{me.name}}</h3>
-            <a href="#map_canvas"><img src="/fonts/Flags/{{me.country}}.png" alt="country" width="40px"></a><br>
+            <h3 style="margin-top:0px;"><em>Welcome!</em> {{user.name}}</h3>
+            <a href="#map_canvas"><img src="/fonts/Flags/{{user.country}}.png" alt="country" width="40px"></a><br>
 			{%if me%}
 				<a href="/usersettings#user_settings"><span class="glyphicon glyphicon-cog"></span></a>
 			{% endif %}
             <br>  
             <a href="https://www.facebook.com"><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:gold;"></i><i class="fa fa-star" style="color:white;"></i></a>
-            <h2><em>{{me.wpc_score}}</em></h2>
-			 {%if me.wpc_score<=5000%}
+            <h2><em>{{user.wpc_score}}</em></h2>
+			 {%if user.wpc_score<=5000%}
 				<button type="submit" class="btn btn-danger">Beginner Photographer</button><br>
-			{%elif me.wpc_score>5000 or me.wpc_score<=10000%}
+			{%elif user.wpc_score>5000 or user.wpc_score<=10000%}
 				<button type="submit" class="btn btn-danger">Amateur Photographer</button><br>
-			{%elif me.wpc_score>10000 or me.wpc_score<=20000%}
+			{%elif user.wpc_score>10000 or user.wpc_score<=20000%}
 				<button type="submit" class="btn btn-danger">Semi-Pro Photographer</button><br>
-			{%elif me.wpc_score>20000 or me.wpc_score<=25000%}
+			{%elif user.wpc_score>20000 or user.wpc_score<=25000%}
 				<button type="submit" class="btn btn-danger">Professional Photographer</button><br>
-			{%elif me.wpc_score>25000%}
+			{%elif user.wpc_score>25000%}
 				<button type="submit" class="btn btn-danger">Master Photographer</button><br>
 			{% endif %}
-			{%if not me%}
+			{%if me != user%}
 				<br><button type="submit" class="btn btn-xs btn-info"><span style="color:white;" class="glyphicon glyphicon-pushpin"></span> Follow</button><br>
 			{% endif %}
             <div class="camera">
@@ -92,14 +93,12 @@
           </div>
         </div>
         <div class="transbox_left">
-            <h1>{{me.total_likes}}<h1><h2>likes</h2>
-            <h1>{{me.all_comments}}<h1><h2>comments</h2>
-            <h1>{{me.awards}}<h1><h2>awards</h2>
-            <h1>{{me.profile_shares}}<h1><h2>shares</h2>
-            <h1>{{me.followers}}<h1><h2>followers</h2>
-            <h1>{{me.following}}<h1><h2>following</h2>
-            <h1>{{me.profile_views}}<h1><h2>profile views</h2>
-            <a href="/{{me.key.id()}}/photos"><h1>{{photos.count()}}<h1><h2>photos</h2></a>
+            <h1>{{user.awards}}<h1><h2>awards</h2>
+            <h1>{{user.profile_shares}}<h1><h2>shares</h2>
+            <h1>{{user.followers}}<h1><h2>followers</h2>
+            <h1>{{user.following}}<h1><h2>following</h2>
+            <h1>{{user.profile_views}}<h1><h2>profile views</h2>
+            <a href="/{{user.key.id()}}/photos"><h1>{{photos.count()}}<h1><h2>photos</h2></a>
         </div>
 
     </div>
@@ -110,13 +109,13 @@
         <div class="container">
             <div class="row">
 				<div class="col-md-3 text-center">
-					<a href="/{{me.key.id()}}/user_blogs"><h3>My Blogs</h3></a>
+					<a href="/{{user.key.id()}}/user_blogs"><h3>My Blogs</h3></a>
 				</div>
 				<div class="col-md-3 text-center">
 					<h3>My Questions</h3>
 				</div>
 				<div class="col-md-3 text-center">
-					<a href="/{{me.key.id()}}/user_groups"><h3>My Groups</h3></a>
+					<a href="/{{user.key.id()}}/user_groups"><h3>My Groups</h3></a>
 				</div>
                 <div class="col-md-3 text-center">
                     <a data-toggle="modal" data-target=".my_portfolios"><h3>My Portfolios</h3></a>
@@ -288,7 +287,7 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="/{{me.key.id()}}/photos" style="font-family:verdana;color:Blue;font-size:30px;"> My Photos<br><h6>Open in seperate window</h6></a>
+                  <a class="navbar-brand" href="/{{user.key.id()}}/photos" style="font-family:verdana;color:Blue;font-size:30px;"> My Photos<br><h6>Open in seperate window</h6></a>
 
               </div>
 

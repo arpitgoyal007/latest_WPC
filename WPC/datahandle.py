@@ -59,8 +59,20 @@ def create_picture(blobKey, caption, description, location, parent_key):
 
 def create_group(name, description, cover_photo, parent_key):
 	grp = Group(name=name, description=description, cover_photo=cover_photo, parent=parent_key)
+	grp.members.append(parent_key)
 	grpKey = grp.put()
+	user = parent_key.get()
+	user.groups.append(grpKey)
+	userKey = user.put()
 	return grp
+
+def add_member(grpKey, userKey):
+	grp = grpKey.get()
+	user = userKey.get()
+	grp.members.append(userKey)
+	user.groups.append(grpKey)
+	grpKey = grp.put()
+	userKey = user.put()
 
 def create_favoritebook(parent_key):
 	fbook = Favoritebook(parent=parent_key)

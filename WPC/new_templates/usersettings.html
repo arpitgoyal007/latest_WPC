@@ -1,4 +1,8 @@
-{%extends "user_studio.html"%}
+{%if me%}
+    {%extends "index_user.html"%}
+{%else%}
+    {%extends "index.html"%}
+{%endif%}
 
 {%set user = me%}
 
@@ -116,19 +120,17 @@
         <div id="user_settings" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Account Settings</h1>
             <form class="form-signin col-sm-4" role="form" method="post">
+                <input type="hidden" name="formType" value="account_info">
                 <p>User Name </p><input type="text" name="name" class="form-control" placeholder="{{me.name}}" value="{{me.name}}"><br>
-                <button class="btn btn-xs btn-success" type="submit">Save Name</button>
                 <hr>
                 <p>Primary Email ID </p><h5 style="color:black;">{{me.email}}</h5><br>
                 <p>Alternate Email ID </p><input type="text" name="alt_email" class="form-control" placeholder="{{me.alt_email}}"><br>
-                <button class="btn btn-xs btn-success" type="submit">Add Email</button>
                 <hr>
                 <p>Update Passowrd</p>
                 <input type="password" name="password" class="form-control" placeholder="Password">
                 <input type="password" name="verifyPassword" class="form-control" placeholder="Re-enter Password">
                 <br>
                 <div class="error" style="color:red;">{{signupError}}</div>
-                <button class="btn btn-xs btn-success" type="submit">Save Password</button>
                 <hr>
                 <p>Edit Country</p>
                    <h4 style="color:black;">Current Country : {{me.country}}  <img src="/fonts/Flags/{{me.country}}.png" alt="country" width="30px"></h4>
@@ -382,13 +384,14 @@
                       <option value="Zambia">Zambia</option>
                       <option value="Zimbabwe">Zimbabwe</option>
                       </select><br><br>
-                <button class="btn btn-xs btn-success" type="submit">Add Location</button>
+                <button class="btn btn-xs btn-success" type="submit">Update information</button>
             </form>
         </div>
         <hr>
         <div id="social_profiles" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Social Profiles</h1>
                 <form role="form" method="post">
+                  <input type="hidden" name="formType" value="social_profiles">
                     <div class="col-sm-4">
                         <p><i class="fa fa-facebook fa-3x" style="color:black;"></i></p><input type="text" name="facebook" class="form-control" placeholder="Enter Facebook Profile's Complete Link" value=""><br>
                         <p><i class="fa fa-youtube fa-3x" style="color:black;"></i></p><input type="text" name="youtube" class="form-control" placeholder="Enter Youtube Channel's Complete Link" value=""><br>
@@ -409,6 +412,7 @@
             <h1 class="page-header">Portfolio Settings</h1>
               
               <form role="form" method="post" action="{{uploadUrl}}">
+                <input type="hidden" name="formType" value="profile_settings">
                 <div class="col-sm-4">
                 <p >Select Profile Image</p>
                 <div class="column fileupload-buttonbar">

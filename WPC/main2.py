@@ -168,6 +168,7 @@ class SearchResultsHandler(PageHandler):           ## TODO
 
 class ForumHandler(PageHandler):    ## TODO
 	def get(self):
+		self.redirect('/photos')
 		if not self.user:
 			templateVals = {'me': ""}
 			self.render('forum.html', **templateVals)
@@ -282,24 +283,31 @@ class GroupNewHandler(PageHandler ,blobstore_handlers.BlobstoreUploadHandler):
 	def get(self):
 		if self.user:
 			templateVals = {'me': self.user}
+			uploadUrl = blobstore.create_upload_url('/newgroup')
+			templateVals['uploadUrl'] = uploadUrl
 			self.render('new_group.html', **templateVals)
 		else:
 			self.redirect('/')
 
 	def post(self):
 		if self.user:
-			action = self.request.get('actionType')
-			if action == "create_group":			
-				name = self.request.get('name')
-				description = self.request.get('description')
+			input_type = self.request.get('inputType')
+			name = self.request.get('name')
+			description = self.request.get('description')
+			if input_type == "select_photo":
 				cover_img = self.request.get('cover_img')
-				if name and description:
-					group = create_group(name, description, cover_img, self.user.key)
-					self.redirect('/group/%s' % group.key.urlsafe())
-				else:
-					errorMsg = "Please enter both title and content!"
-					templateVals = {'me': self.user, 'name': name, 'description': description, 'submitError': errorMsg}
-					self.render('new_group.html', **templateVals)
+			elif input_type == "upload_photo":
+				uploads = self.get_uploads('cover_photo')
+				blobInfo = uploads[0]
+				photo = create_picture(blobInfo.key(), None, None, None, self.user.key)
+				cover_img = '/servephoto/{0}'.format(photo.blobKey)
+			if name and description:
+				group = create_group(name, description, cover_img, self.user.key)
+				self.redirect('/group/%s' % group.key.urlsafe())
+			else:
+				errorMsg = "Please enter both name and description!"
+				templateVals = {'me': self.user, 'name': name, 'description': description, 'submitError': errorMsg}
+				self.render('new_group.html', **templateVals)
 		else:
 			self.redirect('/')
 
@@ -347,8 +355,8 @@ class PhotoEditHandler(PageHandler):
 			photo.shutter_speed = shutter_speed
 			photo.aperture = aperture
 			photo.iso = iso
-			photo.tags = tagList
-			photo.albums = albumList
+			photo.tags += tagList
+			photo.albums += albumList
 			photo.put()
 			self.redirect('/%s/photos' % self.user.key.id())
 
@@ -375,15 +383,24 @@ class BlogNewHandler(PageHandler, blobstore_handlers.BlobstoreUploadHandler):
 			templateVals = {'me': self.user}
 			photos = Picture.of_ancestor(self.user.key)
 			templateVals['photos'] = photos
+			uploadUrl = blobstore.create_upload_url('/newblog')
+			templateVals['uploadUrl'] = uploadUrl
 			self.render('new_blog.html', **templateVals)
 		else:
 			self.redirect('/')
 
 	def post(self):
 		if self.user:
+			input_type = self.request.get('inputType')
 			title = self.request.get('title')
 			content = self.request.get('content')
-			cover_img = self.request.get('cover_img')
+			if input_type == "select_photo":
+				cover_img = self.request.get('cover_img')
+			elif input_type == "upload_photo":
+				uploads = self.get_uploads('cover_photo')
+				blobInfo = uploads[0]
+				photo = create_picture(blobInfo.key(), None, None, None, self.user.key)
+				cover_img = '/servephoto/{0}'.format(photo.blobKey)
 			if title and content:
 				blog = create_blog(title, content, cover_img, self.user.key)
 				self.redirect('/blog/%s' % blog.key.urlsafe())
@@ -466,6 +483,7 @@ class PhotoPermpageHandler(PageHandler):
 				photo.viewed += 1
 				photo.put()
 				templateVals['user'] = user
+			templateVals['photos'] = Picture.of_ancestor(userKey)
 			templateVals['photo'] = photoKey.get()
 			self.render('photoperm.html', **templateVals)
 		else:
@@ -498,8 +516,8 @@ class PhotoPermpageHandler(PageHandler):
 				albumList = self.request.get_all('albums')
 				#photo.tags.append(tagList)
 				#photo.albums.append(albumList)
-				photo.tags = tagList
-				photo.albums = albumList
+				photo.tags += tagList
+				photo.albums += albumList
 				photo.put()
 				self.redirect('/%s/photos' % self.user.key.id())
 		else:
